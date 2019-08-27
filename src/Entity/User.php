@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,9 +28,9 @@ class User
     private $prenom;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="datetime")
      */
-    private $age;
+    private $dateNaissance;
 
     /**
      * @ORM\Column(type="string", length=3)
@@ -57,7 +58,7 @@ class User
     private $password;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
     private $statut;
 
@@ -90,14 +91,14 @@ class User
         return $this;
     }
 
-    public function getAge(): ?int
+    public function getDateNaissance(): ?\DateTimeInterface
     {
-        return $this->age;
+        return $this->dateNaissance;
     }
 
-    public function setAge(int $age): self
+    public function setDateNaissance(\DateTimeInterface $dateNaissance): self
     {
-        $this->age = $age;
+        $this->dateNaissance = $dateNaissance;
 
         return $this;
     }
@@ -162,12 +163,12 @@ class User
         return $this;
     }
 
-    public function getStatut(): ?string
+    public function getStatut(): ?boolean
     {
         return $this->statut;
     }
 
-    public function setStatut(string $statut): self
+    public function setStatut(boolean $statut): self
     {
         $this->statut = $statut;
 

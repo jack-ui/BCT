@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
@@ -27,9 +28,9 @@ class Produit
     private $categorie;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
-    private $statut;
+    private $uniteMesure;
 
     /**
      * @ORM\Column(type="float")
@@ -80,14 +81,14 @@ class Produit
         return $this;
     }
 
-    public function getStatut(): ?int
+    public function getUniteMesure(): ?boolean
     {
-        return $this->statut;
+        return $this->uniteMesure;
     }
 
-    public function setStatut(int $statut): self
+    public function setUniteMesure(boolean $uniteMesure): self
     {
-        $this->statut = $statut;
+        $this->uniteMesure = $uniteMesure;
 
         return $this;
     }
