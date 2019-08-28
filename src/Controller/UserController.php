@@ -11,15 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="user")
+     * @Route("/inscription", name="inscription")
      */
-    public function index()
+    public function inscription()
     {
-        $user = new User; 
-        $form = $this -> createForm(UserType::class, $user);
+        
         
         return $this->render('user/register.html.twig', [
-            'form' => $form->createView(),
+          
         ]);
     }
 }
