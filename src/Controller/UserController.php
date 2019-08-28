@@ -17,7 +17,7 @@ class UserController extends AbstractController
 	
 	
 	/**
-	* @Route("/user", name="user")
+	* @Route("/inscription", name="inscription")
 	*
 	*/
 	public function inscription(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder){
@@ -57,51 +57,6 @@ class UserController extends AbstractController
 			'userForm' => $form -> createView()
 		]);
 	}
-	
-	
-	
-	
-	
-	/**
-	* @Route("/profil", name="profil")
-	*
-	*/
-	// public function profil(){
-	// 	return $this -> render('membre/profil.html.twig', []);
-	// }
-	
-	/**
-	* @Route("/commandes", name="commandes")
-	*
-	*/
-	// public function commandes(){
-	// 	return $this -> render('membre/commandes.html.twig', []);
-	// }
-	
-	/**
-	* @Route("/profil/update", name="profil_update")
-	*
-	*/
-	// public function profilUpdate(Request $request, ObjectManager $manager){
-	// 	$membre = $this -> getUser();
-	// 	$form = $this -> createForm(MembreType::class, $membre, ['update' => true]);
-		
-	// 	$form -> handleRequest($request);
-		
-	// 	if($form -> isSubmitted() && $form -> isValid()){
-			
-	// 		$manager -> persist($membre);
-	// 		$manager -> flush();
-			
-	// 		$this -> addFlash('success', 'Félicitations, votre profil est à jour !');
-	// 		return $this -> redirectToRoute('profil');
-	// 	}
-	// 	return $this -> render('membre/register.html.twig', [
-	// 		'membreForm' => $form -> createView()
-	// 	]);
-	// }
-	
-	
 	
 	
 }
