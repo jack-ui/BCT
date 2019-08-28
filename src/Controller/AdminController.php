@@ -14,7 +14,7 @@ class AdminController extends AbstractController
     {   
         // afficher le dashboard de l'admin
         // 2 volets : gestion user et gestion boutique
-        return $this->render('admin.html.twig', [
+        return $this->render('admin/dashboard_admin.html.twig', [
             
         ]);
     }
@@ -26,19 +26,19 @@ class AdminController extends AbstractController
     {   
         // afficher la liste des users = volet gestion user
         
-        return $this->render('tableau_user.html.twig', [
+        return $this->render('admin/tableau_user.html.twig', [
             
         ]);
     }
 
     /**
-     * @Route("/admin/user/{id}", name="admin_user")
+     * @Route("/admin/user", name="admin_user")
      */
     public function afficherProfil()
     {   
         // afficher un profil vendeur ou acheteur en fonction de l'id et/ou statut ??
         
-        return $this->render('user_form.html.twig', [
+        return $this->render('admin/user_form.html.twig', [
             
         ]);
     }
@@ -52,7 +52,7 @@ class AdminController extends AbstractController
     {   
         // afficher le formulaire d'un user
         
-        return $this->render('user_form.html.twig', [
+        return $this->render('admin/user_form.html.twig', [
             
         ]);
 
@@ -67,7 +67,7 @@ class AdminController extends AbstractController
         // supprime un user en fonction de l'id
         //afficher la liste des user
         
-        return $this->render('tableau_user.html.twig', [
+        return $this->render('admin/tableau_user.html.twig', [
             
         ]);
         

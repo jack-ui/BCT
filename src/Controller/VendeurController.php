@@ -12,12 +12,12 @@ class VendeurController extends AbstractController
      * @Route("/vendre", name="vendre")
      */
     public function vendre()
-    {   //si je suis connecté je vais sur le dashboard
+    {   //si je suis connecté je vais sur le dashboard vendeur
 
         //si je ne suis pas connecté je redirige sur la page de connexion
         // return $this -> redirectToRoute('login.html.twig');
 
-        return $this->render('dashboard.html.twig', [
+        return $this->render('vendeur/dashboard_vendeur.html.twig', [
      ]);
     }
 
@@ -28,7 +28,7 @@ class VendeurController extends AbstractController
     {   
         //affiche la liste de mes commandes
 
-        return $this->render('tableau_commandes.html.twig', [
+        return $this->render('vendeur/tableau_commandes.html.twig', [
         ]);
     }
 
@@ -41,7 +41,7 @@ class VendeurController extends AbstractController
         //affiche le formulaire
 
 
-        return $this->render('commande_form.html.twig', [
+        return $this->render('vendeur/commande_form.html.twig', [
         ]);
 
         // return $this -> redirectToRoute('gestion_commande');
@@ -52,11 +52,11 @@ class VendeurController extends AbstractController
      */
     public function commandeUpdate()
     {   
-        //permet de modifier une commande
+        //permet de modifier une commande en fonction de l'id
         //affiche le formulaire
 
 
-        return $this->render('commande_form.html.twig', [
+        return $this->render('vendeur/commande_form.html.twig', [
         ]);
         // return $this -> redirectToRoute('gestion_commande');
     }
@@ -66,11 +66,11 @@ class VendeurController extends AbstractController
      */
     public function commandeDelete()
     {   
-        //permet de supprimer une commande
+        //permet de supprimer une commande en fonction de l id
         //afficher la liste des commandes
 
 
-        return $this->render('tableau_commandes.html.twig', [
+        return $this->render('vendeur/tableau_commandes.html.twig', [
         ]);
         
     }
