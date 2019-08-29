@@ -51,7 +51,7 @@ class BoutiqueController extends AbstractController
      /**
      * @Route("/shop/update_{id}", name="shop_update")
      */
-    public function produitUpdate($id)
+    public function productUpdate($id)
     {   
         //modifier un produit en fonction de l'id
         //afficher le formulaire du produit
