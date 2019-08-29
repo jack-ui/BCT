@@ -23,6 +23,16 @@ class VendeurController extends AbstractController
     }
 
     /**
+     * @Route("/dasboard", name="dashboard")
+     */
+    public function showDashboard()
+    {   
+        //fonction qui retourne un affichage
+        // affiche le dashboard vendeur
+        return $this -> render('vendeur/dashboard_vendeur.html.twig');
+    }
+
+    /**
      * @Route("/show_orders", name="show_orders")
      */
     public function showOrders()
@@ -92,5 +102,5 @@ class VendeurController extends AbstractController
     }
     // test : localhost:8000/shop/delete_order_10
 
-
+    // ROUTE GESTION PROFIL ??
 }
