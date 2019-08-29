@@ -101,7 +101,7 @@ class BoutiqueController extends AbstractController
         //afficher une boutique en fonction de l'id ? ou un slug ?
         //= afficher la liste des produits de la boutique
 
-        return $this->render('boutique/boutique.html.twig', [
+        return $this->render('boutique/boutique_form.html.twig', [
           
         ]);
     }
@@ -119,18 +119,7 @@ class BoutiqueController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/cgu", name="cgu")
-     */
-    public function afficherCgu()
-    {   
-        //afficher les statistiques
-        //Chiffre d'affaire du jour, semaine, mois à l'instant t
-
-        return $this->render('boutique/cgu.html.twig', [
-          
-        ]);
-    }
+   
 
     
 
