@@ -10,7 +10,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin", name="admin")
      */
-    public function afficherAdmin()
+    public function showAdmin()
     {   
         // afficher le dashboard de l'admin
         // 2 volets : gestion user et gestion boutique
@@ -20,25 +20,25 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user", name="admin_user")
+     * @Route("/admin/users", name="admin_users")
      */
-    public function afficherUsers()
+    public function showUsers()
     {   
         // afficher la liste des users = volet gestion user
         
-        return $this->render('admin/tableau_user.html.twig', [
+        return $this->render('admin/user_table.html.twig', [
             
         ]);
     }
 
     /**
-     * @Route("/admin/user", name="admin_user")
+     * @Route("/admin/user_{id}", name="admin_user")
      */
-    public function afficherProfil()
+    public function showUser($id)
     {   
         // afficher un profil vendeur ou acheteur en fonction de l'id et/ou statut ??
         
-        return $this->render('admin/user_form.html.twig', [
+        return $this->render('admin/user_profile.html.twig', [
             
         ]);
     }
@@ -48,43 +48,56 @@ class AdminController extends AbstractController
      /**
      * @Route("/admin/user/add", name="admin_user_add")
      */
-    public function ajouterUser()
+    public function addUser()
     {   
-        // afficher le formulaire d'un user
+        // afficher le formulaire d'un user // AFFICHER LE FORMULAIRE POUR AJOUTER UN COMPTE ???? UTILISER LE FORMULAIRE D'INSCRIPTION OU CREER UNE VUE DIFFERENTE ??? A VOIR !!!
         
         return $this->render('admin/user_form.html.twig', [
             
         ]);
 
-        // return $this -> redirectToRoute('admin_user');
+        // return $this -> redirectToRoute('admin_users'); 
+        //retourne sur la liste des users
     }
 
     /**
-     * @Route("/admin/user/delete", name="admin_user_delete")
+     * @Route("/admin/user/delete_{id}", name="admin_user_delete")
      */
-    public function supprimerUser()
+    public function deleteUser($id)
     {   
         // supprime un user en fonction de l'id
-        //afficher la liste des user
+        //puis afficher la liste des user mise à jour
         
-        return $this->render('admin/tableau_user.html.twig', [
-            
-        ]);
+        return $this -> redirectToRoute('admin_users'); 
         
     }
 
     /**
-     * @Route("/admin/user/update", name="admin_user_update")
+     * @Route("/admin/user/update_{id}", name="admin_user_update")
      */
-    public function modifierUser()
+    public function updateUser($id)
     {   
         // modifier en fonction de l'id
-        //afficher le formulaire d'un user
+        //afficher le formulaire à éditer d'un user
+        // rediriger vers le profil d'un user
         
         return $this->render('user_form.html.twig', [
             
         ]);
         // return $this -> redirectToRoute('admin_user');
+    }
+
+
+        /**
+     * @Route("/admin/show_shops", name="admin/show_shops")
+     */
+    public function showShops()
+    {   
+        //afficher la liste des boutiques sous forme de tableau
+
+        return $this->render('admin/show_shops.html.twig', [
+          
+        ]);
     }
 
 

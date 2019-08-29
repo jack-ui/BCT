@@ -17,10 +17,10 @@ class UserController extends AbstractController
 	
 	
 	/**
-	* @Route("/inscription", name="inscription")
+	* @Route("/register", name="register")
 	*
 	*/
-	public function inscription(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder){
+	public function register(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder){
 		
 		$user = new User; 
 		$form = $this -> createForm(UserType::class, $user);
@@ -34,7 +34,7 @@ class UserController extends AbstractController
 			if($user -> getDateDeNaissance() -> format('Y') > date('Y') - 16 ){
 				// si '2015' supérieur ('2019' - 16 = 2003)
 				$this -> addFlash('errors', 'trop jeune');
-				return $this -> redirectToRoute('accueil');
+				return $this -> redirectToRoute('index');
 			}
 			
 			
@@ -50,7 +50,7 @@ class UserController extends AbstractController
 			$manager -> flush();
 			
 			$this -> addFlash('success', 'Félicitations, votre inscription a bien été prise en compte !');
-			return $this -> redirectToRoute('connexion');
+			return $this -> redirectToRoute('login');
 		}
 		
 		return $this -> render('user/register.html.twig', [

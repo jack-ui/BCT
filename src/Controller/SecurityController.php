@@ -12,10 +12,10 @@ class SecurityController extends AbstractController
 	
 	
 	/**
-	* @Route("/connexion", name="connexion")
+	* @Route("/login", name="login")
 	*
 	*/
-	public function connexion(AuthenticationUtils $auth){
+	public function login(AuthenticationUtils $auth){
 		
 		$lastUsername = $auth -> getLastUsername();
 		// récupérer le username
@@ -33,10 +33,10 @@ class SecurityController extends AbstractController
 	}
 	
 	/**
-	* @Route("/deconnexion", name="deconnexion")
+	* @Route("/logout", name="logout")
 	*
 	*/
-	public function deconnexion(){}
+	public function logout(){}
 	
 	/**
 	* @Route("/connexion_check", name="connexion_check")

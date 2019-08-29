@@ -9,115 +9,87 @@ class BoutiqueController extends AbstractController
 {   
 
     /**
-     * @Route("/gestion_boutique", name="gestion_boutique")
+     * @Route("/shop", name="shop")
      */
-    public function afficherProduits()
+    public function showProducts()
     {   
         //afficher la liste des produits de la boutique
 
-        return $this->render('boutique/tableau_produits.html.twig', [
+        return $this->render('boutique/products_table.html.twig', [
           
         ]);
     }
 
      /**
-     * @Route("/gestion_boutique/produit", name="gestion_boutique_produit")
+     * @Route("/product_{id}", name="product")
      */
-    public function afficherFicheProduit()
+    public function showProduct($id)
     {   
-        //afficher la fiche d'un produit en fction de l'id
+        //afficher la fiche d'un produit en fonction de l'id
 
-        return $this->render('boutique/produit_form.html.twig', [
+        return $this->render('boutique/show_product.html.twig', [
           
         ]);
     }
 
     //CRUD PRODUIT
     /**
-     * @Route("/gestion_boutique/add", name="gestion_boutique_add")
+     * @Route("/shop/add_product", name="shop_add_product")
      */
-    public function produitAdd()
+    public function addProduct()
     {   
         //ajouter un produit
         //afficher le formulaire du produit
 
-        return $this->render('boutique/produit_form.html.twig', [
+        return $this->render('boutique/product_form.html.twig', [
           
         ]);
 
-        // return $this -> redirectToRoute('gestion_boutique');
+        // return $this -> redirectToRoute('shop');
     }
 
      /**
-     * @Route("/gestion_boutique/update", name="gestion_boutique_update")
+     * @Route("/shop/update_{id}", name="shop_update")
      */
-    public function produitUpdate()
+    public function produitUpdate($id)
     {   
         //modifier un produit en fonction de l'id
         //afficher le formulaire du produit
 
-        return $this->render('boutique/produit_form.html.twig', [
+        return $this->render('boutique/product_form.html.twig', [
           
         ]);
 
-        // return $this -> redirectToRoute('gestion_boutique');
+        // return $this -> redirectToRoute('shop');
     }
 
      /**
-     * @Route("/gestion_boutique/delete", name="gestion_boutique_delete")
+     * @Route("/shop/delete_{id}", name="shop_delete")
      */
-    public function produitDelete()
+    public function deleteProduct($id)
     {   
-        //supprimer un produit en fonction de l id
-        //affiche
+        //supprimer un produit en fonction de l'id
+        //redirige vers la liste des produits 
 
-        return $this->render('boutique/liste_boutique.html.twig', [
-          
-        ]);
+        return $this -> redirectToRoute('shop');
 
         
     }
 
-    
-    /**
-     * @Route("/boutique_liste", name="boutique_liste")
-     */
-    public function afficherBoutiques()
-    {   
-        //afficher la liste des boutiques
-        //recherche par produits : liste des boutiques proches qui vendent le produit
-        //rechercherche par boutique : liste des boutiques les plus proches
 
-        return $this->render('boutique/liste_boutiques.html.twig', [
+    // /**
+    //  * @Route("/stats", name="stats")
+    //  */
+    // public function showStats()
+    // {   
+    //     //afficher les statistiques
+    //     //Chiffre d'affaire du jour, semaine, mois à l'instant t
+    //     //BONUS, A VOIR PLUS TARD
+
+    //     return $this->render('boutique/stats.html.twig', [
           
-        ]);
-    }
-
-    /**
-     * @Route("/boutique", name="boutique")
-     */
-    public function afficherBoutique()
-    {   
-        //afficher une boutique en fonction de l'id ? ou un slug ?
-        //= afficher la liste des produits de la boutique
-
-        return $this->render('boutique/boutique_form.html.twig', [
-          
-        ]);
-    }
-
-    /**
-     * @Route("/statistique", name="statistique")
-     */
-    public function afficherStatistique()
-    {   
-        //afficher les statistiques
-        //Chiffre d'affaire du jour, semaine, mois à l'instant t
-
-        return $this->render('boutique/statistique.html.twig', [
-          
-        ]);
-    }
+    //     ]);
+    // }
 
    
 

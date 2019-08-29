@@ -9,79 +9,52 @@ use Symfony\Component\HttpFoundation\Response;
 class VendeurController extends AbstractController
 {
     /**
-     * @Route("/vendre", name="vendre")
+     * @Route("/sell", name="sell")
      */
-    public function vendre()
-    {   //si je suis connecté je vais sur le dashboard vendeur
-
-        //si je ne suis pas connecté je redirige sur la page de connexion
-        // return $this -> redirectToRoute('login.html.twig');
-
-        return $this->render('vendeur/dashboard_vendeur.html.twig', [
-     ]);
+    public function sell()
+    {   
+        // est une page avec le choix connexion ou inscription. Quand on clique, envoie sur la route connexion ou la route inscription.
     }
 
     /**
-     * @Route("/gestion_commande", name="gestion_commande")
+     * @Route("/show_orders", name="show_orders")
      */
-    public function afficherCommandes()
+    public function showOrders()
     {   
-        //affiche la liste de mes commandes
+        //affiche la liste des commandes sous forme de tableau
 
-        return $this->render('vendeur/tableau_commandes.html.twig', [
+        return $this->render('vendeur/show_orders.html.twig', [
         ]);
     }
 
     /**
-     * @Route("/gestion_commande/add", name="gestion_commande_add")
+     * @Route("shop/update_order_{id}", name="shop_update_order")
      */
-    public function commandeAdd()
-    {   
-        //permet d'ajouter une commande
-        //affiche le formulaire
-
-
-        return $this->render('vendeur/commande_form.html.twig', [
-        ]);
-
-        // return $this -> redirectToRoute('gestion_commande');
-    }
-
-    /**
-     * @Route("/gestion_commande/update", name="gestion_commande_update")
-     */
-    public function commandeUpdate()
+    public function updateOrder($id)
     {   
         //permet de modifier une commande en fonction de l'id
-        //affiche le formulaire
+        //affiche le formulaire de modification
 
 
-        return $this->render('vendeur/commande_form.html.twig', [
+        return $this->render('vendeur/order_form.html.twig', [
         ]);
-        // return $this -> redirectToRoute('gestion_commande');
+        // return $this -> redirectToRoute(''); //A VOIR sur quoi on redirige ?
     }
 
+
     /**
-     * @Route("/gestion_commande/delete", name="gestion_commande_delete")
+     * @Route("/shop/delete_order_{id}", name="shop_order_delete")
      */
-    public function commandeDelete()
+    public function deleteOrder($id)
     {   
         //permet de supprimer une commande en fonction de l id
-        //afficher la liste des commandes
+        //puis reviens sur la liste des commandes
 
 
-        return $this->render('vendeur/tableau_commandes.html.twig', [
-        ]);
+        return $this -> redirectToRoute('show_orders');
         
     }
 
-   
 
-
-    
-
-    
-
-    
 
 }
