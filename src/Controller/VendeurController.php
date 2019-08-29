@@ -102,5 +102,37 @@ class VendeurController extends AbstractController
     }
     // test : localhost:8000/shop/delete_order_10
 
-    // ROUTE GESTION PROFIL ??
+    /**
+     * @Route("/sell_profile", name="sell_profile")
+     */
+    public function showProfile()
+    {   
+        //fonction qui affiche le profil d'un vendeur
+        
+        return $this -> render('vendeur/show_profile.html.twig');
+    }
+
+     /**
+     * @Route("/sell_profile_update", name="sell_profile_update")
+     */
+    public function updateProfile()
+    {   
+        //fonction qui modifie les infos d'un vendeur
+        //est ce qu'il faut récupérer l'id dans l'url pour modifier le vendeur actuellement connecté ?
+        return $this -> render('vendeur/vendeur_form.html.twig');
+    }
+    //return $this->redirectToRoute('sell_profile');
+
+    /**
+     * @Route("/sell_profile_delete", name="sell_profile_delete")
+     */
+    public function deleteProfile()
+    {   
+        //fonction qui supprime le profil d'un vendeur
+        //est ce qu'il faut récupérer l'id dans l'url pour supprimer le vendeur actuellement connecté ?
+        return $this->redirectToRoute('/');
+      
+    }
+    
+
 }
