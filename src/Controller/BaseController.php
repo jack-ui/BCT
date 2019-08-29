@@ -20,6 +20,19 @@ class BaseController extends AbstractController
     }
 
 
+    /**
+     * @Route("/locavore", name="locavore")
+     */
+
+    public function locavore()
+    {
+        return $this -> render('base/locavore.html.twig', [
+        ]);
+        
+        //la partie "principe" qui explique le but du site, les engagements, le locavore...
+    }
+
+
 
     /**
      * @Route("/cgu", name="cgu")
@@ -76,6 +89,5 @@ class BaseController extends AbstractController
         return $this -> render('base/career.html.twig', [
 		]);
     }
-
 
 }
