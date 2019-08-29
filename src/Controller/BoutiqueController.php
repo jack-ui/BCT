@@ -13,8 +13,8 @@ class BoutiqueController extends AbstractController
      */
     public function showProducts()
     {   
+        
         //afficher la liste des produits de la boutique
-
         return $this->render('boutique/products_table.html.twig', [
           
         ]);
