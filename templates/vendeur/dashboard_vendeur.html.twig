@@ -4,9 +4,9 @@
 
 <h1>Je suis sur le dasboard vendeur</h1>
 
-<a href="">Gestion commandes</a>
-<a href="">Gestion boutique (affiche le tableau des produits sur lequel on peut CRUD)</a>
+<a href="{{ path('show_orders') }}">Gestion commandes</a>
+<a href="{{ path('shop') }}">Gestion boutique (affiche le tableau des produits sur lequel on peut CRUD)</a>
 <a href="">Gestion profil</a>
-<a href="">Conditions d'utilisation </a>
-<!-- <a href="">Statistiques boutique (en bonus)</a> -->
+<a href="{{ path('cgu') }}">Conditions d'utilisation </a>
+<!-- <a href="{{ path(\'stats\') }}">Statistiques boutique (en bonus)</a> -->
 {% endblock %}
