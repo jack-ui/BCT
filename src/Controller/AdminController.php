@@ -88,7 +88,7 @@ class AdminController extends AbstractController
     }
 
 
-        /**
+    /**
      * @Route("/admin/show_shops", name="admin/show_shops")
      */
     public function showShops()
@@ -99,6 +99,56 @@ class AdminController extends AbstractController
           
         ]);
     }
+     
+    //CRUD BOUTIQUE
+    /**
+     * @Route("/admin/shop/add", name="admin/shop_add")
+     */
+    public function addShop()
+    {   
+        //affiche le formulaire avec les infos d'une boutique
+        //ajoute une boutique
+
+        return $this->render('admin/shop_form.html.twig', [
+          
+        ]);
+        // return $this -> redirectToRoute('admin/show_shops'); 
+        //redirige vers le tableau des boutiques 
+    }
+
+    /**
+     * @Route("/admin/shop/update", name="admin/shop_update")
+     */
+    public function updateShop()
+    {   
+        //affiche le formulaire avec les infos d'une boutique
+        //modifie une boutique en fonction de l'id
+
+        return $this->render('admin/shop_form.html.twig', [
+          
+        ]);
+        // return $this -> redirectToRoute('admin/show_shops');
+        //redirige vers le tableau des boutiques 
+    }
+
+     /**
+     * @Route("/admin/shop/delete", name="admin/shop_delete")
+     */
+    public function deleteShop()
+    {   
+        //affiche le formulaire avec les infos d'une boutique
+        //supprime une boutique en fonction de l'id
+
+        return $this->render('admin/shop_form.html.twig', [
+          
+        ]);
+        // return $this -> redirectToRoute('admin/show_shops');
+        //redirige vers le tableau des boutiques 
+    }
+
+   
+
+
 
 
 
