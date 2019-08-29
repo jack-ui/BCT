@@ -77,14 +77,20 @@ class VendeurController extends AbstractController
     public function deleteOrder($id)
     {   
         //Fonction permettant de supprimer une commande en fonction de l id
+        // $manager = $this->getDoctrine()->getManager();
+        // $commande = $manager->find(Commande::class,$id) 
 
+        // $manager -> remove($commande);
+		// $manager -> flush(); 
+		   
+		//     $this -> addFlash('success', 'La commande n°' . $id . ' a bien été supprimée !');
         
 
         //Redirection sur la liste des commandes
         return $this -> redirectToRoute('show_orders');
         
     }
-
+    // test : localhost:8000/shop/delete_order_10
 
 
 }
