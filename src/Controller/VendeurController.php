@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ class VendeurController extends AbstractController
     public function sell()
     {   
         // est une page avec le choix connexion ou inscription. Quand on clique, envoie sur la route connexion ou la route inscription.
-        
+
         return $this -> redirectToRoute('login');
         //OU
         //return $this -> redirectToRoute('register');
@@ -25,8 +26,13 @@ class VendeurController extends AbstractController
      */
     public function showOrders()
     {   
-        //affiche la liste des commandes sous forme de tableau
+        //Récupérer toutes les commandes
+	    //$repo = $this -> getDoctrine() -> getRepository(Commande::class);
+        //$commandes = $repo -> findAll();
 
+        
+       
+        //Afficher la liste des commandes sous forme de tableau
         return $this->render('vendeur/show_orders.html.twig', [
         ]);
     }
@@ -42,7 +48,8 @@ class VendeurController extends AbstractController
 
         return $this->render('vendeur/order_form.html.twig', [
         ]);
-        // return $this -> redirectToRoute(''); //A VOIR sur quoi on redirige ?
+        // return $this -> redirectToRoute('show_orders'); //A VOIR sur quoi on redirige ?
+        //la liste des commandes i guess
     }
 
 

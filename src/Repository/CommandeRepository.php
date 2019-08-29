@@ -21,30 +21,29 @@ class CommandeRepository extends ServiceEntityRepository
 
     // /**
     //  * @return Commande[] Returns an array of Commande objects
-    //  */
+    //  */fonction pour récupérer toutes les commandes
     /*
-    public function findByExampleField($value)
+    public function findAllCommandeStatut()
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+       $builder = $this -> createQueryBuilder('c');
+		$builder 
+			-> select('c.statut')
+			-> distinct(true)
+			-> orderBy('p.statut', 'date DESC ');
+		return $builder -> getQuery() -> getResult();
     }
     */
 
     /*
-    public function findOneBySomeField($value): ?Commande
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
+   	/**
+	* @return Produit[] Returns an array of Produit objects
+	* Fonction pour récupérer tous les statuts
+	*//*
+	public function findAllCommandeStatut2(){
+		
+		$query = $this -> getEntityManager() -> createQuery("SELECT distinct c.statut FROM App\Entity\Commande c ORDER BY c.statut, date DESC");
+		
+		return $query -> getResult();
+	}
     */
 }
