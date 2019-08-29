@@ -86,7 +86,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=1)
-	 * @Assert\Choice({"m", "f", "t"})
+	 * @Assert\Choice({"m", "f"})
 	 * Le formulaire effectue seul cette vérification
 	 *
      */
@@ -131,17 +131,155 @@ class User implements UserInterface
 	 * @Assert\Date()
      */
     private $dateDeNaissance;
-	
-	
-	/**
-	* @ORM\Column(name="role", type="string", length=20)
-	*/
-	private $role = 'ROLE_USER';
+    
+    
 	
 	/**
 	* @ORM\Column(name="salt", type="string", length=255, nullable=true)
 	*/
-	private $salt;
+    private $salt;
+    
+    /**
+     * @ORM\Column(type="string", length=1)
+	 * @Assert\Choice({"0", "1"})
+	 * Le formulaire effectue seul cette vérification
+	 *
+     */
+    private $statut;
+
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+	 *
+	 *
+     */
+    private $siret;
+    
+
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+	 *
+	 *
+     */
+    private $nomBoutique;
+
+
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+	 * @Assert\Choice({"à emporter", "point relais", "domicile"})
+	 * Le formulaire effectue seul cette vérification
+	 *
+     */
+    private $livraison;
+
+
+
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+	 * @Assert\Choice({"CB", "paypal", "espèces"})
+	 * Le formulaire effectue seul cette vérification
+	 *
+     */
+    private $paiement;
+
+
+     /**
+     * 
+     *
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     */
+    private $photo = 'default.jpg'; //il faut mettre une photo par défaut pour harmoniser niveau design ! il faut aussi définir les tailles de la photo, format, etc ! 
+
+
+
+    /**
+     * 
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id_boutique;
+
+    public function getIdBoutique(): ?int
+    {
+        return $this->id_boutique;
+    }
+
+
+
+
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+
+    public function setPaiement($paiement){
+		$this -> paiement = $paiement;
+		return $this;
+	}
+	
+	public function getPaiement(){
+		return $this -> paiement;
+	}
+
+
+
+    public function setLivraison($livraison){
+		$this -> livraison = $livraison;
+		return $this;
+	}
+	
+	public function getLivraison(){
+		return $this -> livraison;
+	}
+
+
+
+
+    public function setNomBoutique($nomBoutique){
+		$this -> nomBoutique = $nomBoutique;
+		return $this;
+	}
+	
+	public function getNomBoutique(){
+		return $this -> nomBoutique;
+	}
+
+
+    public function setSiret($siret){
+		$this -> siret = $siret;
+		return $this;
+	}
+	
+	public function getSiret(){
+		return $this -> siret;
+    }
+    
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+
 	
 	public function setSalt($salt){
 		$this -> salt = $salt;
@@ -151,39 +289,11 @@ class User implements UserInterface
 	public function getSalt(){
 		return $this -> salt;
 	}
-	
-	public function setRole($role){
-		$this -> role = $role;
-		return $this; 
-	}
-	
-	public function getRole(){
-		return $this -> role;
-	}
-	
-	public function getRoles(){
-		return [$this -> role];
-	}
-	
-	public function eraseCredentials(){}
+    
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
 
     public function getId(): ?int
     {
@@ -322,5 +432,15 @@ class User implements UserInterface
 
         return $this;
     }
-	
+    
+
+
+
+
+    public function getRoles(){
+		return [$this -> role];
+    }
+    
+
+    public function eraseCredentials(){}
 }
