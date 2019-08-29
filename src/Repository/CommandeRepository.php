@@ -37,7 +37,7 @@ class CommandeRepository extends ServiceEntityRepository
     /*
    	/**
 	* @return Produit[] Returns an array of Produit objects
-	* Fonction pour récupérer tous les statuts
+	* Fonction pour récupérer toutes les commandes
 	*//*
 	public function findAllCommandeStatut2(){
 		

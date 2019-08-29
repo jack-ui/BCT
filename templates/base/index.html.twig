@@ -2,6 +2,12 @@
 
 {% block content %}
 
-<h1>Je suis sur l'index !!!</h1>
+<h1>Je suis sur l'accueil !!!</h1>
+<div class="row">
+    <button type="submit" class="btn btn-success col-md-3"><a href="{{ path('search') }}">Je veux acheter</a></button>
+    <button type="submit" class="btn btn-success col-md-3"><a href="{{ path('sell') }}">Je veux vendre</a></button>
+</div>
+
+
 
 {% endblock %}
