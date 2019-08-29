@@ -17,10 +17,25 @@ class AcheteurController extends AbstractController
 
     public function search()
     {
-        //la recherche de produits ou de boutiques par lieu => affiche la liste des boutiques qui vendent le produit recherché ou la liste des boutiques dans les environs. 
+        //la page avec la barre de recherche
         return $this -> render('acheteur/recherche.html.twig', [
             ]);
+
+            //dirige vers les résultats sous forme de liste
     }
+
+
+    /**
+	* @Route("/search_results", name="search_results")
+	*
+    */
+
+    public function searchResults()
+    {
+        //la page avec le résultat de la recherche sous forme de liste de boutiques 
+        return $this -> render('acheteur/search_results.html.twig', [
+            ]);
+    } 
     
 
 
