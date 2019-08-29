@@ -1,0 +1,59 @@
+.legumes
+{
+   background-image: url("img/legumes.jpg"); 
+   background-size: 100%;
+   min-height: 100vh;
+}
+.textimg
+{
+  color: white;
+  font-size: 50px;
+}
+
+main {
+  background-color: aliceblue;
+  height: 500px;
+}
+h2 {
+  text-align: center;
+  align-self: center;
+  padding-top: 50px;
+  font-size: 50px;
+}
+.navbar{
+  background-color:white!important;
+}
+.btn 
+{
+  margin-left: 15px;
+}
+.row
+{
+  padding-top: 20px;
+}
+.container2
+{
+  height: 200px;
+  background-color: rgb(26, 92, 0);
+}
+.textvert
+{
+   color: white;
+}
+
+footer 
+{
+  background-color: white;
+  height: 450px;
+}
+
+footer li 
+{
+  text-decoration: none;
+  display: flex;
+  padding-bottom: 100px;
+}
+#trait_dessus 
+{ 
+  border-top: 3px solid rgb(32, 219, 72); width : 100%; 
+}
