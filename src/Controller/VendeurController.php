@@ -14,6 +14,10 @@ class VendeurController extends AbstractController
     public function sell()
     {   
         // est une page avec le choix connexion ou inscription. Quand on clique, envoie sur la route connexion ou la route inscription.
+        
+        return $this -> redirectToRoute('login');
+        //OU
+        //return $this -> redirectToRoute('register');
     }
 
     /**
