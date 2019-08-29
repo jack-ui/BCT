@@ -38,7 +38,6 @@ class UserController extends AbstractController
 			}
 			
 			
-			$user -> setRole('ROLE_USER'); 
 			
 			// Mdp saisi dans le formulaire :
 			$password = $user -> getPassword(); 

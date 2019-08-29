@@ -17,54 +17,62 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class UserType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            -> add('username', TextType::class)
-            -> add('email', EmailType::class)
-            -> add('prenom', TextType::class)
-            -> add('nom', TextType::class)
-            -> add('sexe', ChoiceType::class, array(
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		// ERREUR REQUETE SQL sur id_boutique qui ne peut être null
+		//SOLUTION mettre une valeur id_boutique en dur dans la BDD 
+		$builder
+			->add('username', TextType::class)
+			->add('password', PasswordType::class)  
+			->add('email', EmailType::class)
+			->add('prenom', TextType::class)
+			->add('nom', TextType::class)
+			->add('sexe', ChoiceType::class, array(
 				'choices' => array(
 					'Homme' => 'm',
 					'Femme' => 'f'
 				),
 				'invalid_message' => 'Choix invalide'
 			))
-            -> add('ville', TextType::class)
-            -> add('codePostal', IntegerType::class)
-            -> add('adresse', TextareaType::class)
-            -> add('telephone', TextType::class)
-            -> add('dateDeNaissance', BirthdayType::class)
-			-> add('submit', SubmitType::class)
-        ;
-
-
-		if($options['admin'] == true){
-			$builder -> add('role', ChoiceType::class, array(
+			->add('ville', TextType::class)
+			->add('codePostal', IntegerType::class)
+			->add('adresse', TextareaType::class)
+			->add('telephone', TextType::class)
+			->add('dateDeNaissance', BirthdayType::class)
+			->add('statut', ChoiceType::class, array(
 				'choices' => array(
-					'Client' => 'ROLE_USER',
-					'Admin' => 'ROLE_ADMIN',
-					'Super Admin' => 'ROLE_SUPER_ADMIN'
-				)
-			));
-		}
-		else{
-			if($options['update'] != true){
-				$builder -> add('password', PasswordType::class);
-			}
-		}
-    }
+					'Acheteur' => '0',
+					'Vendeur' => '1'
+				),
+				'invalid_message' => 'Choix invalide'
+			))
+			->add('submit', SubmitType::class);
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => User::class,
+
+		// if ($options['admin'] == true) {
+		// 	$builder->add('role', ChoiceType::class, array(
+		// 		'choices' => array(
+		// 			'Client' => 'ROLE_USER',
+		// 			'Admin' => 'ROLE_ADMIN',
+					
+		// 		)
+		// 	));
+		// } else {
+		// 	if ($options['update'] != true) {
+		// 		$builder->add('password', PasswordType::class);
+		// 	}
+		//  }
+	}
+
+	public function configureOptions(OptionsResolver $resolver)
+	{
+		$resolver->setDefaults([
+			'data_class' => User::class,
 			'attr' => array(
 				'novalidate' => 'novalidate'
 			),
 			'admin' => false,
 			'update' => false
-        ]);
-    }
+		]);
+	}
 }
