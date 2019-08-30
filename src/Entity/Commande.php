@@ -34,10 +34,7 @@ class Commande
      */
     private $statut;
 
-      /**
-     * @ORM\Column(type="string", length=5)
-     */
-    private $reference;
+
 
     /**
      * @ORM\Column(type="datetime")
@@ -120,15 +117,4 @@ class Commande
         return $this;
     }
 
-    public function getReference(): ?string
-    {
-        return $this->reference;
-    }
-
-    public function setReference(string $reference): self
-    {
-        $this->reference = $reference;
-
-        return $this;
-    }
 }

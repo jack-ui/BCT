@@ -15,41 +15,46 @@ class VendeurController extends AbstractController
      */
     public function sell()
     {   
-        // est une page avec le choix connexion ou inscription. Quand on clique, envoie sur la route connexion ou la route inscription.
+        // Affiche les choix connexion ou inscription. 
+        // Fonction qui retourne un affichage
 
         return $this -> redirectToRoute('login');
         //OU
         //return $this -> redirectToRoute('register');
     }
+    // test : localhost:8000/sell
 
     /**
      * @Route("/dasboard", name="dashboard")
      */
     public function showDashboard()
     {   
-        //fonction qui retourne un affichage
-        // affiche le dashboard vendeur
+        // Fonction qui retourne un affichage
+        // Affiche le dashboard vendeur
         return $this -> render('vendeur/dashboard_vendeur.html.twig');
     }
+    // test : localhost:8000/dashboard
 
     /**
      * @Route("/show_orders", name="show_orders")
      */
     public function showOrders()
     {   
-        //Récupérer toutes les commandes dans la BDD
+        //Fonction qui retourne un affichage des commandes gérées par le vendeur
+
+        //1 : Récupérer toutes les commandes dans la BDD
 	    //$repo = $this -> getDoctrine() -> getRepository(Commande::class);
         //$commandes = $repo -> findAll();
 
         //PREVOIR UN AFFICHAGE PAR STATUT ? comme les catégories de produits vues dans le cours
-
         //$statuts = $repository->findAllCommandeStatut();
        
-        //Afficher la liste des commandes sous forme de tableau
+        //2 : Afficher la liste des commandes sous forme de tableau
         return $this->render('vendeur/show_orders.html.twig', [
+            //'commandes' => $commandes, 'statuts' => '$statuts'
         ]);
-        // ['commandes' => $commandes, 'statuts' => '$statuts']
-    }
+        
+    }// test : localhost:8000/show_orders
 
     /**
      * @Route("shop/update_order_{id}", name="shop_update_order")
@@ -58,6 +63,7 @@ class VendeurController extends AbstractController
     {   
         //Fonction permettant de modifier une commande en fonction de l'id
 
+        // 1 : Traitement du formulaire 
         // $manager = $this->getDoctrine()->getManager();
         // $commande = $manager->find(Commande::class,$id) 
 
@@ -72,10 +78,13 @@ class VendeurController extends AbstractController
 		//     $this -> addFlash('success', 'La commande n°' . $id . ' a bien été modifiée !');
         //     return $this -> redirectToRoute('show_orders');
         // }
-	   
+       
+        //2 : Afficher la vue
         return $this->render('vendeur/order_form.html.twig', [
-            // 'commandeForm'=> $form ->createView()
+            //'commandeForm'=> $form ->createView()
         ]);
+
+        // return $this->redirectToRoute('show_orders');
         
     }
     // test : localhost:8000/shop/update_order_10
@@ -87,6 +96,8 @@ class VendeurController extends AbstractController
     public function deleteOrder($id)
     {   
         //Fonction permettant de supprimer une commande en fonction de l id
+
+        // 1 : Traitement du formulaire
         // $manager = $this->getDoctrine()->getManager();
         // $commande = $manager->find(Commande::class,$id) 
 
@@ -103,36 +114,71 @@ class VendeurController extends AbstractController
     // test : localhost:8000/shop/delete_order_10
 
     /**
-     * @Route("/sell_profile", name="sell_profile")
+     * @Route("/sell_profile_{id}", name="sell_profile")
      */
-    public function showProfile()
+    public function showProfile($id)//?????????????????
     {   
-        //fonction qui affiche le profil d'un vendeur
+        //Fonction qui affiche le profil du vendeur actuellement connecté en fonction de l'id 
+        //Récupérer l'id du vendeur actuellement connecté
+
+
+        // 1 : Traitement du formulaire
+        // $manager = $this->getDoctrine()->getManager();
+        // $commande = $manager->find(User::class,$id) 
         
-        return $this -> render('vendeur/show_profile.html.twig');
+        //2 : Afficher la vue
+        return $this -> render('vendeur/show_profile.html.twig', [
+            
+        ]);
     }
+    // test : localhost:8000/sell_profile_10
+    
 
      /**
-     * @Route("/sell_profile_update", name="sell_profile_update")
+     * @Route("/sell_profile_update{id}", name="sell_profile_update")
      */
-    public function updateProfile()
+    public function updateProfile($id)//???????????????????????
     {   
-        //fonction qui modifie les infos d'un vendeur
-        //est ce qu'il faut récupérer l'id dans l'url pour modifier le vendeur actuellement connecté ?
-        return $this -> render('vendeur/vendeur_form.html.twig');
+        //Fonction qui modifie les infos d'un vendeur 
+        //Récupérer l'id du vendeur connecté pour modifier son profil 
+        
+        // 1 : Traitement du formulaire 
+        // $manager = $this->getDoctrine()->getManager();
+        // $user = $manager->find(User::class,$id) 
+
+        // $form = $this -> createForm(UserType::class, $user);
+	    // $form -> handleRequest($request);
+	   
+	    // if($form -> isSubmitted() && $form -> isValid()){
+	   
+		//     $manager -> persist($user);
+		//     $manager -> flush(); 
+		   
+		//     $this -> addFlash('success', '$username votre profil a bien été modifié !');
+        //     return $this -> redirectToRoute('sell_profile');
+        // }
+        return $this -> render('vendeur/vendeur_form.html.twig', [
+            //'userForm' => $form->createView()
+        ]);
+        //return $this->redirectToRoute('sell_profile');
     }
-    //return $this->redirectToRoute('sell_profile');
+    // test : localhost:8000/sell_profile_update_10
+
 
     /**
-     * @Route("/sell_profile_delete", name="sell_profile_delete")
+     * @Route("/sell_profile_delete{id}", name="sell_profile_delete")
      */
-    public function deleteProfile()
+    public function deleteProfile($id)//?????????????????????
     {   
-        //fonction qui supprime le profil d'un vendeur
-        //est ce qu'il faut récupérer l'id dans l'url pour supprimer le vendeur actuellement connecté ?
+        //Fonction qui supprime le profil d'un vendeur,
+        //Récupérer l'id du vendeur actuellement connecté pour le supprimer 
+        //Rajouter une condition de validation de suppression par l'admin 
+
+        //Affichage : redirection sur la page d'accueil
         return $this->redirectToRoute('/');
      
     }
+    // test : localhost:8000/sell_profile_delete_10
     
 
 }

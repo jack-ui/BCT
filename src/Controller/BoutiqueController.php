@@ -16,6 +16,7 @@ class BoutiqueController extends AbstractController
     {   
         
         //fonction pour créer une boutique
+        //on affiche le formulaire de la boutique
     
         return $this->render('boutique/shop_form.html.twig', [
           

@@ -176,6 +176,13 @@ class User implements UserInterface
      */
     private $boutique_id;
 
+
+    /**
+	* @ORM\Column(name="role", type="string", length=20)
+	*/
+    private $role = 'ROLE_USER';
+    
+
     public function getBoutiqueId(): ?int
     {
         return $this->boutique_id;
@@ -370,7 +377,14 @@ class User implements UserInterface
     }
     
 
-
+    public function setRole($role){
+		$this -> role = $role;
+		return $this; 
+	}
+	
+	public function getRole(){
+		return $this -> role;
+	}
 
 
     public function getRoles(){
