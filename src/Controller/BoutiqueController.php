@@ -8,6 +8,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class BoutiqueController extends AbstractController
 {   
 
+    
+    /**
+     * @Route("/create_shop", name="create_shop")
+     */
+    public function createShop()
+    {   
+        
+        //fonction pour créer une boutique
+    
+        return $this->render('boutique/shop_form.html.twig', [
+          
+        ]);
+    }
     /**
      * @Route("/shop", name="shop")
      */

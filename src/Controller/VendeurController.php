@@ -131,7 +131,7 @@ class VendeurController extends AbstractController
         //fonction qui supprime le profil d'un vendeur
         //est ce qu'il faut récupérer l'id dans l'url pour supprimer le vendeur actuellement connecté ?
         return $this->redirectToRoute('/');
-      
+     
     }
     
 
