@@ -3,12 +3,6 @@
 
 {% block content %}
 
-<!-- <h1>Je suis sur l'accueil !!!</h1>
-<div class="row">
-    <button type="submit" class="btn btn-success col-md-3"><a href="{{ path('search') }}">Je veux acheter</a></button>
-    <button type="submit" class="btn btn-success col-md-3"><a href="{{ path('sell') }}">Je veux vendre</a></button>
-</div> -->
-
 <header>
     <div class="container">
         
@@ -17,8 +11,8 @@
         <div class="hero-content">
 
             <h1 class="hero-title">Lorem, ipsum dolor sit amet consectetur adipisicing at dolore nostrum eius</h1>
-            <button type="button" class="hero-button">Acheter</button>
-            <button type="button" class="hero-button">Vendre</button>
+            <button type="button" class="hero-button"><a href="{{ path('search') }}">Acheter</a></button>
+            <button type="button" class="hero-button"><a href="{{ path('sell') }}">Vendre</a></button>
 
         </div>
     </section>
