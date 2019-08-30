@@ -10,23 +10,23 @@ security:
     providers:
         #in_memory:
         #    memory:
-        #        users: 
+        #        users:
         #            beam:
-        #                password: 
+        #                password:
         #                roles: 'ROLE_USER'
-                    
-        #            admin: 
-        #                password: 
+
+        #            admin:
+        #                password:
         #                roles: 'ROLE_ADMIN'
-          
-        
-        
-        user_provider: 
-            entity: 
+
+
+
+        user_provider:
+            entity:
                 class: App\Entity\User
                 property: username
-        
-        
+
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -40,34 +40,32 @@ security:
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
-            
-            form_login: 
-                login_path: connexion
+
+            form_login:
+                login_path: login
                 check_path: connexion_check
-                default_target_path: accueil
-            
-            logout: 
-                path: deconnexion
-                target: accueil
-            
-            
+                default_target_path: index
+
+                
+                # a voir pour les redirections après connexion
+
+            logout:
+                path: logout
+                target: index
+
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/profil, roles: ROLE_USER }
-        - { path: ^/commandes, roles: ROLE_USER }
-        - { path: ^/connexion, allow_if: "not is_granted('ROLE_USER')" }
-        - { path: ^/inscription, allow_if: "not is_granted('ROLE_USER')" }
-        
-       
+        - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/orders, roles: ROLE_USER }
+        - { path: ^/login, allow_if: "not is_granted('ROLE_USER')" }
+        - { path: ^/register, allow_if: "not is_granted('ROLE_USER')" }
 
-        
+
+
+
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
-        
-        
-        
-        
