@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,11 +16,74 @@
     
     </head>
         <body>
+
+                {% block body %}
+            <!-- Bar de navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand success" href="#">BioChezToi</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+        
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">A propos<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Boutique<span class="sr-only">(current)</span></a>
+                            </li>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact<span class="sr-only">(current)</span></a>
+                            </li>
+                            </li>
+                        </ul>
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                        <button type="button" class="btn btn-success btn-sm">connexion</button>
+                        <button type="button" class="btn btn-success btn-sm">inscription</button>
+                    </div>
+                </nav>
+            <!--/ Bar de navigation -->
             {% block content %}
-            
-
-            
-
+            {% endblock %}
+                <!-- FOOTER -->
+            <footer>
+                    <div class="container">
+                        <div class="row">
+                            <ul class="navbar col-md-10 ">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">CGU <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Copyright<span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Qui sommes nous?<span class="sr-only">(current)</span></a>
+                                </li>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">SAV/Nous contacter<span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Recrutement<span class="sr-only">(current)</span></a>
+                                </li>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="trait_dessus">
+                        <hr>
+                </footer>
+           
             {% endblock %}
             {% block javascripts %}{% endblock %}
         </body>
