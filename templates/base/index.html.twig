@@ -2,12 +2,125 @@
 
 {% block content %}
 
-<h1>Je suis sur l'accueil !!!</h1>
+<!-- <h1>Je suis sur l'accueil !!!</h1>
 <div class="row">
     <button type="submit" class="btn btn-success col-md-3"><a href="{{ path('search') }}">Je veux acheter</a></button>
     <button type="submit" class="btn btn-success col-md-3"><a href="{{ path('sell') }}">Je veux vendre</a></button>
-</div>
+</div> -->
 
+<header>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand success" href="#">BioChezToi</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">A propos<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Boutique<span class="sr-only">(current)</span></a>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact<span class="sr-only">(current)</span></a>
+                    </li>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <button type="button" class="btn btn-success btn-sm">connexion</button>
+                <button type="button" class="btn btn-success btn-sm">inscription</button>
+            </div>
+        </nav>
+    </div>
+    <section class="hero">
+        <div class="hero-content">
+
+            <h1 class="hero-title">Lorem, ipsum dolor sit amet consectetur adipisicing at dolore nostrum eius</h1>
+            <button type="button" class="hero-button">Acheter</button>
+            <button type="button" class="hero-button">Vendre</button>
+
+        </div>
+    </section>
+
+    <main>
+        <h2>Produit bio près de chez toi...</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ asset('../../public/photo/legumescard.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="../../public/photo/legumescard.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="../../public/photo/legumescard.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <div class="container2">
+        <h1 class="textvert">Lorem, ipsum dolor sit amet consectetur adipisicing at dolore nostrum eius</h1>
+      <button type="button" class="hero-button">Acheter</button>
+        <button type="button" class="hero-button">Vendre</button>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <ul class="navbar col-md-10 ">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">CGU <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Copyright<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Qui sommes nous?<span class="sr-only">(current)</span></a>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">SAV/Nous contacter<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Recrutement<span class="sr-only">(current)</span></a>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="trait_dessus">
+            <hr>
+    </footer>
+   
 
 
 {% endblock %}
