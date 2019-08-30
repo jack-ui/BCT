@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BoutiqueRepository")
@@ -16,37 +19,145 @@ class Boutique
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=5)
-     */
-    private $refCommande;
 
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $username;
 
     /**
      * @ORM\Column(type="text")
      */
     private $localisation;
 
+
+        /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+	 *
+	 *
+     */
+    private $siret;
+    
+
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+	 *
+	 *
+     */
+    private $nomBoutique;
+
+
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+	 * @Assert\Choice({"à emporter", "point relais", "domicile"})
+	 * Le formulaire effectue seul cette vérification
+	 *
+     */
+    private $livraison;
+
+
+
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+	 * @Assert\Choice({"CB", "paypal", "espèces"})
+	 * Le formulaire effectue seul cette vérification
+	 *
+     */
+    private $paiement;
+
+
+    /**
+     * 
+     *
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     */
+    private $photo = 'default.jpg'; //il faut mettre une photo par défaut pour harmoniser niveau design ! il faut aussi définir les tailles de la photo, format, etc ! 
+
+
+
+        /**
+     * 
+     * @OneToOne(targetEntity="User")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user_id;
+
+    public function getUserId(): ?int
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(int $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
+
+
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+
+    public function setPaiement($paiement){
+		$this -> paiement = $paiement;
+		return $this;
+	}
+	
+	public function getPaiement(){
+		return $this -> paiement;
+	}
+
+
+
+    public function setLivraison($livraison){
+		$this -> livraison = $livraison;
+		return $this;
+	}
+	
+	public function getLivraison(){
+		return $this -> livraison;
+	}
+
+
+
+
+    public function setNomBoutique($nomBoutique){
+		$this -> nomBoutique = $nomBoutique;
+		return $this;
+	}
+	
+	public function getNomBoutique(){
+		return $this -> nomBoutique;
+	}
+
+
+    public function setSiret($siret){
+		$this -> siret = $siret;
+		return $this;
+	}
+	
+	public function getSiret(){
+		return $this -> siret;
+    }
+    
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getRefCommande(): ?string
-    {
-        return $this->refCommande;
-    }
 
-    public function setRefCommande(string $refCommande): self
-    {
-        $this->refCommande = $refCommande;
-
-        return $this;
-    }
 
     public function getUsername(): ?string
     {

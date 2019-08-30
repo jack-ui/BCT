@@ -3,12 +3,25 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommandeRepository")
  */
 class Commande
 {
+
+        /**
+     * 
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="commandes")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *                 clé étrangère         clé primaire
+     */
+    private $user_id;
+
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -40,6 +53,19 @@ class Commande
      * @ORM\Column(type="float")
      */
     private $poidsTotal;
+
+
+    public function getUserId(): ?int
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(int $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {

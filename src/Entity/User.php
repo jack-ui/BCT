@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface; 
 
@@ -11,6 +14,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection;
+    }
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -148,124 +158,50 @@ class User implements UserInterface
     private $statut;
 
 
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-	 *
-	 *
-     */
-    private $siret;
-    
-
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-	 *
-	 *
-     */
-    private $nomBoutique;
-
-
-
-    /**
-     * @ORM\Column(type="string", length=20, nullable=true)
-	 * @Assert\Choice({"à emporter", "point relais", "domicile"})
-	 * Le formulaire effectue seul cette vérification
-	 *
-     */
-    private $livraison;
-
-
-
-
-    /**
-     * @ORM\Column(type="string", length=20, nullable=true)
-	 * @Assert\Choice({"CB", "paypal", "espèces"})
-	 * Le formulaire effectue seul cette vérification
-	 *
-     */
-    private $paiement;
-
-
-     /**
+        /**
      * 
-     *
-     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     * @ORM\OneToMany(targetEntity="Commande", mappedBy="user_id")
+     *                                table       Clé étrangère
+     * 
+     * 
+     * Contient toutes les commandes du membre (Array composé d'objets commandes)
      */
-    private $photo = 'default.jpg'; //il faut mettre une photo par défaut pour harmoniser niveau design ! il faut aussi définir les tailles de la photo, format, etc ! 
-
+    private $commandes;
 
 
     /**
      * 
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @OneToOne(targetEntity="Boutique")
+     * @JoinColumn(name="boutique_id", referencedColumnName="id")
      */
-    private $id_boutique;
+    private $boutique_id;
 
-    public function getIdBoutique(): ?int
+    public function getBoutiqueId(): ?int
     {
-        return $this->id_boutique;
+        return $this->boutique_id;
     }
 
-
-
-
-
-    public function getPhoto(): ?string
+    public function setBoutiqueId(int $boutique_id): self
     {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
+        $this->boutique_id = $boutique_id;
 
         return $this;
     }
 
 
-    public function setPaiement($paiement){
-		$this -> paiement = $paiement;
-		return $this;
-	}
-	
-	public function getPaiement(){
-		return $this -> paiement;
-	}
-
-
-
-    public function setLivraison($livraison){
-		$this -> livraison = $livraison;
-		return $this;
-	}
-	
-	public function getLivraison(){
-		return $this -> livraison;
-	}
-
-
-
-
-    public function setNomBoutique($nomBoutique){
-		$this -> nomBoutique = $nomBoutique;
-		return $this;
-	}
-	
-	public function getNomBoutique(){
-		return $this -> nomBoutique;
-	}
-
-
-    public function setSiret($siret){
-		$this -> siret = $siret;
-		return $this;
-	}
-	
-	public function getSiret(){
-		return $this -> siret;
+    public function getCommandes()
+    {
+        return $this->commandes;
     }
-    
+
+    public function setCommandes($commandes)
+    {
+        $this->commandes = $commandes;
+        return $this;
+    }
+
+
+
 
     public function getStatut(): ?string
     {
