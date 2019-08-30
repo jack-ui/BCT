@@ -2,4 +2,16 @@
 
 {% block content %}
 <h1>Formulaire d'une boutique</h1>
+
+{{ form_start(boutiqueForm) }}
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(boutiqueForm.localisation) }}
+            {{ form_row(boutiqueForm.siret) }}
+            {{ form_row(boutiqueForm.nomBoutique) }}
+            {{ form_row(boutiqueForm.livraison) }}
+            {{ form_row(boutiqueForm.paiement) }}
+        </div>
+    </div>
+    {{ form_end(boutiqueForm) }}
 {% endblock %}

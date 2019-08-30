@@ -2,16 +2,21 @@
 
 namespace App\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Symfony\Component\Validator\Constraints as Assert;
+ 
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BoutiqueRepository")
  */
-class Boutique
+class Boutique 
 {
+   
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
