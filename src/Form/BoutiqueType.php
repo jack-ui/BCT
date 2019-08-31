@@ -24,16 +24,16 @@ class BoutiqueType extends AbstractType
             ->add('nomBoutique', TextType::class)
             ->add('livraison', ChoiceType::class, array(
 				'choices' => array(
-					'à emporter' => '0',
-                    'point relais' => '1',
-                    'domicile' => '2',
+					'à emporter' => 'à emporter',
+                    'point relais' => 'point relais',
+                    'domicile' => 'domicile',
 				),
 			))
             ->add('paiement', ChoiceType::class, array(
 				'choices' => array(
-					'CB' => '0',
-                    'paypal' => '1',
-                    'espèces' => '2',
+					'CB' => 'CB',
+                    'paypal' => 'paypal',
+                    'espèces' => 'espèces',
 				),
             ))
             

@@ -60,7 +60,7 @@ class Boutique
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
-     * @Assert\Choice({"à emporter", "point relais", "domicile"})
+     * 
      * Le formulaire effectue seul cette vérification
      *
      */
@@ -71,7 +71,7 @@ class Boutique
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
-     * @Assert\Choice({"CB", "paypal", "espèces"})
+     * 
      * Le formulaire effectue seul cette vérification
      *
      */
@@ -273,7 +273,7 @@ class Boutique
         return __DIR__ . '/../../public/photo/';
     }
 
-    // Supprimer un fichier photo (delete un produit, update la photo d'un produit)
+    // Supprimer un fichier photo 
     public function removePhoto()
     {
         $file = $this->dirPhoto() . $this->getPhoto();
