@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\User;
 
 class VendeurController extends AbstractController
 {
@@ -16,7 +18,7 @@ class VendeurController extends AbstractController
     public function sell()
     {   
         // Affiche les choix connexion ou inscription. 
-        // Fonction qui retourne un affichage
+        // Fonction qui redirige sur une page
 
         return $this -> redirectToRoute('login');
         //OU
@@ -29,7 +31,7 @@ class VendeurController extends AbstractController
      */
     public function showDashboard()
     {   
-        // Fonction qui retourne un affichage
+        // Fonction qui redirige sur une page
         // Affiche le dashboard vendeur
         return $this -> render('vendeur/dashboard_vendeur.html.twig');
     }
@@ -116,20 +118,24 @@ class VendeurController extends AbstractController
     /**
      * @Route("/sell_profile_{id}", name="sell_profile")
      */
-    public function showProfile($id)//?????????????????
+    public function showProfile($id, ObjectManager $manager)
     {   
         //Fonction qui affiche le profil du vendeur actuellement connecté en fonction de l'id 
         //Récupérer l'id du vendeur actuellement connecté
 
 
         // 1 : Traitement du formulaire
-        // $manager = $this->getDoctrine()->getManager();
-        // $commande = $manager->find(User::class,$id) 
+        $manager = $this->getDoctrine()->getManager();
+        $user = $manager->find(User::class,$id); 
         
         //2 : Afficher la vue
-        return $this -> render('vendeur/show_profile.html.twig', [
+        if($user)
+        {
+            return $this -> render('vendeur/show_profile.html.twig', [
+            'user'=> $user
             
         ]);
+        }
     }
     // test : localhost:8000/sell_profile_10
     
