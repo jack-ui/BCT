@@ -56,7 +56,6 @@ class Boutique
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
      * 
-     * Le formulaire effectue seul cette vérification
      *
      */
     private $livraison;
