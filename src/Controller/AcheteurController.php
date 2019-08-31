@@ -16,8 +16,8 @@ class AcheteurController extends AbstractController
     */
     public function search()
     {   
-        //Fonction qui retourne un affichage
-        //Affiche la page avec la barre de recherche
+        //Fonction qui redirige vers une page
+        //Affiche la page avec la barre de recherche et les encarts par catégories de produits
         return $this -> render('acheteur/recherche.html.twig', [
             ]);
        
@@ -38,8 +38,14 @@ class AcheteurController extends AbstractController
         //SELECT localisation FROM boutique WHERE localisation LIKE '95%'
 
         //Recherche par produit ici tomate
-        //SELECT nom FROM produit WHERE nom = tomate
-        //entre  
+        //SELECT nom FROM produit WHERE nom = tomate 
+        //IN (SELECT boutique_id FROM boutique WHERE id = id_boutique)
+        // IN (SELECT localisation FROM boutique WHERE localisation LIKE 95%) 
+        //???????????????????????
+        
+        //solution 1 pour simplifier : recherche uniquement par code postal ou par ville
+        // Affichera la liste des boutiques de la ville
+          
 
 
         
@@ -67,7 +73,6 @@ class AcheteurController extends AbstractController
 	* @Route("/confirmation", name="confirmation")
 	*
     */
-    
     public function confirmation()
     {
         //affiche la vue de confirmation de commande avec id commande, status, récap, adresse livraison...
