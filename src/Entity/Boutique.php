@@ -34,11 +34,6 @@ class Boutique
 
 
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $localisation;
-
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
@@ -295,18 +290,6 @@ class Boutique
     public function setUsername(string $username): self
     {
         $this->username = $username;
-
-        return $this;
-    }
-
-    public function getLocalisation(): ?string
-    {
-        return $this->localisation;
-    }
-
-    public function setLocalisation(string $localisation): self
-    {
-        $this->localisation = $localisation;
 
         return $this;
     }

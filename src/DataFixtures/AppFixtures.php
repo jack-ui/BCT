@@ -27,7 +27,8 @@ class AppFixtures extends Fixture
         for($i = 0; $i < 20; $i++){
 			$boutique = new Boutique; 
 			
-			// localisation	siret	nom_boutique	livraison	paiement	photo	user_id
+			// localisation	siret	nom_boutique	livraison	paiement	photo	user_id	ville	code_postal	adresse	telephone
+
 
             
             $boutique -> setlocalisation($faker -> lastName);
@@ -35,6 +36,9 @@ class AppFixtures extends Fixture
             $boutique -> setSexe($faker -> randomElement(['f', 'm']));
             $boutique -> setAdresse($faker -> streetAddress);
             $boutique -> setEmail($faker -> freeEmail);
+            $boutique -> setUsername($faker -> userName);
+			$boutique -> setPassword($faker -> password);
+			$boutique -> setEmail($faker -> freeEmail);
             $boutique -> setUsername($faker -> userName);
             $boutique -> setPassword($faker -> password);
 			
