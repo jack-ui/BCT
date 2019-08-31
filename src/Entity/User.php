@@ -160,6 +160,8 @@ class User implements UserInterface
 
         /**
      * 
+     * Un user peut avoir 0 commande min et N commande max => ManyToOne
+     * 
      * @ORM\OneToMany(targetEntity="Commande", mappedBy="user_id")
      *                                table       Clé étrangère
      * 

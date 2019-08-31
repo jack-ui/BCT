@@ -3,7 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToOne;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
 use phpDocumentor\Reflection\Types\Boolean;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
@@ -51,6 +55,32 @@ class Produit
      * @ORM\Column(type="string", length=20)
      */
     private $photo;
+
+
+        /**
+     * 
+     * Chaque produit appartient à une et un seule boutique
+     * 
+     * 
+     * @ORM\ManyToOne(targetEntity="Boutique", inversedBy="produits")
+     * @ORM\JoinColumn(name="boutique_id", referencedColumnName="id")
+     *                 clé étrangère         clé primaire
+     * 
+     */
+    private $boutique_id;
+
+    public function getBoutiqueId(): ?int
+    {
+        return $this->boutique_id;
+    }
+
+    public function setBoutiqueId(int $boutique_id): self
+    {
+        $this->boutique_id = $boutique_id;
+
+        return $this;
+    }
+
 
     public function getId(): ?int
     {

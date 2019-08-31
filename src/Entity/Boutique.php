@@ -4,7 +4,9 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToOne;
+use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -12,6 +14,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Boutique
 {
+
+    public function __construct()
+    {
+        $this->produits = new ArrayCollection;
+    }
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -27,7 +36,7 @@ class Boutique
     private $localisation;
 
 
-        /**
+    /**
      * @ORM\Column(type="string", length=50, nullable=true)
 	 *
 	 *
@@ -66,7 +75,6 @@ class Boutique
 
 
     /**
-     * 
      *
      * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
@@ -74,12 +82,36 @@ class Boutique
 
 
 
-        /**
+    /**
      * 
      * @OneToOne(targetEntity="User")
      * @JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user_id;
+
+
+    /**
+     * Une boutique peut avoir 0 produits min et N produit max => OnetoMany
+     * 
+     * @ORM\OneToMany(targetEntity="Produit", mappedBy="id")
+     *                                table       Clé étrangère
+     * 
+     * 
+     * Contient tous les produits du membre (Array composé d'objets produits)
+     */
+    private $produits;
+
+    public function getProduits()
+    {
+        return $this->produits;
+    }
+
+    public function setProduits($produits)
+    {
+        $this->produits = $produits;
+        return $this;
+    }
+
 
     public function getUserId(): ?int
     {

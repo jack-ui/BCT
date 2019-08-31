@@ -12,15 +12,6 @@ use Doctrine\Common\Collections\Collection;
 class Commande
 {
 
-        /**
-     * 
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="commandes")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *                 clé étrangère         clé primaire
-     */
-    private $user_id;
-
-
 
     /**
      * @ORM\Id()
@@ -29,10 +20,21 @@ class Commande
      */
     private $id;
 
+
+    /**
+     * Chaque commande appartient à un et un seul membre
+     * 
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="commandes")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *                 clé étrangère         clé primaire
+     */
+    private $user_id;
+
+
     /**
      * @ORM\Column(type="string", length=10)
      */
-    private $statut;
+    private $etat;
 
 
 
@@ -42,14 +44,24 @@ class Commande
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $produit;
-
-    /**
      * @ORM\Column(type="float")
      */
-    private $poidsTotal;
+    private $montant;
+
+    public function getMontant(): ?float
+    {
+        return $this->montant;
+    }
+
+    public function setMontant(float $montant): self
+    {
+        $this->montant = $montant;
+
+        return $this;
+    }
+
+
+
 
 
     public function getUserId(): ?int
@@ -69,14 +81,14 @@ class Commande
         return $this->id;
     }
 
-    public function getStatut(): ?string
+    public function getEtat(): ?string
     {
-        return $this->statut;
+        return $this->etat;
     }
 
-    public function setStatut(string $statut): self
+    public function setEtat(string $etat): self
     {
-        $this->statut = $statut;
+        $this->etat = $etat;
 
         return $this;
     }
@@ -93,28 +105,5 @@ class Commande
         return $this;
     }
 
-    public function getProduit(): ?string
-    {
-        return $this->produit;
-    }
-
-    public function setProduit(string $produit): self
-    {
-        $this->produit = $produit;
-
-        return $this;
-    }
-
-    public function getPoidsTotal(): ?float
-    {
-        return $this->poidsTotal;
-    }
-
-    public function setPoidsTotal(float $poidsTotal): self
-    {
-        $this->poidsTotal = $poidsTotal;
-
-        return $this;
-    }
 
 }
