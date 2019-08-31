@@ -9,13 +9,14 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
- 
+use Symfony\Component\HttpFoundation\File\UploadedFile; //$_FILE
+
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BoutiqueRepository")
  */
-class Boutique 
+class Boutique
 {
 
     public function __construct()
@@ -41,17 +42,17 @@ class Boutique
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
-	 *
-	 *
+     *
+     *
      */
     private $siret;
-    
+
 
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 *
-	 *
+     *
+     *
      */
     private $nomBoutique;
 
@@ -59,9 +60,9 @@ class Boutique
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
-	 * @Assert\Choice({"à emporter", "point relais", "domicile"})
-	 * Le formulaire effectue seul cette vérification
-	 *
+     * @Assert\Choice({"à emporter", "point relais", "domicile"})
+     * Le formulaire effectue seul cette vérification
+     *
      */
     private $livraison;
 
@@ -70,20 +71,21 @@ class Boutique
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
-	 * @Assert\Choice({"CB", "paypal", "espèces"})
-	 * Le formulaire effectue seul cette vérification
-	 *
+     * @Assert\Choice({"CB", "paypal", "espèces"})
+     * Le formulaire effectue seul cette vérification
+     *
      */
     private $paiement;
 
 
     /**
-     *
+     * @var string|null
      * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
     private $photo = 'default.jpg'; //il faut mettre une photo par défaut pour harmoniser niveau design ! il faut aussi définir les tailles de la photo, format, etc ! 
 
-
+    private $file;
+    // On ne mappe pas cette propriété car elle n'existe pas dans la BDD. Elle va juste servir à récupérer les octets qui constitue l'image. 
 
     /**
      * 
@@ -144,48 +146,56 @@ class Boutique
     }
 
 
-    public function setPaiement($paiement){
-		$this -> paiement = $paiement;
-		return $this;
-	}
-	
-	public function getPaiement(){
-		return $this -> paiement;
-	}
-
-
-
-    public function setLivraison($livraison){
-		$this -> livraison = $livraison;
-		return $this;
-	}
-	
-	public function getLivraison(){
-		return $this -> livraison;
-	}
-
-
-
-
-    public function setNomBoutique($nomBoutique){
-		$this -> nomBoutique = $nomBoutique;
-		return $this;
-	}
-	
-	public function getNomBoutique(){
-		return $this -> nomBoutique;
-	}
-
-
-    public function setSiret($siret){
-		$this -> siret = $siret;
-		return $this;
-	}
-	
-	public function getSiret(){
-		return $this -> siret;
+    public function setPaiement($paiement)
+    {
+        $this->paiement = $paiement;
+        return $this;
     }
-    
+
+    public function getPaiement()
+    {
+        return $this->paiement;
+    }
+
+
+
+    public function setLivraison($livraison)
+    {
+        $this->livraison = $livraison;
+        return $this;
+    }
+
+    public function getLivraison()
+    {
+        return $this->livraison;
+    }
+
+
+
+
+    public function setNomBoutique($nomBoutique)
+    {
+        $this->nomBoutique = $nomBoutique;
+        return $this;
+    }
+
+    public function getNomBoutique()
+    {
+        return $this->nomBoutique;
+    }
+
+
+    public function setSiret($siret)
+    {
+        $this->siret = $siret;
+        return $this;
+    }
+
+    public function getSiret()
+    {
+        return $this->siret;
+    }
+
 
     public function getId(): ?int
     {
@@ -217,4 +227,59 @@ class Boutique
 
         return $this;
     }
+
+
+    //------------------------------------- FONCTION POUR LA PHOTO -------------------------
+
+    public function setFile(UploadedFile $file): self
+    {
+        $this->file = $file;
+        return $this;
+    }
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+
+    //2 objectif : 
+    // permettre l'enregistrement de la photo dans la BDD (après qu'elle soit renommée)
+    // Enregistrer la photo sur le serveur /public/photo
+
+    public function uploadFile()
+    {
+        // On récupère le nom de la photo
+        // rouge.jpg
+        $nom = $this->file->getClientOriginalName(); //$_FILE['file']['name']
+        $new_nom = $this->renamePhoto($nom);
+        $this->photo = $new_nom; // /!\ sera enregistré en BDD
+
+        //----- 
+        $this->file->move($this->dirPhoto(), $new_nom);
+        // déplace la photo depuis son emplacement temporaire jusqu'à son emplacement définitif (chemin + nom)
+    }
+
+    // renomme la photo de manière unique
+    public function renamePhoto($name)
+    {
+        return 'photo_' . time() . '_' . rand(1, 99999) . '_' . $name;
+        //photo_1550000000_87534_rouge.jpg
+    }
+
+    // Nous retourne le chemin du dossier photo
+    public function dirPhoto()
+    {
+        return __DIR__ . '/../../public/photo/';
+    }
+
+    // Supprimer un fichier photo (delete un produit, update la photo d'un produit)
+    public function removePhoto()
+    {
+        $file = $this->dirPhoto() . $this->getPhoto();
+        if (file_exists($file) && $this->getPhoto() != 'default.jpg') {
+            unlink($file);
+        }
+    }
+    //------------------------------------- /FONCTION POUR LA PHOTO ------------------------------------------------
 }
