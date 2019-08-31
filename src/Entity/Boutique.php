@@ -11,8 +11,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile; //$_FILE
 
-
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BoutiqueRepository")
  */
