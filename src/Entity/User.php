@@ -122,12 +122,12 @@ class User implements UserInterface
     private $codePostal;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      */
     private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=17)
+     * @ORM\Column(type="string", length=25)
 	 * @Assert\Regex(
 	 *	pattern="/^0[1-68]([-. ]?[0-9]{2}){4}$/",
 	 *	message="Mauvais numero de téléphone"

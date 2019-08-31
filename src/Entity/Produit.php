@@ -22,17 +22,17 @@ class Produit
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=255)
      */
     private $categorie;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255)
      */
     private $uniteMesure;
 
@@ -47,12 +47,12 @@ class Produit
     private $prix;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=255)
      */
     private $saisonnalite;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=255)
      */
     private $photo;
 
@@ -111,12 +111,12 @@ class Produit
         return $this;
     }
 
-    public function getUniteMesure(): ?boolean
+    public function getUniteMesure(): ?string
     {
         return $this->uniteMesure;
     }
 
-    public function setUniteMesure(boolean $uniteMesure): self
+    public function setUniteMesure(string $uniteMesure): self
     {
         $this->uniteMesure = $uniteMesure;
 

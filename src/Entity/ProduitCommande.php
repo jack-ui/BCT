@@ -24,11 +24,6 @@ class ProduitCommande
     private $quantite;
 
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $poidsTotal;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Produit", inversedBy="produitCommandes")
@@ -62,18 +57,6 @@ class ProduitCommande
         return $this;
     }
 
-    
-    public function getPoidsTotal(): ?float
-    {
-        return $this->poidsTotal;
-    }
-
-    public function setPoidsTotal(float $poidsTotal): self
-    {
-        $this->poidsTotal = $poidsTotal;
-
-        return $this;
-    }
 
     public function getId(): ?int
     {
