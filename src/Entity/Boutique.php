@@ -78,6 +78,89 @@ class Boutique
     private $paiement;
 
 
+        /**
+     * @ORM\Column(type="string", length=50)
+	 * @Assert\NotBlank(message="Veuillez renseigner une ville")
+	 * @Assert\Length(
+	 *	min=3, 
+	 *	max=50,
+	 *  minMessage="Veuillez renseigner une ville de 3 caractères mini", 
+	 *  maxMessage="Veuillez renseigner une ville de 50 carctères maxi"
+	 * )
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="integer")
+	 * @Assert\Type(type="integer", message="Veuillez renseigner un code postal composé de chiffre.")
+     */
+    private $codePostal;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="string", length=25)
+	 * @Assert\Regex(
+	 *	pattern="/^0[1-68]([-. ]?[0-9]{2}){4}$/",
+	 *	message="Mauvais numero de téléphone"
+	 *) 
+     */
+    private $telephone;
+
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?int
+    {
+        return $this->codePostal;
+    }
+
+    public function setCodePostal(int $codePostal): self
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+
+    }
+
+
     /**
      * @var string|null
      * @ORM\Column(name="photo", type="string", length=255, nullable=true)

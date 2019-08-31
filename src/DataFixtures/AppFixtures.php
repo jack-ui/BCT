@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Boutique;
 use Faker; 
 use App\Entity\User; 
 use App\Entity\Produit; 
@@ -20,6 +21,25 @@ class AppFixtures extends Fixture
 		
 		// on récupère un objet FAKER en français. 
 		$faker = Faker\Factory::create('fr_FR');
+
+
+		//On crée les boutiques
+        for($i = 0; $i < 20; $i++){
+			$boutique = new Boutique; 
+			
+			// localisation	siret	nom_boutique	livraison	paiement	photo	user_id
+
+            
+            $boutique -> setlocalisation($faker -> lastName);
+			$boutique -> setPrenom($faker -> firstName('male'|'female'));	
+            $boutique -> setSexe($faker -> randomElement(['f', 'm']));
+            $boutique -> setAdresse($faker -> streetAddress);
+            $boutique -> setEmail($faker -> freeEmail);
+            $boutique -> setUsername($faker -> userName);
+            $boutique -> setPassword($faker -> password);
+			
+		}
+
         
         //On crée les produits
 		for($i = 0; $i < 50; $i++){
@@ -73,8 +93,8 @@ class AppFixtures extends Fixture
 			
 			for($i = 0; $i < $nb; $i++){
 				// $statutUser = getStatut($user); //on fait une condition pour que les acheteurs seuls aient des commandes
-				if($statutUser === 0) 
-				{
+				// if($statutUser === 0) 
+				// {
 					$commande = new Commande; 
 					$commande -> setMontant($faker -> randomFloat(2, 10, 50));
 					$commande -> setDate($faker -> dateTimeThisYear($max = 'now'));
@@ -82,7 +102,7 @@ class AppFixtures extends Fixture
 					// $commande -> setUserId($user -> getId()); 
 					//  La rcherche de l'id de l'user bugue. A CORRIGER.
 					$manager -> persist($commande);
-				}
+				// }
 			}
 		}
 		
