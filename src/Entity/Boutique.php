@@ -2,17 +2,20 @@
 
 namespace App\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+ 
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BoutiqueRepository")
  */
-class Boutique
+class Boutique 
 {
 
     public function __construct()
