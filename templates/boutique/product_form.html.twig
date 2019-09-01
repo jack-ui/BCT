@@ -1,5 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<h1>Formulaire d'un produit</h1>
+    <h1>Formulaire d'un produit</h1>
+
+    {{ form_start(produitForm) }}
+    <div class="row">
+        <div class="col-6">
+            {# {{ form_row(produitForm.id) }} #}
+            {{ form_row(produitForm.nom) }}
+            {{ form_row(produitForm.categorie) }}
+            {{ form_row(produitForm.stock) }}       
+        </div>
+        <div class="col-6">
+            {{ form_row(produitForm.prix) }}
+            {{ form_row(produitForm.file) }}
+            {{ form_row(produitForm.saisonnalite) }}
+            {{ form_row(produitForm.uniteMesure) }}   
+        </div>
+        {{ form_row(produitForm.submit, { 'label' : 'Ajouter' } ) }}
+    </div>
+    {{ form_end(produitForm) }}
 {% endblock %}

@@ -1,5 +1,80 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<h1>Tableau des produits d'une boutique gérée par un vendeur</h1>
+    <h1>Tableau des produits d'une boutique gérée par un vendeur</h1>
+
+    Bonjour
+    {# {{ app.user.nom }} #}
+    !
+
+    <h1>Gestion des produits</h1>
+    <p>Nombre de produits : {{ produits | length }}</p>
+
+    <h2>Les produits de la boutique</h2>
+
+    <div class="row p-3">
+        <a href="{{ path('shop_add_product') }}" class="btn btn-success">
+            <i class="fas fa-plus-circle"></i>
+            Ajouter un produit</a>
+    </div>
+
+
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Categorie</th>
+                <th>Stock</th>
+                <th>Prix</th>
+                <th>Photo</th>
+                <th>Unite_mesure</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+            {% for p in produits %}
+
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.nom }}</td>
+                    <td>{{ p.categorie }}</td>
+                    <td>
+                        {% if p.stock == 0 %}
+                            <strong class="text text-danger">{{ p.stock }}</strong>
+                        {% elseif p.stock < 10 %}
+                            <strong class="text text-warning">{{ p.stock }}</strong>
+                        {% else %}
+                            <strong class="text text-success">{{ p.stock }}</strong>
+                        {% endif %}
+                    </td>
+                    <td>{{ p.prix | number_format(2, ',', ' ') }}€</td>
+                    <td>{{ p.saisonnalite }}</td>
+                    <td><img src="{{ asset('/photo/' ~ p.photo ) }}" height="60px"/></td>
+                    <td>{{ p.uniteMesure }}</td>
+                    <td>{{ p.prix | number_format(2, ',', ' ') }}€</td>
+                    <td>
+                        <a target="_blank" href="{{ path('product', {id : p.id } ) }}">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('shop_update', {id : p.id } ) }}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('shop_delete', {id : p.id } ) }}" onclick="return confirm('Etes-vous certain de vouloir supprimer le produit')">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
 {% endblock %}

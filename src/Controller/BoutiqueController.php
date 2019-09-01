@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Boutique;
+use App\Entity\Produit;
 use App\Form\BoutiqueType;
+use App\Form\ProduitType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,6 +44,8 @@ class BoutiqueController extends AbstractController
             'boutiqueForm' => $form->createView()
         ]);
     }
+
+
     /**
      * @Route("/shop", name="shop")
      */
@@ -49,7 +53,21 @@ class BoutiqueController extends AbstractController
     {
 
         //afficher la liste des produits de la boutique
-        return $this->render('boutique/products_table.html.twig', []);
+
+        //1 : Récupérer tous les produits et la liste de toutes les catégories
+        // SELECT * FROM produit 
+        $repository = $this->getDoctrine()->getRepository(Produit::class);
+        $produits = $repository->findAll();
+
+        // SELECT DISTINCT p.categorie FROM produit p  ORDER BY p.categorie ASC
+        $categories = $repository->findAllCategories();
+
+        //2 : Afficher la vue
+
+        return $this->render('boutique/products_table.html.twig', [
+            'produits' => $produits,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -66,12 +84,33 @@ class BoutiqueController extends AbstractController
     /**
      * @Route("/shop/add_product", name="shop_add_product")
      */
-    public function addProduct()
+    public function addProduct(Request $request, ObjectManager $manager)
     {
         //ajouter un produit
         //afficher le formulaire du produit
 
-        return $this->render('boutique/product_form.html.twig', []);
+        //fonction pour créer une boutique
+        //on affiche le formulaire de la boutique
+
+        $produit = new Produit;
+        $form = $this->createForm(ProduitType::class, $produit);
+
+        // traiter les infos du formulaire
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($produit);
+
+
+            $manager->flush();
+
+            $this->addFlash('success', 'Félicitations');
+            return $this->redirectToRoute('shop');
+        }
+
+
+        return $this->render('boutique/product_form.html.twig', [
+            'produitForm' => $form->createView()
+        ]);
 
         // return $this -> redirectToRoute('shop');
     }
