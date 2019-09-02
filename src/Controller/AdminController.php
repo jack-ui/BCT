@@ -29,9 +29,12 @@ class AdminController extends AbstractController
      */
     public function showUsers()
     {   
-        // afficher la liste des users = volet gestion user
+        // Fonction pour afficher tous les utilisateurs
+        // Affichage : le tableau des produits
+        $user = new User;
+
         
-        return $this->render('admin/user_table.html.twig', [
+        return $this->render('admin/user_list.html.twig', [
             
         ]);
     }
@@ -78,13 +81,13 @@ class AdminController extends AbstractController
 			
 	   
 			$this -> addFlash('success', 'Le produit n°' . $user -> getId() . ' a bien été enregistré en BDD');
-	   		return $this -> redirectToRoute('admin_users');
-	   }       
-        return $this->render('admin/user_form.html.twig', [
+               return $this -> redirectToRoute('admin_users');
+        }       
+            return $this->render('admin/user_form.html.twig', [
             'userForm'=> $form->createView()
-        ]);
+            ]);
 
-            }
+        }
 
     /**
      * @Route("/admin/user/delete_{id}", name="admin_user_delete")

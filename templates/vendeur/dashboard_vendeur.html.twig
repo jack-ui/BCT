@@ -6,7 +6,7 @@
 
 <a href="{{ path('show_orders') }}">Gestion commandes</a>
 <a href="{{ path('shop') }}">Gestion boutique</a>
-<a href="{{ path('profile')}}">Gestion profil</a>
+<a href="{{ path('profile', {id : app.user.id}) }}">Gestion profil</a>
 <a href="{{ path('cgu') }}">Conditions d'utilisation </a>
 {# <a href="{{ path('stats') }}">Statistiques boutique (en bonus)</a> #}
 {% endblock %}

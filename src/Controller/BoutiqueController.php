@@ -116,7 +116,7 @@ class BoutiqueController extends AbstractController
     }
 
     /**
-     * @Route("/shop/update_{id}", name="shop_update")
+     * @Route("/shop/update_product{id}", name="shop_update_product")
      */
     public function productUpdate (ObjectManager $manager, Request $request, $id)
     {
@@ -144,7 +144,7 @@ class BoutiqueController extends AbstractController
     }
 
     /**
-     * @Route("/shop/delete_{id}", name="shop_delete")
+     * @Route("/shop/delete_product{id}", name="shop_delete_product")
      */
     public function deleteProduct($id, ObjectManager $manager)
     {

@@ -29,7 +29,7 @@ class VendeurController extends AbstractController
     // test : localhost:8000/sell
 
     /**
-     * @Route("/dasboard", name="dashboard")
+     * @Route("/dashboard", name="dashboard")
      */
     public function showDashboard()
     {   
