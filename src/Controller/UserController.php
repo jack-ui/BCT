@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request; 
 use Symfony\Component\HttpFoundation\Response; 
-
 use App\Form\UserType;
 use App\Entity\User;  
 use Doctrine\Common\Persistence\ObjectManager;
@@ -57,6 +56,84 @@ class UserController extends AbstractController
 		]);
 	}
 	
+	 /**
+     * @Route("/profile_{id}", name="profile")
+     */
+    public function showProfile($id, ObjectManager $manager)
+    {   
+        //Fonction qui affiche le profil de l'utilisateur actuellement connecté en fonction de l'id 
+        //Récupérer l'id du vendeur actuellement connecté
+
+
+        // 1 : Traitement du formulaire
+        $manager = $this->getDoctrine()->getManager();
+        $user = $manager->find(User::class,$id); 
+        
+        //2 : Afficher la vue
+        return $this -> render('user/show_profile.html.twig', [
+			'user'=> $user
+		 ]);
+        
+    }
+    // test : localhost:8000/profile_3
+    
+
+     /**
+     * @Route("/profile_update_{id}", name="profile_update")
+     */
+	//PROBLEME N AFFICHE PAS LE FORMULAIRE POUR FAIRE L UPDATE
+    public function updateProfile(ObjectManager $manager, Request $request, $id)
+    {   
+        //Fonction qui modifie les infos d'un vendeur 
+        //1 : Récupérer le vendeur connecté pour modifier son profil 
+		$user = $manager->find(Produit::class,$id);
+		
+        // 2 : Traitement du formulaire 
+        $form = $this -> createForm(UserType::class, $user, ['update'=> true]);
+	    $form -> handleRequest($request);
+	   
+	    if($form -> isSubmitted() && $form -> isValid()){
+	   
+		    $manager -> persist($user);
+		    $manager -> flush(); 
+		   
+		    $this -> addFlash('success', 'Votre profil a bien été modifié !');
+        	return $this -> redirectToRoute('profile');
+		}
+        //3 : Afficher la vue
+        return $this -> render('user/user_form.html.twig', [
+			'userForm' => $form->createView()
+		]);
+		
+        
+    }
+    // test : localhost:8000/profile_update_3
+
+
+    /**
+     * @Route("/profile_delete{id}", name="profile_delete")
+     */
+    public function deleteProfile($id, ObjectManager $manager)//?????????????????????
+    {   
+        //Fonction qui supprime le profil d'un vendeur,
+        //Récupérer l'id du vendeur actuellement connecté pour le supprimer 
+        //Rajouter une condition de validation de suppression par l'admin 
+
+		$user = $manager -> find(User::class, $id);
+		
+		if($user){
+			$manager -> remove($user);
+			$manager -> flush();
+			
+			$this -> addFlash('success',  'Votre profil a bien été supprimé !');
+		}			
+        //Affichage : redirection sur la page d'accueil
+		return $this->render('/');
+		
+     
+    }
+    // test : localhost:8000/profile_delete3
+    
 	
 }
 

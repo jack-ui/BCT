@@ -63,7 +63,6 @@ class BoutiqueController extends AbstractController
         $categories = $repository->findAllCategories();
 
         //2 : Afficher la vue
-
         return $this->render('boutique/products_table.html.twig', [
             'produits' => $produits,
             'categories' => $categories
@@ -75,9 +74,13 @@ class BoutiqueController extends AbstractController
      */
     public function showProduct($id)
     {
-        //afficher la fiche d'un produit en fonction de l'id
-
-        return $this->render('boutique/show_product.html.twig', []);
+        //Fonction pour afficher la fiche d'un produit en fonction de l'id
+        $repo = $this -> getDoctrine() -> getRepository(Produit::class);
+        $produit = $repo -> find($id);
+        
+        return $this->render('boutique/show_product.html.twig', [
+            'produit'=> $produit
+        ]);
     }
 
     //CRUD PRODUIT
@@ -86,16 +89,13 @@ class BoutiqueController extends AbstractController
      */
     public function addProduct(Request $request, ObjectManager $manager)
     {
-        //ajouter un produit
-        //afficher le formulaire du produit
-
-        //fonction pour créer une boutique
-        //on affiche le formulaire de la boutique
+        //Fonction pour ajouter un produit
+        //On affiche le formulaire du produit
 
         $produit = new Produit;
         $form = $this->createForm(ProduitType::class, $produit);
 
-        // traiter les infos du formulaire
+        // Traitement des infos du formulaire
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($produit);
@@ -112,29 +112,53 @@ class BoutiqueController extends AbstractController
             'produitForm' => $form->createView()
         ]);
 
-        // return $this -> redirectToRoute('shop');
+       
     }
 
     /**
      * @Route("/shop/update_{id}", name="shop_update")
      */
-    public function productUpdate($id)
+    public function productUpdate (ObjectManager $manager, Request $request, $id)
     {
-        //modifier un produit en fonction de l'id
-        //afficher le formulaire du produit
+        //Fonction permettant de modifier un produit en fonction de l'id
+        //Affichage : le formulaire du produit à modifier
+        $produit = $manager->find(Produit::class,$id);
+        $form = $this->createForm(ProduitType::class, $produit);
 
-        return $this->render('boutique/product_form.html.twig', []);
+        // Traitement des infos du formulaire
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($produit);
 
-        // return $this -> redirectToRoute('shop');
+
+            $manager->flush();
+
+            $this->addFlash('success', 'Félicitations');
+            return $this->redirectToRoute('shop');
+        }
+
+        return $this->render('boutique/product_form.html.twig', [
+            'produitForm' => $form->createView(),
+        ]);
+
     }
 
     /**
      * @Route("/shop/delete_{id}", name="shop_delete")
      */
-    public function deleteProduct($id)
+    public function deleteProduct($id, ObjectManager $manager)
     {
-        //supprimer un produit en fonction de l'id
-        //redirige vers la liste des produits 
+        //Fonction permettant de supprimer un produit en fonction de l'id
+        //Affichage : redirige vers la liste des produits 
+
+        $produit = $manager->find(Produit::class, $id);
+        if($produit)
+        {
+            $manager->remove($produit);
+            $manager->flush();
+
+            $this->addFlash('success', 'le produit'. $nom . 'a bien été supprimé');
+        }
 
         return $this->redirectToRoute('shop');
     }

@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<h1>on montre le produit sélectionné</h1>
+<h1>Détails du produit : {{ produit.nom }}</h1>
+<ul>
+    <li>Nom :  {{ produit.nom }}</li>
+    <li>Categorie :  {{ produit.categorie }}</li>
+    <li>Stock :  {{ produit.stock }}</li>     
+    <li>Prix :  {{ produit.prix }}</li>
+    <li>Photo :  {{ produit.file }}</li> 
+    <li>Saisonnalité :  {{ produit.saisonnalite}}</li> 
+    <li>Unité de mesure :  {{ produit.uniteMesure }}</li>
+           
+</ul>
+<a class="btn btn-success" href="{{ path('shop_update', {id : produit.id }) }}">Modifier le produit</a>
 {% endblock %}

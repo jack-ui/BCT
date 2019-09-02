@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+	<h1>Bonjour {{ app.user.username }} bienvenue sur votre profil   {% if app.user.statut == 1 %}
+            <p>Vendeur !</p> 
+            {% elseif app.user.statut == 0 %}
+            <p>Acheteur !</p>
+            {% else %}
+            <p>Statut invalide !</p>
+            {% endif %}
+      
+    </h1>
+	
+	<ul>
+		<li>Prénom : {{ app.user.prenom }}</li>
+		<li>Nom : {{ app.user.nom }}</li>
+        <li>Email : {{ app.user.email }}</li>
+        <li>Adresse :{{ app.user.adresse }}</li>
+        <li>Ville : {{ app.user.ville }}</li>
+        <li>Code postal : {{ app.user.codePostal }}</li>
+        <li>Téléphone : {{ app.user.telephone }}</li>
+        <li>Date de naissance : {{ app.user.dateDeNaissance | date('d/m/Y') }}</li>
+        <li>Genre : {% if app.user.sexe == 'm' %}
+            <p>homme</p>
+            {% else %}
+            <p>femme</p>
+            {% endif %}
+        </li>
+    </ul>
+    <a class="btn btn-success" href="{{ path('profile_update', {id : app.user.id}) }}">Modifier mon profil</a>
+	
+{% endblock %}
