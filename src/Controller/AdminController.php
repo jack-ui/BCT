@@ -17,8 +17,8 @@ class AdminController extends AbstractController
      */
     public function showAdmin()
     {   
-        // afficher le dashboard de l'admin
-        // 2 volets : gestion user et gestion boutique
+        // Fonction qui redirige vers un affichage
+        // Affichage : 2 volets, gestion user et gestion boutique
         return $this->render('admin/dashboard_admin.html.twig', [
             
         ]);
@@ -31,11 +31,12 @@ class AdminController extends AbstractController
     {   
         // Fonction pour afficher tous les utilisateurs
         // Affichage : le tableau des produits
-        $user = new User;
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $users = $repository->findAll();
 
         
         return $this->render('admin/user_list.html.twig', [
-            
+            'users'=> $users
         ]);
     }
 
@@ -44,7 +45,7 @@ class AdminController extends AbstractController
      */
     public function showUser($id)
     {   
-        // afficher un profil vendeur ou acheteur en fonction de l'id et/ou statut ??
+        //Fonction pour afficher un profil vendeur ou acheteur en fonction de l'id
         
         return $this->render('admin/user_profile.html.twig', [
             

@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<h1>Je suis sur le dasboard vendeur</h1>
+<h1>Dasboard vendeur</h1>
 
-<a href="{{ path('show_orders') }}">Gestion commandes</a>
-<a href="{{ path('shop') }}">Gestion boutique</a>
-<a href="{{ path('profile', {id : app.user.id}) }}">Gestion profil</a>
-<a href="{{ path('cgu') }}">Conditions d'utilisation </a>
+<a href="{{ path('show_orders') }}">Gestion de vos commandes</a>
+<a href="{{ path('shop') }}">Gestion des produits de votre boutique</a>
+<a href="{{ path('profile', {id : app.user.id}) }}">Gestion de votre profil</a>
+<a href="{{ path('cgu') }}">Conditions d'utilisation</a>
 {# <a href="{{ path('stats') }}">Statistiques boutique (en bonus)</a> #}
 {% endblock %}

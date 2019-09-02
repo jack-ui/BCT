@@ -22,6 +22,8 @@
                 <th>Adresse</th>
                 <th>Code Postal</th>
                 <th>Ville</th>
+                <th>Département</th>
+                <th>Région</th>
                 <th>Téléphone</th>
                 <th>Date de naissance</th>
                 <th>Genre</th>
@@ -40,11 +42,14 @@
                     <td>{{ u.statut }}</td>
                     <td>{{ u.nom }}</td>
                     <td>{{ u.prenom }}</td>
+                    <td>{{ u.username }}</td>
                     <td>{{ u.adresse }}</td>
                     <td>{{ u.codePostal }}</td>
                     <td>{{ u.ville }}</td>
+                    <td>{{ u.departement }}</td>
+                    <td>{{ u.region }}</td>
                     <td>{{ u.telephone }}</td>
-                    <td>{{ u.dateNaissance | date('//') }}</td>
+                    <td>{{ u.dateDeNaissance | date('d/m/Y') }}</td>
                     <td>{{ u.sexe }}</td>
                     
                     
