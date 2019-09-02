@@ -34,7 +34,7 @@ class Boutique
 
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
+     * @ORM\Column(type="string", length=50)
      *
      *
      */
@@ -43,16 +43,23 @@ class Boutique
 
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      *
      *
      */
     private $nomBoutique;
 
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     *
+     */
+    private $description;
+
 
     /**
-     * @ORM\Column(type="string", length=20, nullable=true)
+     * @ORM\Column(type="string", length=255)
      * 
      *
      */
@@ -62,7 +69,7 @@ class Boutique
 
 
     /**
-     * @ORM\Column(type="string", length=20, nullable=true)
+     * @ORM\Column(type="string", length=255)
      * 
      * Le formulaire effectue seul cette vérification
      *
@@ -74,7 +81,7 @@ class Boutique
      * @ORM\Column(type="string", length=50)
 	 * @Assert\NotBlank(message="Veuillez renseigner une ville")
 	 * @Assert\Length(
-	 *	min=3, 
+	 *	min=2, 
 	 *	max=50,
 	 *  minMessage="Veuillez renseigner une ville de 3 caractères mini", 
 	 *  maxMessage="Veuillez renseigner une ville de 50 carctères maxi"
@@ -84,7 +91,7 @@ class Boutique
 
     /**
      * @ORM\Column(type="integer")
-	 * @Assert\Type(type="integer", message="Veuillez renseigner un code postal composé de chiffre.")
+	 * @Assert\Type(type="integer", message="Veuillez renseigner un code postal composé de chiffres.")
      */
     private $codePostal;
 
@@ -122,13 +129,15 @@ class Boutique
     private $file;
     // On ne mappe pas cette propriété car elle n'existe pas dans la BDD. Elle va juste servir à récupérer les octets qui constitue l'image. 
 
+
     /**
      * 
      * @OneToOne(targetEntity="User")
-     * @JoinColumn(name="user_id", referencedColumnName="id")
+     * @JoinColumn(name="userId", referencedColumnName="id")
      */
-    private $user_id;
+    private $userId;
 
+    
 
     /**
      * Une boutique peut avoir 0 produits min et N produit max => OnetoMany
@@ -157,12 +166,12 @@ class Boutique
 
     public function getUserId(): ?int
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
-    public function setUserId(int $user_id): self
+    public function setUserId(int $userId): self
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
 
         return $this;
     }
@@ -281,6 +290,17 @@ class Boutique
     }
 
 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
 
 
     public function setNomBoutique($nomBoutique)
@@ -341,7 +361,7 @@ class Boutique
     }
 
 
-    //2 objectif : 
+    //2 objectifs : 
     // permettre l'enregistrement de la photo dans la BDD (après qu'elle soit renommée)
     // Enregistrer la photo sur le serveur /public/photo
 

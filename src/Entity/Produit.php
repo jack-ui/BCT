@@ -43,6 +43,15 @@ class Produit
      */
     private $categorie;
 
+
+        /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     *
+     */
+    private $description;
+
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -82,16 +91,16 @@ class Produit
      *                 clé étrangère         clé primaire
      * 
      */
-    private $boutique_id;
+    private $boutiqueId;
 
     public function getBoutiqueId(): ?int
     {
-        return $this->boutique_id;
+        return $this->boutiqueId;
     }
 
-    public function setBoutiqueId(int $boutique_id): self
+    public function setBoutiqueId(int $boutiqueId): self
     {
-        $this->boutique_id = $boutique_id;
+        $this->boutiqueId = $boutiqueId;
 
         return $this;
     }
@@ -123,6 +132,18 @@ class Produit
     {
         $this->categorie = $categorie;
 
+        return $this;
+    }
+
+    
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
         return $this;
     }
 

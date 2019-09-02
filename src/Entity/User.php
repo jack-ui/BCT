@@ -34,9 +34,9 @@ class User implements UserInterface
 	 *
 	 * @Assert\NotBlank(message="Veuillez renseigner un pseudo")
 	 * @Assert\Length(
-	 *	min=3,
+	 *	min=2,
 	 *	max=30,
-	 *  minMessage="Veuillez renseigner un pseudo de 3 caractères mini",
+	 *  minMessage="Veuillez renseigner un pseudo de 2 caractères mini",
 	 *  maxMessage="Veuillez renseigner un pseudo de 30 carctères maxi"
 	 * )
 	 *
@@ -59,7 +59,7 @@ class User implements UserInterface
 
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
 	 *
 	 * @Assert\NotBlank(message="Veuillez renseigner un email")
 	 * @Assert\Email(message="Veuillez renseigner un email valide")
@@ -185,7 +185,7 @@ class User implements UserInterface
     /**
      *
      * @OneToOne(targetEntity="Boutique")
-     * @JoinColumn(name="boutique_id", referencedColumnName="id")
+     * @JoinColumn(name="boutiqueId", referencedColumnName="id")
      */
     private $boutiqueId;
 
@@ -200,12 +200,12 @@ class User implements UserInterface
 
     public function getBoutiqueId(): ?int
     {
-        return $this->boutique_id;
+        return $this->boutiqueId;
     }
 
-    public function setBoutiqueId(int $boutique_id): self
+    public function setBoutiqueId(int $boutiqueId): self
     {
-        $this->boutique_id = $boutique_id;
+        $this->boutiqueId = $boutiqueId;
 
         return $this;
     }

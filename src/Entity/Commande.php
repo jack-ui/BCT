@@ -25,10 +25,10 @@ class Commande
      * Chaque commande appartient à un et un seul membre
      * 
      * @ORM\ManyToOne(targetEntity="User", inversedBy="commandes")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="id")
      *                 clé étrangère         clé primaire
      */
-    private $user_id;
+    private $userId;
 
 
     /**
@@ -66,12 +66,12 @@ class Commande
 
     public function getUserId(): ?int
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
-    public function setUserId(int $user_id): self
+    public function setUserId(int $userId): self
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
 
         return $this;
     }
