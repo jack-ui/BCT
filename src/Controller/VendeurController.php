@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use App\Entity\User;
+
 
 
 
@@ -29,7 +29,7 @@ class VendeurController extends AbstractController
     // test : localhost:8000/sell
 
     /**
-     * @Route("/dasboard", name="dashboard")
+     * @Route("/dashboard", name="dashboard")
      */
     public function showDashboard()
     {   

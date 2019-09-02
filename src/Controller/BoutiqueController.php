@@ -52,17 +52,15 @@ class BoutiqueController extends AbstractController
     public function showProducts()
     {
 
-        //afficher la liste des produits de la boutique
+        //Fonction permettant d'afficher la liste des produits de la boutique
 
-        //1 : Récupérer tous les produits et la liste de toutes les catégories
-        // SELECT * FROM produit 
+        //Traitement du formulaire
         $repository = $this->getDoctrine()->getRepository(Produit::class);
         $produits = $repository->findAll();
 
-        // SELECT DISTINCT p.categorie FROM produit p  ORDER BY p.categorie ASC
         $categories = $repository->findAllCategories();
 
-        //2 : Afficher la vue
+        //Afficher la vue
         return $this->render('boutique/products_table.html.twig', [
             'produits' => $produits,
             'categories' => $categories
@@ -116,7 +114,7 @@ class BoutiqueController extends AbstractController
     }
 
     /**
-     * @Route("/shop/update_{id}", name="shop_update")
+     * @Route("/shop/update_product{id}", name="shop_update_product")
      */
     public function productUpdate (ObjectManager $manager, Request $request, $id)
     {
@@ -144,7 +142,7 @@ class BoutiqueController extends AbstractController
     }
 
     /**
-     * @Route("/shop/delete_{id}", name="shop_delete")
+     * @Route("/shop/delete_product{id}", name="shop_delete_product")
      */
     public function deleteProduct($id, ObjectManager $manager)
     {

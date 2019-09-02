@@ -17,8 +17,8 @@ class AdminController extends AbstractController
      */
     public function showAdmin()
     {   
-        // afficher le dashboard de l'admin
-        // 2 volets : gestion user et gestion boutique
+        // Fonction qui redirige vers un affichage
+        // Affichage : 2 volets, gestion user et gestion boutique
         return $this->render('admin/dashboard_admin.html.twig', [
             
         ]);
@@ -29,10 +29,14 @@ class AdminController extends AbstractController
      */
     public function showUsers()
     {   
-        // afficher la liste des users = volet gestion user
+        // Fonction pour afficher tous les utilisateurs
+        // Affichage : le tableau des produits
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $users = $repository->findAll();
+
         
-        return $this->render('admin/user_table.html.twig', [
-            
+        return $this->render('admin/user_list.html.twig', [
+            'users'=> $users
         ]);
     }
 
@@ -41,7 +45,7 @@ class AdminController extends AbstractController
      */
     public function showUser($id)
     {   
-        // afficher un profil vendeur ou acheteur en fonction de l'id et/ou statut ??
+        //Fonction pour afficher un profil vendeur ou acheteur en fonction de l'id
         
         return $this->render('admin/user_profile.html.twig', [
             
@@ -78,13 +82,13 @@ class AdminController extends AbstractController
 			
 	   
 			$this -> addFlash('success', 'Le produit n°' . $user -> getId() . ' a bien été enregistré en BDD');
-	   		return $this -> redirectToRoute('admin_users');
-	   }       
-        return $this->render('admin/user_form.html.twig', [
+               return $this -> redirectToRoute('admin_users');
+        }       
+            return $this->render('admin/user_form.html.twig', [
             'userForm'=> $form->createView()
-        ]);
+            ]);
 
-            }
+        }
 
     /**
      * @Route("/admin/user/delete_{id}", name="admin_user_delete")

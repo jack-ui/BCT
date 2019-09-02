@@ -5,7 +5,7 @@
 <h1>Tableau de gestion des User</h1>
 
 <div class="row p-3">
-        <a href="{{ path('shop_add_product') }}" class="btn btn-success">
+        <a href="{{ path('admin_user_add') }}" class="btn btn-success">
             <i class="fas fa-plus-circle"></i>
             Ajouter un user</a>
     </div>
@@ -22,6 +22,8 @@
                 <th>Adresse</th>
                 <th>Code Postal</th>
                 <th>Ville</th>
+                <th>Département</th>
+                <th>Région</th>
                 <th>Téléphone</th>
                 <th>Date de naissance</th>
                 <th>Genre</th>
@@ -37,24 +39,33 @@
 
                 <tr>
                     <td>{{ u.id }}</td>
+                    <td>{{ u.statut }}</td>
                     <td>{{ u.nom }}</td>
                     <td>{{ u.prenom }}</td>
-                    <td></td>
+                    <td>{{ u.username }}</td>
+                    <td>{{ u.adresse }}</td>
+                    <td>{{ u.codePostal }}</td>
+                    <td>{{ u.ville }}</td>
+                    <td>{{ u.departement }}</td>
+                    <td>{{ u.region }}</td>
+                    <td>{{ u.telephone }}</td>
+                    <td>{{ u.dateDeNaissance | date('d/m/Y') }}</td>
+                    <td>{{ u.sexe }}</td>
                     
                     
                     
                     <td>
-                        <a target="_blank" href="{{ path('product', {id : p.id } ) }}">
+                        <a target="_blank" href="{{ path('admin_user', {id : u.id } ) }}">
                             <i class="fas fa-eye"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('shop_update', {id : p.id } ) }}">
+                        <a href="{{ path('admin_user_update', {id : u.id } ) }}">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('shop_delete', {id : p.id } ) }}" onclick="return confirm('Etes-vous certain de vouloir supprimer le produit')">
+                        <a href="{{ path('admin_user_delete', {id : u.id } ) }}" onclick="return confirm('Etes-vous certain de vouloir supprimer le produit')">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
