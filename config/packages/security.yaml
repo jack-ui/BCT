@@ -44,9 +44,8 @@ security:
             form_login:
                 login_path: login
                 check_path: connexion_check
-                default_target_path: index
+                default_target_path: check_statut
 
-                
                 # a voir pour les redirections après connexion
 
             logout:
