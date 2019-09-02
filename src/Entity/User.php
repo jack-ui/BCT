@@ -29,7 +29,7 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=30, nullable=false)
 	 *
 	 *
 	 * @Assert\NotBlank(message="Veuillez renseigner un pseudo")
@@ -59,7 +59,7 @@ class User implements UserInterface
 
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=false)
 	 *
 	 * @Assert\NotBlank(message="Veuillez renseigner un email")
 	 * @Assert\Email(message="Veuillez renseigner un email valide")
@@ -73,23 +73,23 @@ class User implements UserInterface
 	 *
 	 * @Assert\NotBlank(message="Veuillez renseigner un prénom")
 	 * @Assert\Length(
-	 *	min=3,
+	 *	min=2, 
 	 *	max=30,
-	 *  minMessage="Veuillez renseigner un prénom de 3 caractères mini",
+	 *  minMessage="Veuillez renseigner un prénom de 2 caractères mini", 
 	 *  maxMessage="Veuillez renseigner un prénom de 30 carctères maxi"
 	 * )
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=50)
 	 *
 	 * @Assert\NotBlank(message="Veuillez renseigner un nom")
 	 * @Assert\Length(
-	 *	min=3,
-	 *	max=30,
-	 *  minMessage="Veuillez renseigner un nom de 3 caractères mini",
-	 *  maxMessage="Veuillez renseigner un nom de 30 carctères maxi"
+	 *	min=2, 
+	 *	max=50,
+	 *  minMessage="Veuillez renseigner un nom de 2 caractères mini", 
+	 *  maxMessage="Veuillez renseigner un nom de 50 carctères maxi"
 	 * )
      */
     private $nom;
@@ -117,7 +117,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer")
-	 * @Assert\Type(type="integer", message="Veuillez renseigner un code postal composé de chiffre.")
+	 * @Assert\Type(type="integer", message="Veuillez renseigner un code postal composé de chiffres.")
      */
     private $codePostal;
 
@@ -125,6 +125,17 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $adresse;
+
+    /**
+     * @ORM\Column(type="integer")
+	 * @Assert\Type(type="integer", message="Veuillez renseigner un numéro de département")
+     */
+    private $departement;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $region;
 
     /**
      * @ORM\Column(type="string", length=25)
@@ -339,6 +350,30 @@ class User implements UserInterface
     public function setCodePostal(int $codePostal): self
     {
         $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    public function getDepartement(): ?int
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(int $departement): self
+    {
+        $this->departement = $departement;
+
+        return $this;
+    }
+
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
+    public function setRegion(string $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }

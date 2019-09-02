@@ -7,7 +7,9 @@ main {
   background-color: aliceblue;
   height: 500px;
 }
-
+main h2 {
+  color: #52d636;
+}
 h2 {
   text-align: center;
   align-self: center;
@@ -45,7 +47,7 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url(../photo/legumes.jpg);
+  background: url('../photo/legumes.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -83,16 +85,27 @@ h2 {
 /* -------hero----------- */
 
  .container2 {
-  background-color: rgb(26, 92, 0);
+  background-image: linear-gradient(to right top, #afdca8, #9adb8f, #85da75, #6ed859, #52d636);
+  /* height: 300px; */
 } 
 
 .textvert {
   color: white;
 }
+footer{
+  background:  rgb(83, 82, 82);
+}
 
-footer {
-  background-color: white;
-  height: 450px;
+.footer_B{
+  background: rgb(83, 82, 82);
+}
+
+footer a {
+  color: white;
+}
+
+footer p {
+color: white;
 }
 
 footer li {
@@ -101,7 +114,3 @@ footer li {
   padding-bottom: 100px;
 }
 
-#trait_dessus {
-  border-top: 3px solid rgb(32, 219, 72);
-  width: 100%;
-}

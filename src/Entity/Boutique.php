@@ -94,6 +94,17 @@ class Boutique
     private $adresse;
 
     /**
+     * @ORM\Column(type="integer")
+	 * @Assert\Type(type="integer", message="Veuillez renseigner un numéro de département")
+     */
+    private $departement;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $region;
+
+    /**
      * @ORM\Column(type="string", length=25)
 	 * @Assert\Regex(
 	 *	pattern="/^0[1-68]([-. ]?[0-9]{2}){4}$/",
@@ -101,6 +112,60 @@ class Boutique
 	 *) 
      */
     private $telephone;
+
+    /**
+     * @var string|null
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     */
+    private $photo = 'default.jpg'; //il faut mettre une photo par défaut pour harmoniser niveau design ! il faut aussi définir les tailles de la photo, format, etc ! 
+
+    private $file;
+    // On ne mappe pas cette propriété car elle n'existe pas dans la BDD. Elle va juste servir à récupérer les octets qui constitue l'image. 
+
+    /**
+     * 
+     * @OneToOne(targetEntity="User")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user_id;
+
+
+    /**
+     * Une boutique peut avoir 0 produits min et N produit max => OnetoMany
+     * 
+     * @ORM\OneToMany(targetEntity="Produit", mappedBy="id")
+     *                                table       Clé étrangère
+     * 
+     * 
+     * Contient tous les produits du membre (Array composé d'objets produits)
+     */
+    private $produits;
+
+
+
+    public function getProduits()
+    {
+        return $this->produits;
+    }
+
+    public function setProduits($produits)
+    {
+        $this->produits = $produits;
+        return $this;
+    }
+
+
+    public function getUserId(): ?int
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(int $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
 
 
     public function getVille(): ?string
@@ -139,6 +204,31 @@ class Boutique
         return $this;
     }
 
+
+    public function getDepartement(): ?int
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(int $departement): self
+    {
+        $this->departement = $departement;
+
+        return $this;
+    }
+
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
+    public function setRegion(string $region): self
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
     public function getTelephone(): ?string
     {
         return $this->telephone;
@@ -151,61 +241,6 @@ class Boutique
         return $this;
 
     }
-
-
-    /**
-     * @var string|null
-     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
-     */
-    private $photo = 'default.jpg'; //il faut mettre une photo par défaut pour harmoniser niveau design ! il faut aussi définir les tailles de la photo, format, etc ! 
-
-    private $file;
-    // On ne mappe pas cette propriété car elle n'existe pas dans la BDD. Elle va juste servir à récupérer les octets qui constitue l'image. 
-
-    /**
-     * 
-     * @OneToOne(targetEntity="User")
-     * @JoinColumn(name="user_id", referencedColumnName="id")
-     */
-    private $user_id;
-
-
-    /**
-     * Une boutique peut avoir 0 produits min et N produit max => OnetoMany
-     * 
-     * @ORM\OneToMany(targetEntity="Produit", mappedBy="id")
-     *                                table       Clé étrangère
-     * 
-     * 
-     * Contient tous les produits du membre (Array composé d'objets produits)
-     */
-    private $produits;
-
-    public function getProduits()
-    {
-        return $this->produits;
-    }
-
-    public function setProduits($produits)
-    {
-        $this->produits = $produits;
-        return $this;
-    }
-
-
-    public function getUserId(): ?int
-    {
-        return $this->user_id;
-    }
-
-    public function setUserId(int $user_id): self
-    {
-        $this->user_id = $user_id;
-
-        return $this;
-    }
-
-
 
 
     public function getPhoto(): ?string
