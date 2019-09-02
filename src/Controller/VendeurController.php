@@ -3,10 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\User;
+
+
 
 class VendeurController extends AbstractController
 {
@@ -16,7 +20,7 @@ class VendeurController extends AbstractController
     public function sell()
     {   
         // Affiche les choix connexion ou inscription. 
-        // Fonction qui retourne un affichage
+        // Fonction qui redirige sur une page
 
         return $this -> redirectToRoute('login');
         //OU
@@ -29,8 +33,9 @@ class VendeurController extends AbstractController
      */
     public function showDashboard()
     {   
-        // Fonction qui retourne un affichage
+        // Fonction qui redirige sur une page
         // Affiche le dashboard vendeur
+        
         return $this -> render('vendeur/dashboard_vendeur.html.twig');
     }
     // test : localhost:8000/dashboard
@@ -51,7 +56,8 @@ class VendeurController extends AbstractController
        
         //2 : Afficher la liste des commandes sous forme de tableau
         return $this->render('vendeur/show_orders.html.twig', [
-            //'commandes' => $commandes, 'statuts' => '$statuts'
+            //'commandes' => $commandes, 
+            //'statuts' => '$statuts'
         ]);
         
     }// test : localhost:8000/show_orders
@@ -64,7 +70,7 @@ class VendeurController extends AbstractController
         //Fonction permettant de modifier une commande en fonction de l'id
 
         // 1 : Traitement du formulaire 
-        // $manager = $this->getDoctrine()->getManager();
+        //$manager = $this->getDoctrine()->getManager();
         // $commande = $manager->find(Commande::class,$id) 
 
         // $form = $this -> createForm(CommandeType::class, $commande);
@@ -113,72 +119,6 @@ class VendeurController extends AbstractController
     }
     // test : localhost:8000/shop/delete_order_10
 
-    /**
-     * @Route("/sell_profile_{id}", name="sell_profile")
-     */
-    public function showProfile($id)//?????????????????
-    {   
-        //Fonction qui affiche le profil du vendeur actuellement connecté en fonction de l'id 
-        //Récupérer l'id du vendeur actuellement connecté
-
-
-        // 1 : Traitement du formulaire
-        // $manager = $this->getDoctrine()->getManager();
-        // $commande = $manager->find(User::class,$id) 
-        
-        //2 : Afficher la vue
-        return $this -> render('vendeur/show_profile.html.twig', [
-            
-        ]);
-    }
-    // test : localhost:8000/sell_profile_10
-    
-
-     /**
-     * @Route("/sell_profile_update{id}", name="sell_profile_update")
-     */
-    public function updateProfile($id)//???????????????????????
-    {   
-        //Fonction qui modifie les infos d'un vendeur 
-        //Récupérer l'id du vendeur connecté pour modifier son profil 
-        
-        // 1 : Traitement du formulaire 
-        // $manager = $this->getDoctrine()->getManager();
-        // $user = $manager->find(User::class,$id) 
-
-        // $form = $this -> createForm(UserType::class, $user);
-	    // $form -> handleRequest($request);
-	   
-	    // if($form -> isSubmitted() && $form -> isValid()){
-	   
-		//     $manager -> persist($user);
-		//     $manager -> flush(); 
-		   
-		//     $this -> addFlash('success', '$username votre profil a bien été modifié !');
-        //     return $this -> redirectToRoute('sell_profile');
-        // }
-        return $this -> render('vendeur/vendeur_form.html.twig', [
-            //'userForm' => $form->createView()
-        ]);
-        //return $this->redirectToRoute('sell_profile');
-    }
-    // test : localhost:8000/sell_profile_update_10
-
-
-    /**
-     * @Route("/sell_profile_delete{id}", name="sell_profile_delete")
-     */
-    public function deleteProfile($id)//?????????????????????
-    {   
-        //Fonction qui supprime le profil d'un vendeur,
-        //Récupérer l'id du vendeur actuellement connecté pour le supprimer 
-        //Rajouter une condition de validation de suppression par l'admin 
-
-        //Affichage : redirection sur la page d'accueil
-        return $this->redirectToRoute('/');
-     
-    }
-    // test : localhost:8000/sell_profile_delete_10
-    
+   
 
 }

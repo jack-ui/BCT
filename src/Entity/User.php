@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\UserInterface; 
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -29,23 +29,23 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=30, nullable=false)
 	 *
 	 *
 	 * @Assert\NotBlank(message="Veuillez renseigner un pseudo")
 	 * @Assert\Length(
-	 *	min=3, 
+	 *	min=3,
 	 *	max=30,
-	 *  minMessage="Veuillez renseigner un pseudo de 3 caractères mini", 
+	 *  minMessage="Veuillez renseigner un pseudo de 3 caractères mini",
 	 *  maxMessage="Veuillez renseigner un pseudo de 30 carctères maxi"
 	 * )
 	 *
      */
     private $username;
-	
-	
-	
-	
+
+
+
+
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
 	 * @Assert\Regex(
@@ -56,40 +56,40 @@ class User implements UserInterface
      */
     private $password;
 
-	
+
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=false)
 	 *
 	 * @Assert\NotBlank(message="Veuillez renseigner un email")
 	 * @Assert\Email(message="Veuillez renseigner un email valide")
 	 *
      */
     private $email;
-	
+
 
     /**
      * @ORM\Column(type="string", length=30)
 	 *
 	 * @Assert\NotBlank(message="Veuillez renseigner un prénom")
 	 * @Assert\Length(
-	 *	min=3, 
+	 *	min=2, 
 	 *	max=30,
-	 *  minMessage="Veuillez renseigner un prénom de 3 caractères mini", 
+	 *  minMessage="Veuillez renseigner un prénom de 2 caractères mini", 
 	 *  maxMessage="Veuillez renseigner un prénom de 30 carctères maxi"
 	 * )
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=50)
 	 *
 	 * @Assert\NotBlank(message="Veuillez renseigner un nom")
 	 * @Assert\Length(
-	 *	min=3, 
-	 *	max=30,
-	 *  minMessage="Veuillez renseigner un nom de 3 caractères mini", 
-	 *  maxMessage="Veuillez renseigner un nom de 30 carctères maxi"
+	 *	min=2, 
+	 *	max=50,
+	 *  minMessage="Veuillez renseigner un nom de 2 caractères mini", 
+	 *  maxMessage="Veuillez renseigner un nom de 50 carctères maxi"
 	 * )
      */
     private $nom;
@@ -101,15 +101,15 @@ class User implements UserInterface
 	 *
      */
     private $sexe;
-	
-	
+
+
     /**
      * @ORM\Column(type="string", length=50)
 	 * @Assert\NotBlank(message="Veuillez renseigner une ville")
 	 * @Assert\Length(
-	 *	min=3, 
+	 *	min=3,
 	 *	max=50,
-	 *  minMessage="Veuillez renseigner une ville de 3 caractères mini", 
+	 *  minMessage="Veuillez renseigner une ville de 3 caractères mini",
 	 *  maxMessage="Veuillez renseigner une ville de 50 carctères maxi"
 	 * )
      */
@@ -117,38 +117,49 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer")
-	 * @Assert\Type(type="integer", message="Veuillez renseigner un code postal composé de chiffre.")
+	 * @Assert\Type(type="integer", message="Veuillez renseigner un code postal composé de chiffres.")
      */
     private $codePostal;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      */
     private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=17)
+     * @ORM\Column(type="integer")
+	 * @Assert\Type(type="integer", message="Veuillez renseigner un numéro de département")
+     */
+    private $departement;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $region;
+
+    /**
+     * @ORM\Column(type="string", length=25)
 	 * @Assert\Regex(
 	 *	pattern="/^0[1-68]([-. ]?[0-9]{2}){4}$/",
 	 *	message="Mauvais numero de téléphone"
-	 *) 
+	 *)
      */
     private $telephone;
 
-	
+
     /**
      * @ORM\Column(type="date")
 	 * @Assert\Date()
      */
     private $dateDeNaissance;
-    
-    
-	
+
+
+
 	/**
 	* @ORM\Column(name="salt", type="string", length=255, nullable=true)
 	*/
     private $salt;
-    
+
     /**
      * @ORM\Column(type="string", length=1)
 	 * @Assert\Choice({"0", "1"})
@@ -159,29 +170,33 @@ class User implements UserInterface
 
 
         /**
-     * 
+     *
+     * Un user peut avoir 0 commande min et N commande max => ManyToOne
+     *
      * @ORM\OneToMany(targetEntity="Commande", mappedBy="user_id")
      *                                table       Clé étrangère
-     * 
-     * 
+     *
+     *
      * Contient toutes les commandes du membre (Array composé d'objets commandes)
      */
     private $commandes;
 
 
     /**
-     * 
+     *
      * @OneToOne(targetEntity="Boutique")
      * @JoinColumn(name="boutique_id", referencedColumnName="id")
      */
-    private $boutique_id;
+    private $boutiqueId;
 
+    //twig : boutiqueId ===> PHP :  getBoutique_Id()
+    //réalité : getBoutiqueId()
 
     /**
 	* @ORM\Column(name="role", type="string", length=20)
 	*/
     private $role = 'ROLE_USER';
-    
+
 
     public function getBoutiqueId(): ?int
     {
@@ -223,16 +238,16 @@ class User implements UserInterface
     }
 
 
-	
+
 	public function setSalt($salt){
 		$this -> salt = $salt;
 		return $this;
 	}
-	
+
 	public function getSalt(){
 		return $this -> salt;
 	}
-    
+
 
 
 
@@ -339,6 +354,30 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getDepartement(): ?int
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(int $departement): self
+    {
+        $this->departement = $departement;
+
+        return $this;
+    }
+
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
+    public function setRegion(string $region): self
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
     public function getAdresse(): ?string
     {
         return $this->adresse;
@@ -375,13 +414,13 @@ class User implements UserInterface
 
         return $this;
     }
-    
+
 
     public function setRole($role){
 		$this -> role = $role;
-		return $this; 
+		return $this;
 	}
-	
+
 	public function getRole(){
 		return $this -> role;
 	}
@@ -390,7 +429,7 @@ class User implements UserInterface
     public function getRoles(){
 		return [$this -> role];
     }
-    
+
 
     public function eraseCredentials(){}
 }

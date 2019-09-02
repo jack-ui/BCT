@@ -16,49 +16,53 @@ class ProduitCommande
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $produit;
 
-    /**
-     * @ORM\Column(type="string", length=5)
-     */
-    private $refCommande;
 
     /**
      * @ORM\Column(type="float")
      */
     private $quantite;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
-    public function getProduit(): ?string
-    {
-        return $this->produit;
-    }
 
-    public function setProduit(string $produit): self
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Produit", inversedBy="produitCommandes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $produit;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Commande", inversedBy="produitCommandes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $commande;
+
+    
+    public function setProduit(?Produit $produit): self
     {
         $this->produit = $produit;
 
         return $this;
     }
 
-    public function getRefCommande(): ?string
+    public function getCommande(): ?Commande
     {
-        return $this->refCommande;
+        return $this->commande;
     }
 
-    public function setRefCommande(string $refCommande): self
+    public function setCommande(?Commande $commande): self
     {
-        $this->refCommande = $refCommande;
+        $this->commande = $commande;
 
         return $this;
     }
+
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
 
     public function getQuantite(): ?float
     {

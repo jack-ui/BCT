@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,13 +10,13 @@
         <!-- Bootstrap4 CSS + Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> {% block stylesheets %}{% endblock %}
-        <link rel="stylesheet" href="{{  asset('/css/stylebct.css') }}">
-        
-    
-    </head>
-        <body>
+        <link rel="stylesheet" href="{{ asset('/css/stylebct.css') }}">
 
-                {% block body %}
+
+    </head>
+    <body>
+
+        {% block body %}
             <!-- Bar de navigation -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand success" href="#">BioChezToi</a>
@@ -133,8 +132,32 @@
             {% endblock %}
             {% block javascripts %}{% endblock %}
         </body>
-        
-        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </html>
+</div></nav><!--/ Bar de navigation -->{% block content %}{% endblock %}<!-- FOOTER --><footer>
+<div class="container">
+    <div class="row">
+        <ul class="navbar col-md-10 ">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">CGU
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Copyright<span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Qui sommes nous?<span class="sr-only">(current)</span>
+                </a>
+            </li>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">SAV/Nous contacter<span class="sr-only">(current)</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Recrutement<span class="sr-only">(current)</span>
+            </a>
+        </li>
+    </li>
+</ul></div></div><div id="trait_dessus"><hr></footer>{% endblock %}{% block javascripts %}{% endblock %}</body><script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></html>

@@ -3,7 +3,12 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Boutique;
+use App\Entity\User;
+use App\Form\UserType;
+use App\Form\BoutiqueType;
 
 class AdminController extends AbstractController
 {
@@ -48,17 +53,38 @@ class AdminController extends AbstractController
      /**
      * @Route("/admin/user/add", name="admin_user_add")
      */
-    public function addUser()
+    public function addUser(Request $request)
     {   
-        // afficher le formulaire d'un user // AFFICHER LE FORMULAIRE POUR AJOUTER UN COMPTE ???? UTILISER LE FORMULAIRE D'INSCRIPTION OU CREER UNE VUE DIFFERENTE ??? A VOIR !!!
-        
+        //Fonction permettant d'ajouter un utilisateur
+        //Affichage du formulaire d'ajout
+
+       // Traitement du formulaire
+       $user = new User; 
+       $form = $this -> createForm(UserType::class, $user);
+       $form -> handleRequest($request);
+	   
+	   if($form -> isSubmitted() && $form -> isValid()){
+
+			$manager = $this -> getDoctrine() -> getManager();
+			$manager -> persist($user);
+			
+
+			// On enregistre la photo en BDD et sur le serveur. 
+			// if($user -> getFile() != NULL){
+			// 	$user -> uploadFile();
+			// }
+			
+			$manager -> flush();
+			
+	   
+			$this -> addFlash('success', 'Le produit n°' . $user -> getId() . ' a bien été enregistré en BDD');
+	   		return $this -> redirectToRoute('admin_users');
+	   }       
         return $this->render('admin/user_form.html.twig', [
-            
+            'userForm'=> $form->createView()
         ]);
 
-        // return $this -> redirectToRoute('admin_users'); 
-        //retourne sur la liste des users
-    }
+            }
 
     /**
      * @Route("/admin/user/delete_{id}", name="admin_user_delete")
@@ -104,16 +130,33 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/shop/add", name="admin/shop_add")
      */
-    public function addShop()
+    public function addShop(Request $request)
     {   
-        //affiche le formulaire avec les infos d'une boutique
-        //ajoute une boutique
-
-        return $this->render('admin/shop_form.html.twig', [
-          
+        //Fonction pour ajouter une boutique
+        //Affichera le formulaire d'une boutique 
+        $boutique = new Boutique; 	   
+        $form = $this -> createForm(BoutiqueType::class, $boutique); 
+        $form -> handleRequest($request);
+        
+        if($form -> isSubmitted() && $form -> isValid()){
+ 
+            $manager = $this -> getDoctrine() -> getManager();
+            $manager -> persist($boutique);
+                    
+            $manager -> flush();
+           
+        
+            $this -> addFlash('success', 'La boutique n°' . $boutique -> getId() . ' a bien été enregistré en BDD');
+            return $this -> redirectToRoute('admin/show_shops'); 
+             
+        }
+        
+        return $this -> render('admin/shop_form.html.twig', [
+             'produitForm' => $form -> createView()
         ]);
-        // return $this -> redirectToRoute('admin/show_shops'); 
-        //redirige vers le tableau des boutiques 
+      
+        
+  
     }
 
     /**
