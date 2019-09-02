@@ -155,7 +155,7 @@ class BoutiqueController extends AbstractController
             $manager->remove($produit);
             $manager->flush();
 
-            $this->addFlash('success', 'le produit'. $nom . 'a bien été supprimé');
+            $this->addFlash('success', 'le produit '. $produit->getNom() . ' a bien été supprimé');
         }
 
         return $this->redirectToRoute('shop');

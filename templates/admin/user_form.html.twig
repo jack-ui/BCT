@@ -8,9 +8,9 @@
         <div class="col-6">
             {{ form_row(userForm.username) }}
 
-            {# {% if not is_granted('ROLE_USER') %} #}
+            {% if not is_granted('ROLE_USER') %}
                 {{ form_row(userForm.password) }}
-             {# {% endif %} #} 
+            {% endif %}
 
             {{ form_row(userForm.prenom) }}
             {{ form_row(userForm.nom) }}
@@ -22,6 +22,8 @@
             {{ form_row(userForm.adresse) }}
             {{ form_row(userForm.ville) }}
             {{ form_row(userForm.codePostal) }}
+            {{ form_row(userForm.departement) }}
+            {{ form_row(userForm.region) }}
             {{ form_row(userForm.telephone) }}
 
             <div class="row">

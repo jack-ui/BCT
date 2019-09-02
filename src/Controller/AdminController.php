@@ -46,9 +46,11 @@ class AdminController extends AbstractController
     public function showUser($id)
     {   
         //Fonction pour afficher un profil vendeur ou acheteur en fonction de l'id
-        
-        return $this->render('admin/user_profile.html.twig', [
-            
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $user = $repository->find(User::class, $id);
+
+        return $this->render('admin/show_users.html.twig', [
+            'user' => $user
         ]);
     }
 
@@ -74,7 +76,7 @@ class AdminController extends AbstractController
 			
 
 			// On enregistre la photo en BDD et sur le serveur. 
-			// if($user -> getFile() != NULL){
+			//if($user -> getFile() != NULL){
 			// 	$user -> uploadFile();
 			// }
 			
@@ -82,9 +84,10 @@ class AdminController extends AbstractController
 			
 	   
 			$this -> addFlash('success', 'Le produit n°' . $user -> getId() . ' a bien été enregistré en BDD');
-               return $this -> redirectToRoute('admin_users');
+            return $this -> redirectToRoute('admin_users');
         }       
-            return $this->render('admin/user_form.html.twig', [
+        
+        return $this->render('admin/user_form.html.twig', [
             'userForm'=> $form->createView()
             ]);
 
@@ -105,14 +108,38 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/user/update_{id}", name="admin_user_update")
      */
-    public function updateUser($id)
+    public function updateUser($id, Request $request)
     {   
-        // modifier en fonction de l'id
-        //afficher le formulaire à éditer d'un user
-        // rediriger vers le profil d'un user
+        // Fonction permettant de modifier un user en fonction de l'id
+        // Affichage : le formulaire à éditer d'un user
         
-        return $this->render('user_form.html.twig', [
+        $manager = $this -> getDoctrine() -> getManager();   
+        $user = $manager -> find(User::class, $id); 
+        
+        $form = $this -> createForm(UserType::class, $user);
+        $form -> handleRequest($request);
+        
+        if($form -> isSubmitted() && $form -> isValid()){
+        
+            $manager -> persist($user);
             
+            if($user -> getFile() != NULL){
+                // Si une nouvelle photo est uploadée alors on supprime l'ancienne et on enregistre la nouvelle. 
+                // getFile() puisqu'il récupère les infos du formulaire me permet de savoir si une nouvelle photo a été chargée.
+                $user -> removePhoto();
+                $user -> uploadFile();
+            }
+            
+            
+            $manager -> flush(); 
+            
+            $this -> addFlash('success', 'L\'utilisateur '. $user->getUsername() . ' a bien été modifié !');
+            return $this -> redirectToRoute('admin_users');
+        }
+        
+        
+        return $this->render('admin/user_form.html.twig', [
+            'userForm' => $form->createView()
         ]);
         // return $this -> redirectToRoute('admin_user');
     }

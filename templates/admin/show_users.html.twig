@@ -2,7 +2,23 @@
 
 {% block content %}
 
-<h1>Liste des users</h1>
+<h1></h1>
 
-
+<ul>
+    <li>Prénom : {{ app.user.prenom }}</li>
+    <li>Nom : {{ app.user.nom }}</li>
+    <li>Email : {{ app.user.email }}</li>
+    <li>Adresse :{{ app.user.adresse }}</li>
+    <li>Ville : {{ app.user.ville }}</li>
+    <li>Code postal : {{ app.user.codePostal }}</li>
+    <li>Téléphone : {{ app.user.telephone }}</li>
+    <li>Date de naissance : {{ app.user.dateDeNaissance | date('d/m/Y') }}</li>
+    <li>Genre : {% if app.user.sexe == 'm' %}
+        <p>homme</p>
+        {% else %}
+        <p>femme</p>
+        {% endif %}
+    </li>
+</ul>
+<a class="btn btn-success" href="{{ path('admin_user_update', {id : app.user.id}) }}">Modifier </a>
 {% endblock %}

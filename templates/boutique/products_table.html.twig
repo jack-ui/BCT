@@ -19,6 +19,7 @@
             <tr>
                 <th>Id produit</th>
                 <th>Nom</th>
+                <th>Description</th>
                 <th>Catégorie</th>
                 <th>Stock</th>
                 <th>Prix</th>
@@ -40,6 +41,7 @@
                 <tr>
                     <td>{{ p.id }}</td>
                     <td>{{ p.nom }}</td>
+                    <td>{{ p.description }}</td>
                     <td>{{ p.categorie }}</td>
                     <td>
                         {% if p.stock == 0 %}
