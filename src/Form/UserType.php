@@ -71,8 +71,8 @@ class UserType extends AbstractType
 			'attr' => array(
 				'novalidate' => 'novalidate'
 			),
-			'admin' => false,
-			'update' => false
+			// 'admin' => false,
+			'update' => true
 		]);
 	}
 }
