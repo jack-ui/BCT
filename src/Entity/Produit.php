@@ -87,7 +87,7 @@ class Produit
      * 
      * 
      * @ORM\ManyToOne(targetEntity="Boutique", inversedBy="produits")
-     * @ORM\JoinColumn(name="boutique_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="boutiqueId", referencedColumnName="id")
      *                 clé étrangère         clé primaire
      * 
      */
