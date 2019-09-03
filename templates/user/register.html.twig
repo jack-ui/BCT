@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('/css/styleForm.css') }}">
+{% endblock %}
+
 {% block content %}
 
     {{ form_start(userForm) }}
