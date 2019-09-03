@@ -45,6 +45,7 @@ class BoutiqueType extends AbstractType
             ->add('departement', TextType::class)
             ->add('region', ChoiceType::class, array(
 				'choices' => array(
+                      'Sélectionnez votre région' => '0',
 				 	  'Auvergne-Rhône-Alpes' => 'ARA',
                       'Bourgogne-Franche-Comté' => 'BFC',
                       'Bretagne' => 'BRE',
