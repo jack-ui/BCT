@@ -47,20 +47,36 @@ class ProduitRepository extends ServiceEntityRepository
 			-> getQuery() -> getResult();
 	}
 
-	public function findBySearh($term){
+	public function findTermSearch($term){
 
 		$term = '%' . $term . '%';
 		$builder = $this->createQueryBuilder('p');
 
-		$builder
+		return $builder
 		-> select('p')
-        -> join('p.boutique_id', 'b', 'WITH',  'b.departement = 78')
         -> where('p.nom LIKE :term')
 		-> orWHere('p.categorie LIKE :term')
 		-> orWHere('p.description LIKE :term')
-		->setParameter(':term', $term)
-		->getQuery()
-		->getResults();
+		-> setParameter(':term', $term)
+		-> getQuery()
+		-> getResult();
+	}
+
+	public function findTermSearchLocal($term, $dpt){
+
+		$term = '%' . $term . '%';
+		$builder = $this->createQueryBuilder('p');
+
+		return $builder
+		-> select('p')
+        -> join('p.boutiqueId', 'b', 'WITH',  'b.departement = :dpt')
+        -> where('p.nom LIKE :term')
+		-> orWHere('p.categorie LIKE :term')
+		-> orWHere('p.description LIKE :term')
+		-> setParameter(':term', $term)
+		-> setParameter(':dpt', $dpt)
+		-> getQuery()
+		-> getResult();
 	}
 
     /*

@@ -53,7 +53,16 @@ class AcheteurController extends AbstractController
         //$term contient la valeur du terme saisi
 
         $repo = $this->getDoctrine()->getRepository(Produit::class);
-        $produits = $repo->findBySearch($term);
+        $user = $this -> getUser();
+
+        if($user == NULL){
+            $produits = $repo->findTermSearch($term);
+        }
+        else{
+            
+            $produits = $repo->findTermSearchLocal($term, $user -> getDepartement());
+        }
+
          
         return $this -> render('acheteur/search_results.html.twig', [
            'produits' => $produits 
