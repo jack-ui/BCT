@@ -2,6 +2,53 @@
 
 {% block content %}
 
-<h1>PANIER</h1>
+
+<div class="">
+
+    <div class="">
+        <h3 class="">Votre Panier</h3>
+        <table class="table">
+            <thead>
+                <tr> 
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix (au kilo ou à l'unité)</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produit in panier %}
+                <tr>
+                    <td>{{ produit.nom }}</td>
+                    
+                    <td>{{ produitCommande.quantite }}</td> <!-- A VOIR Parce qu'on n'envoie pas dans la table la quantité donc c'est pas là qu'il faut aller la chercher !!! -->
+                    <td>{{ produit.prix }}</td>
+                    <td>$total = {{ produit.prix }} * {{ produitCommande.quantite }}</td> <!--??????? A VOIR-->
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tr>
+                <th>Montant de votre commande</th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="row">
+        <form class="clo-6" action="{{ path('viderpanier') }}">
+            <button class="btn btn-warning">Vider</button>
+        </form>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <form class="clo-6" action="#">
+            <button class="btn btn-info">Payer</button>
+        </form>
+        {% else %}
+        <form class="clo-6" action="#">
+            <a class="btn btn-info"  href="{{ path('login') }}" >Connexion</a>
+            Pas de compte ? <a href="{{ path('register') }}" >Inscrivez-vous !</a>
+        </form>
+        {% endif %}
+        
+    </div>
+</div>
 
 {% endblock %}
