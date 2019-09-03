@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Produit;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +30,7 @@ class AcheteurController extends AbstractController
 	* @Route("/search_results", name="search_results")
 	*
     */
-    public function searchResults()
+    public function searchResults($term, Request $request)
     {
         //Fonction pour afficher les boutiques les plus proches qui correspondent au résultat demandé
         //La recherche se fait en fonction de $term (à mettre en argument et sur la route)
@@ -45,13 +46,17 @@ class AcheteurController extends AbstractController
         
         //solution 1 pour simplifier : recherche uniquement par code postal ou par ville
         // Affichera la liste des boutiques de la ville
-          
+        //------------------------------------------------------------
 
+        $term = $request->query->get('champs');
+        //$term contient la valeur du terme saisi
 
-        
-
+        $repo = $this->getDoctrine()->getRepository(Produit::class);
+        $produits = $repo->findProductBySearch($term);
+         
         return $this -> render('acheteur/search_results.html.twig', [
-            ]);
+           'produits' => $produits 
+        ]);
     } 
     //test : localhost:8000/search_results
     

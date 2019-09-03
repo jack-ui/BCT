@@ -11,6 +11,8 @@ use App\Form\UserType;
 use App\Form\BoutiqueType;
 
 class AdminController extends AbstractController
+
+//---------------------------------------TABLEAU DE BORD DE L'ADMIN---------------------------------
 {
     /**
      * @Route("/admin", name="admin")
@@ -23,6 +25,8 @@ class AdminController extends AbstractController
             
         ]);
     }
+
+//------------------------------------GESTION DES USERS -----------------------------------------
 
     /**
      * @Route("/admin/users", name="admin_users")
@@ -135,13 +139,15 @@ class AdminController extends AbstractController
         // return $this -> redirectToRoute('admin_user');
     }
 
+//------------------------------ GESTION BOUTIQUE--------------------------------------
 
     /**
      * @Route("/admin/show_shops", name="admin/show_shops")
      */
     public function showShops()
     {   
-        //afficher la liste des boutiques sous forme de tableau
+        //Fonction permettant d'afficher les boutiques
+        //Affichage : tableau des boutiques
 
         return $this->render('admin/show_shops.html.twig', [
           

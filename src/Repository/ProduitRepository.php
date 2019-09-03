@@ -47,6 +47,22 @@ class ProduitRepository extends ServiceEntityRepository
 			-> getQuery() -> getResult();
 	}
 
+	public function findProductBySearh($term){
+
+		$term = '%' . $term . '%';
+		$builder = $this->createQueryBuilder('p');
+
+		$builder
+		-> select('p')
+        -> join('p.boutique_id', 'b', 'WITH',  'b.departement = 78')
+        -> where('p.nom LIKE :term')
+		-> orWHere('p.categorie LIKE :term')
+		-> orWHere('p.description LIKE :term')
+		->setParameter(':term', $term)
+		->getQuery()
+		->getResults();
+	}
+
     /*
     public function findOneBySomeField($value): ?Produit
     {
