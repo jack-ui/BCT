@@ -3,11 +3,11 @@
 {% block content %}
 <h1>Détails du produit : {{ produit.nom }}</h1>
 <ul>
+    <img src="{{ asset('/photo/' ~ produit.photo ) }}"></img> 
     <li>Nom :  {{ produit.nom }}</li>
     <li>Categorie :  {{ produit.categorie }}</li>
     <li>Stock :  {{ produit.stock }}</li>     
     <li>Prix :  {{ produit.prix }}</li>
-    <li>Photo :  {{ produit.file }}</li> 
     <li>Saisonnalité :  {{ produit.saisonnalite}}</li> 
     <li>Unité de mesure :  {{ produit.uniteMesure }}</li>
            
