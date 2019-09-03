@@ -1,51 +1,79 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Inscription</h1>
-
 
     {{ form_start(userForm) }}
-    <div class="row">
-        <div class="col-6">
-            {{ form_row(userForm.username) }}
+    <h4 class="card-header info-color white-text text-center py-4">
+        <strong>Inscription</strong>
+    </h4>
+    <div class="row" style="background-color: #58D68D">
+        <div class="col-md-12 col-xs-12 d-flex justify-content-center">
+            <div class='card'>
+                <div class="card-body px-lg-9 pt-3">
+                    <div class="col-12">
+                        <div class="md-form">
+                            {{ form_row(userForm.username) }}
+                        </div>
+                        <div
+                            class="md-form">
+                            {# {% if not is_granted('ROLE_USER') %} #}
+                            {{ form_row(userForm.password) }}
+                            {# {% endif %} #}
+                        </div>
+                        <div class="md-form">
+                            {{ form_row(userForm.prenom) }}
+                        </div>
+                        <div class="md-form">
+                            {{ form_row(userForm.nom) }}
+                        </div>
+                        <div class="md-form">
+                            {{ form_row(userForm.email) }}
+                        </div>
+                        <div class="md-form">
+                            {{ form_row(userForm.sexe) }}
+                        </div>
+                    </div>
 
-            {# {% if not is_granted('ROLE_USER') %} #}
-                {{ form_row(userForm.password) }}
-             {# {% endif %} #} 
+                    <div class="col-12">
+                        <div class="md-form">
+                            {{ form_row(userForm.adresse) }}
+                        </div>
+                        <div class="md-form">
+                            {{ form_row(userForm.ville) }}
+                        </div>
+                        <div class="md-form">
+                            {{ form_row(userForm.codePostal) }}
+                        </div>
+                        <div class="md-form">
+                            {{ form_row(userForm.departement) }}
+                        </div>
+                        <div class="md-form">
+                            {{ form_row(userForm.region) }}
+                        </div>
+                        <div class="md-form">
+                            {{ form_row(userForm.telephone) }}
+                        </div>
 
-            {{ form_row(userForm.prenom) }}
-            {{ form_row(userForm.nom) }}
-            {{ form_row(userForm.email) }}
-            {{ form_row(userForm.sexe) }}
-        </div>
-
-        <div class="col-6">
-            {{ form_row(userForm.adresse) }}
-            {{ form_row(userForm.ville) }}
-            {{ form_row(userForm.codePostal) }}
-            {{ form_row(userForm.departement) }}
-            {{ form_row(userForm.region) }}
-            {{ form_row(userForm.telephone) }}
-
-            <div class="row">
-                <div class="col-4">
-                    {{ form_row(userForm.dateDeNaissance.day, {label : 'Jour'}) }}
-                </div>
-                <div class="col-4">
-                    {{ form_row(userForm.dateDeNaissance.month, {label : 'Mois'}) }}
-                </div>
-                <div class="col-4">
-                    {{ form_row(userForm.dateDeNaissance.year, {label : 'Année'}) }}
-                </div>
-                <div class="col-4">
-                    {{ form_row(userForm.dateDeNaissance.year, {label : 'Année'}) }}
+                        <div class="row">
+                            <div class="md-form">
+                                {{ form_row(userForm.dateDeNaissance.day, {label : 'Jour'}) }}
+                            </div>
+                            <div class="md-form">
+                                {{ form_row(userForm.dateDeNaissance.month, {label : 'Mois'}) }}
+                            </div>
+                            <div class="md-form">
+                                {{ form_row(userForm.dateDeNaissance.year, {label : 'Année'}) }}
+                            </div>
+                            <div class="md-form">
+                                {{ form_row(userForm.dateDeNaissance.year, {label : 'Année'}) }}
+                            </div>
+                        </div>
+                        {{ form_row(userForm.statut) }}
+                        {{ form_row(userForm.submit, { 'label' : 'Inscription' } ) }}
+                    </div>
                 </div>
             </div>
-            {{ form_row(userForm.statut) }}
-            {{ form_row(userForm.submit, { 'label' : 'Inscription' } ) }}
         </div>
-
-
     </div>
     {{ form_end(userForm) }}
 
