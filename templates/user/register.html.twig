@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('/css/styleForm.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/styleForm.css') }}">
 {% endblock %}
 
 {% block content %}
 
     {{ form_start(userForm) }}
-    <h4 class="card-header info-color white-text text-center py-4">
-        <strong>Inscription</strong>
-    </h4>
+    <div class='banniere_form'>
+        <h4 class="card-header info-color white-text text-center py-4">
+            <strong>Inscription</strong>
+        </h4>
+    </div>
     <div class="row" style="background-color: #58D68D">
         <div class="col-md-12 col-xs-12 d-flex justify-content-center">
             <div class='card'>
