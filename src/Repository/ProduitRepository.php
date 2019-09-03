@@ -47,7 +47,7 @@ class ProduitRepository extends ServiceEntityRepository
 			-> getQuery() -> getResult();
 	}
 
-	public function findProductBySearh($term){
+	public function findBySearh($term){
 
 		$term = '%' . $term . '%';
 		$builder = $this->createQueryBuilder('p');

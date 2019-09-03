@@ -20,7 +20,8 @@ class AcheteurController extends AbstractController
         //Fonction qui redirige vers une page
         //Affiche la page avec la barre de recherche et les encarts par catégories de produits
         return $this -> render('acheteur/recherche.html.twig', [
-            ]);
+            
+        ]);
        
     }
     //test : localhost:8000/search
@@ -30,7 +31,7 @@ class AcheteurController extends AbstractController
 	* @Route("/search_results", name="search_results")
 	*
     */
-    public function searchResults($term, Request $request)
+    public function searchResults(Request $request)
     {
         //Fonction pour afficher les boutiques les plus proches qui correspondent au résultat demandé
         //La recherche se fait en fonction de $term (à mettre en argument et sur la route)
@@ -52,7 +53,7 @@ class AcheteurController extends AbstractController
         //$term contient la valeur du terme saisi
 
         $repo = $this->getDoctrine()->getRepository(Produit::class);
-        $produits = $repo->findProductBySearch($term);
+        $produits = $repo->findBySearch($term);
          
         return $this -> render('acheteur/search_results.html.twig', [
            'produits' => $produits 
