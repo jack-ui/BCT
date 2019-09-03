@@ -54,7 +54,7 @@
                         #}
                             <button type="button" class="btn btn-success btn-sm"><a href="{{ path('login') }}">Connexion</a></button>
                         {% else %}
-                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('profile', { id : user.id }) }}">Profil</a></button>
+                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('profile', { id : app.user.id }) }}">Profil</a></button>
 
                             <button type="button" class="btn btn-success btn-sm"><a href="{{ path('logout') }}">Déconnexion</a></button>
                         {% endif %}
