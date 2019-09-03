@@ -22,7 +22,7 @@ class BoutiqueType extends AbstractType
         $builder
             ->add('siret', TextType::class)
             ->add('nomBoutique', TextType::class)
-            ->add('description', Textype::class)
+            ->add('description', TextType::class)
             ->add('livraison', ChoiceType::class, array(
 				'choices' => array(
 					'à emporter' => 'à emporter',
@@ -42,8 +42,8 @@ class BoutiqueType extends AbstractType
 			->add('ville', TextType::class)
             ->add('codePostal', IntegerType::class)
             ->add('adresse', TextareaType::class)
-            ->add('departement', Textype::class)
-            ->add('region', Textype::class)
+            ->add('departement', TextType::class)
+            ->add('region', TextType::class)
             ->add('telephone', TextType::class)
 
 

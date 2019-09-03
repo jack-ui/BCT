@@ -37,8 +37,8 @@ class UserType extends AbstractType
 			->add('ville', TextType::class)
 			->add('codePostal', IntegerType::class)
 			->add('adresse', TextareaType::class)
-			->add('departement', Textype::class)
-			->add('region', Textype::class)
+			->add('departement', TextType::class)
+			->add('region', TextType::class)
 			->add('telephone', TextType::class)
 			->add('dateDeNaissance', BirthdayType::class)
 			->add('statut', ChoiceType::class, array(
