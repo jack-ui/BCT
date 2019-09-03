@@ -122,15 +122,6 @@ class AdminController extends AbstractController
         if($form -> isSubmitted() && $form -> isValid()){
         
             $manager -> persist($user);
-            
-            if($user -> getFile() != NULL){
-                // Si une nouvelle photo est uploadée alors on supprime l'ancienne et on enregistre la nouvelle. 
-                // getFile() puisqu'il récupère les infos du formulaire me permet de savoir si une nouvelle photo a été chargée.
-                $user -> removePhoto();
-                $user -> uploadFile();
-            }
-            
-            
             $manager -> flush(); 
             
             $this -> addFlash('success', 'L\'utilisateur '. $user->getUsername() . ' a bien été modifié !');
