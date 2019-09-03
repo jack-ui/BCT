@@ -37,6 +37,25 @@ class UserType extends AbstractType
 			->add('ville', TextType::class)
 			->add('codePostal', IntegerType::class)
 			->add('adresse', TextareaType::class)
+			->add('departement', TextType::class)
+			->add('region', ChoiceType::class, array(
+				'choices' => array(
+					  'Sélectionnez votre région' => '0',
+				 	  'Auvergne-Rhône-Alpes' => 'ARA',
+                      'Bourgogne-Franche-Comté' => 'BFC',
+                      'Bretagne' => 'BRE',
+                      'Centre-Val de Loire' => 'CVL',
+                      'Corse' => 'COR',
+                      'Grand Est' => 'GES',
+                      'Hauts-de-France' => 'HDF',
+                      'Île-de-France' => 'IDF',
+                      'Normandie' => 'NOR',
+                      'Nouvelle-Aquitaine' => 'NAQ',
+                      'Occitanie' => 'OCC',
+                      'Nouvelle-Aquitaine' => 'PDL',
+                      'Provence-Alpes-Côte d\'Azur' => 'PAC',
+									),
+          			  ))
 			->add('telephone', TextType::class)
 			->add('dateDeNaissance', BirthdayType::class)
 			->add('statut', ChoiceType::class, array(

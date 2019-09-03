@@ -134,6 +134,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Choice({"ARA", "BFC", "BRE", "CVL", "COR", "GES", "HDF", "IDF", "NOR", "NAQ", "OCC", "PDL", "PAC"}, message="Veuillez choisir votre région")
      */
     private $region;
 

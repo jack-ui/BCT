@@ -37,8 +37,7 @@ class ProduitType extends AbstractType
                     )),
                 ),
             ))
-
-
+            ->add('description',TextType::class)
             ->add('categorie', TextType::class, array(
                 'constraints' => array(
                     new Assert\Regex(array(

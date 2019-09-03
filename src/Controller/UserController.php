@@ -89,7 +89,7 @@ class UserController extends AbstractController
 		$user = $manager->find(Produit::class,$id);
 		
         // 2 : Traitement du formulaire 
-        $form = $this -> createForm(UserType::class, $user, ['update'=> true]);
+        $form = $this -> createForm(UserType::class, $user);
 	    $form -> handleRequest($request);
 	   
 	    if($form -> isSubmitted() && $form -> isValid()){
