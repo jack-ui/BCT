@@ -18,7 +18,16 @@ h2 {
 }
 
 .navbar {
-  background-color: white!important;
+  background-color: white !important;
+}
+
+.btn{
+  
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
 
 .btn {
@@ -47,7 +56,7 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('../photo/legumes.jpg');
+  background: url("../photo/legumes.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -84,19 +93,26 @@ h2 {
 }
 /* -------hero----------- */
 
- .container2 {
-  background-image: linear-gradient(to right top, #afdca8, #9adb8f, #85da75, #6ed859, #52d636);
+.container2 {
+  background-image: linear-gradient(
+    to right top,
+    #afdca8,
+    #9adb8f,
+    #85da75,
+    #6ed859,
+    #52d636
+  );
   /* height: 300px; */
-} 
+}
 
 .textvert {
   color: white;
 }
-footer{
-  background:  rgb(83, 82, 82);
+footer {
+  background: rgb(83, 82, 82);
 }
 
-.footer_B{
+.footer_B {
   background: rgb(83, 82, 82);
 }
 
@@ -105,7 +121,7 @@ footer a {
 }
 
 footer p {
-color: white;
+  color: white;
 }
 
 footer li {
@@ -113,4 +129,3 @@ footer li {
   display: flex;
   padding-bottom: 100px;
 }
-
