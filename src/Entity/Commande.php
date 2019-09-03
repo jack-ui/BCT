@@ -22,13 +22,23 @@ class Commande
 
 
     /**
-     * Chaque commande appartient à un et un seul membre
+     * Chaque commande appartient à un et un seul user
      * 
      * @ORM\ManyToOne(targetEntity="User", inversedBy="commandes")
      * @ORM\JoinColumn(name="userId", referencedColumnName="id")
      *                 clé étrangère         clé primaire
      */
     private $userId;
+
+
+        /**
+     * Chaque commande appartient à une et une seule boutique
+     * 
+     * @ORM\ManyToOne(targetEntity="Boutique", inversedBy="commandes")
+     * @ORM\JoinColumn(name="boutiqueId", referencedColumnName="id")
+     *                 clé étrangère         clé primaire
+     */
+    private $boutiqueId;
 
 
     /**
@@ -72,6 +82,19 @@ class Commande
     public function setUserId(int $userId): self
     {
         $this->userId = $userId;
+
+        return $this;
+    }
+
+
+    public function getBoutiqueId(): ?int
+    {
+        return $this->boutiqueId;
+    }
+
+    public function setBoutiqueId(int $boutiqueId): self
+    {
+        $this->boutiqueId = $boutiqueId;
 
         return $this;
     }

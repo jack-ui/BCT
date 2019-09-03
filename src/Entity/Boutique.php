@@ -154,6 +154,32 @@ class Boutique implements \Serializable
 
 
 
+    
+    /**
+     * Une boutique peut avoir 0 commandes min et N commandes max => OnetoMany
+     * 
+     * @ORM\OneToMany(targetEntity="Commande", mappedBy="id")
+     *                                table       Clé étrangère
+     * 
+     * 
+     * Contient toutes les commandes du membre (Array composé d'objets commande)
+     */
+    private $commandes;
+
+
+
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    public function setCommandes($commandes)
+    {
+        $this->commandes = $commandes;
+        return $this;
+    }
+
+
     public function getProduits()
     {
         return $this->produits;
