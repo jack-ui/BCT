@@ -52,11 +52,13 @@
                         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                         {% if not is_granted('ROLE_ADMIN') %}
                         #}
-                          <button type="button" class="btn btn-success btn-sm"><a href="{{ path('login') }}">Connexion</a></button>
+                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('login') }}">Connexion</a></button>
                         {% else %}
-                          <button type="button" class="btn btn-success btn-sm"><a href="{{ path('logout') }}">Déconnexion</a></button>
+                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('profile', { id : user.id }) }}">Profil</a></button>
+
+                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('logout') }}">Déconnexion</a></button>
                         {% endif %}
-                        <button type="button" class="btn btn-success btn-sm"><a href="{{ path('register') }}">Inscription</a></button>
+                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('register') }}">Inscription</a></button>
                     </div>
                 </nav>
             <!--/ Bar de navigation -->
