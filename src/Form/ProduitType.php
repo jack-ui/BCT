@@ -39,18 +39,14 @@ class ProduitType extends AbstractType
             ))
             ->add('description',TextType::class)
             ->add('categorie', TextType::class, array(
-                'constraints' => array(
-                    new Assert\Regex(array(
-                        'pattern' => '/^[a-zA-Z éèàêç]{3,30}+$/',
-                        'message' => 'Veuillez saisir une catégorie valide (3 à 30 caractères alphabétiques)',
-                    )),
-                    new Assert\NotBlank(array(
-                        'message' => 'Veuillez renseigner une catégorie'
-                    )),
-                ),
-            ))
-
-
+				'choices' => array(
+                      'Sélectionnez votre région' => '0',
+				 	  'fruit' => 'fruit',
+                      'legume' => 'legume',
+                      'viande' => 'viande',
+                      'produit_laitier' => 'produit_laitier'
+									),
+          			  ))
             ->add('uniteMesure', TextType::class, array(
                 'constraints' => array(
                     new Assert\NotBlank(array(
@@ -79,7 +75,15 @@ class ProduitType extends AbstractType
 
           
 
-            ->add('saisonnalite', TextType::class)
+            ->add('saisonnalite', TextType::class, array(
+				'choices' => array(
+                      'Sélectionnez votre région' => '0',
+				 	  'Eté' => 'Eté',
+                      'Printemps' => 'Printemps',
+                      'Automne' => 'Automne',
+                      'Hiver' => 'Hiver'
+									),
+          			  ))
 
 
             ->add('file', FileType::class, array(

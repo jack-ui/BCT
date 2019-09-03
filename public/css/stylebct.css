@@ -3,10 +3,7 @@
   font-size: 50px;
 }
 
-main {
-  background-color: aliceblue;
-  height: 500px;
-}
+
 main h2 {
   color: #52d636;
 }
@@ -19,10 +16,6 @@ h2 {
 
 .navbar {
   background-color: white !important;
-}
-
-.btn{
-  
 }
 
 a {
