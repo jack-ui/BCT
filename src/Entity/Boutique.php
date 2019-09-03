@@ -10,11 +10,12 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile; //$_FILE
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BoutiqueRepository")
  */
-class Boutique
+class Boutique implements \Serializable
 {
 
     public function __construct()
@@ -52,7 +53,7 @@ class Boutique
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
+     *
      *
      */
     private $description;
@@ -60,7 +61,7 @@ class Boutique
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
+     *
      *
      */
     private $livraison;
@@ -70,7 +71,7 @@ class Boutique
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
+     *
      * Le formulaire effectue seul cette vérification
      *
      */
@@ -81,9 +82,9 @@ class Boutique
      * @ORM\Column(type="string", length=50)
 	 * @Assert\NotBlank(message="Veuillez renseigner une ville")
 	 * @Assert\Length(
-	 *	min=2, 
+	 *	min=2,
 	 *	max=50,
-	 *  minMessage="Veuillez renseigner une ville de 3 caractères mini", 
+	 *  minMessage="Veuillez renseigner une ville de 3 caractères mini",
 	 *  maxMessage="Veuillez renseigner une ville de 50 carctères maxi"
 	 * )
      */
@@ -117,7 +118,7 @@ class Boutique
 	 * @Assert\Regex(
 	 *	pattern="/^0[1-68]([-. ]?[0-9]{2}){4}$/",
 	 *	message="Mauvais numero de téléphone"
-	 *) 
+	 *)
      */
     private $telephone;
 
@@ -125,28 +126,28 @@ class Boutique
      * @var string|null
      * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
-    private $photo = 'default.jpg'; //il faut mettre une photo par défaut pour harmoniser niveau design ! il faut aussi définir les tailles de la photo, format, etc ! 
+    private $photo = 'default.jpg'; //il faut mettre une photo par défaut pour harmoniser niveau design ! il faut aussi définir les tailles de la photo, format, etc !
 
     private $file;
-    // On ne mappe pas cette propriété car elle n'existe pas dans la BDD. Elle va juste servir à récupérer les octets qui constitue l'image. 
+    // On ne mappe pas cette propriété car elle n'existe pas dans la BDD. Elle va juste servir à récupérer les octets qui constitue l'image.
 
 
     /**
-     * 
+     *
      * @OneToOne(targetEntity="User")
      * @JoinColumn(name="userId", referencedColumnName="id")
      */
     private $userId;
 
-    
+
 
     /**
      * Une boutique peut avoir 0 produits min et N produit max => OnetoMany
-     * 
+     *
      * @ORM\OneToMany(targetEntity="Produit", mappedBy="id")
      *                                table       Clé étrangère
-     * 
-     * 
+     *
+     *
      * Contient tous les produits du membre (Array composé d'objets produits)
      */
     private $produits;
@@ -196,7 +197,7 @@ class Boutique
         return $this->userId;
     }
 
-    public function setUserId(int $userId): self
+    public function setUserId($userId): self
     {
         $this->userId = $userId;
 
@@ -388,7 +389,7 @@ class Boutique
     }
 
 
-    //2 objectifs : 
+    //2 objectifs :
     // permettre l'enregistrement de la photo dans la BDD (après qu'elle soit renommée)
     // Enregistrer la photo sur le serveur /public/photo
 
@@ -400,7 +401,7 @@ class Boutique
         $new_nom = $this->renamePhoto($nom);
         $this->photo = $new_nom; // /!\ sera enregistré en BDD
 
-        //----- 
+        //-----
         $this->file->move($this->dirPhoto(), $new_nom);
         // déplace la photo depuis son emplacement temporaire jusqu'à son emplacement définitif (chemin + nom)
     }
@@ -418,7 +419,7 @@ class Boutique
         return __DIR__ . '/../../public/photo/';
     }
 
-    // Supprimer un fichier photo 
+    // Supprimer un fichier photo
     public function removePhoto()
     {
         $file = $this->dirPhoto() . $this->getPhoto();
@@ -427,4 +428,11 @@ class Boutique
         }
     }
     //------------------------------------- /FONCTION POUR LA PHOTO ------------------------------------------------
+
+
+    public function serialize(){}
+    public function unserialize($arg){}  
+
+
+
 }

@@ -26,13 +26,27 @@ class BoutiqueController extends AbstractController
 
         $boutique = new Boutique;
         $form = $this->createForm(BoutiqueType::class, $boutique);
+        $user = $this -> getUser();
+
+
 
         // traiter les infos du formulaire
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $boutique -> setUserId($user);
+            $user -> setBoutiqueId($boutique);
+            //On set l'id_user de la boutique et l'id_boutique du user (donc du vendeur)
+            //On les lie car ils dépendent l'un de l'autre
+            //Un user (vendeur) possède un id_boutique NON NULL
+            //Une boutique possède un id_user NON NULL
+
             $manager->persist($boutique);
+            $manager->persist($user);
 
-
+            $boutique -> uploadFile();
+            //gestion de la photo
+            
             $manager->flush();
 
             $this->addFlash('success', 'Félicitations');
@@ -67,6 +81,8 @@ class BoutiqueController extends AbstractController
         ]);
     }
 
+
+
     /**
      * @Route("/product_{id}", name="product")
      */
@@ -75,7 +91,7 @@ class BoutiqueController extends AbstractController
         //Fonction pour afficher la fiche d'un produit en fonction de l'id
         $repo = $this -> getDoctrine() -> getRepository(Produit::class);
         $produit = $repo -> find($id);
-        
+
         return $this->render('boutique/show_product.html.twig', [
             'produit'=> $produit
         ]);
@@ -110,7 +126,7 @@ class BoutiqueController extends AbstractController
             'produitForm' => $form->createView()
         ]);
 
-       
+
     }
 
     /**
@@ -147,7 +163,7 @@ class BoutiqueController extends AbstractController
     public function deleteProduct($id, ObjectManager $manager)
     {
         //Fonction permettant de supprimer un produit en fonction de l'id
-        //Affichage : redirige vers la liste des produits 
+        //Affichage : redirige vers la liste des produits
 
         $produit = $manager->find(Produit::class, $id);
         if($produit)
@@ -166,7 +182,7 @@ class BoutiqueController extends AbstractController
     //  * @Route("/stats", name="stats")
     //  */
     // public function showStats()
-    // {   
+    // {
     //     //afficher les statistiques
     //     //Chiffre d'affaire du jour, semaine, mois à l'instant t
     //     //BONUS, A VOIR PLUS TARD

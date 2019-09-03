@@ -73,9 +73,9 @@ class User implements UserInterface
 	 *
 	 * @Assert\NotBlank(message="Veuillez renseigner un prénom")
 	 * @Assert\Length(
-	 *	min=2, 
+	 *	min=2,
 	 *	max=30,
-	 *  minMessage="Veuillez renseigner un prénom de 2 caractères mini", 
+	 *  minMessage="Veuillez renseigner un prénom de 2 caractères mini",
 	 *  maxMessage="Veuillez renseigner un prénom de 30 carctères maxi"
 	 * )
      */
@@ -86,9 +86,9 @@ class User implements UserInterface
 	 *
 	 * @Assert\NotBlank(message="Veuillez renseigner un nom")
 	 * @Assert\Length(
-	 *	min=2, 
+	 *	min=2,
 	 *	max=50,
-	 *  minMessage="Veuillez renseigner un nom de 2 caractères mini", 
+	 *  minMessage="Veuillez renseigner un nom de 2 caractères mini",
 	 *  maxMessage="Veuillez renseigner un nom de 50 carctères maxi"
 	 * )
      */
@@ -199,12 +199,12 @@ class User implements UserInterface
     private $role = 'ROLE_USER';
 
 
-    public function getBoutiqueId(): ?int
+    public function getBoutiqueId()
     {
         return $this->boutiqueId;
     }
 
-    public function setBoutiqueId(int $boutiqueId): self
+    public function setBoutiqueId($boutiqueId): self
     {
         $this->boutiqueId = $boutiqueId;
 
