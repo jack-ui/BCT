@@ -57,15 +57,25 @@ class AcheteurController extends AbstractController
 
         if($user == NULL){
             $produits = $repo->findTermSearch($term);
+            // if($produits == NULL ){
+            
+            //     return 'Ce ' . $produits->getNom() . ' est indisponible actuellement';
+            // }
+    
+    
         }
         else{
-            
             $produits = $repo->findTermSearchLocal($term, $user -> getDepartement());
+            // if($produits == NULL ){
+            
+            //     return $this->addFlash('danger', 'Ce ' . $produits->getNom() . ' est indisponible actuellement');
+            // }
+          
         }
-
-         
+        
+               
         return $this -> render('acheteur/search_results.html.twig', [
-           'produits' => $produits 
+           'produits' => $produits,
         ]);
     } 
     //test : localhost:8000/search_results
