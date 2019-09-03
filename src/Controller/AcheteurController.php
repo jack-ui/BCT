@@ -47,6 +47,7 @@ class AcheteurController extends AbstractController
         
         //solution 1 pour simplifier : recherche uniquement par code postal ou par ville
         // Affichera la liste des boutiques de la ville
+        
         //------------------------------------------------------------
 
         $term = $request->query->get('champs');
@@ -64,6 +65,9 @@ class AcheteurController extends AbstractController
     
     
         }
+        //Si l'utilisateur n'est pas connecté la recherche sera uniquement en fonction de $term
+        //Le résultat retourné sera la liste des produits correspondant au champs saisi ($term)
+
         else{
             $produits = $repo->findTermSearchLocal($term, $user -> getDepartement());
             // if($produits == NULL ){
@@ -72,6 +76,10 @@ class AcheteurController extends AbstractController
             // }
           
         }
+        //Si l'utilisateur est connecté la recherche sera en fonction de $term et de $departement
+        //On veut que $departement du user soit = $departement de la boutique
+        //Le résultat retourné sera la liste des produits correspondant au champs $term et disponibles dans le département du user
+
         
                
         return $this -> render('acheteur/search_results.html.twig', [
