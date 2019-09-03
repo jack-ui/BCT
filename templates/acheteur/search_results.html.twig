@@ -1,8 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<h1>Je suis sur les résultats de ma recherche !!!</h1>
+<h1>Résultat(s) de votre recherche :</h1>
+<ul>
+{% for p in produits %}
+    <li>{{ p.nom }}</li>
+    <li>{{ p.description }}</li>
+    <li>{{ p.prix }} €</li>
+    <li>{{ p.stock }} kgs</li>
+    <li>Produit disponible dans la boutique : 
+        {# {% for b in boutique %}
+            {{ b.nom}}
+        {% endfor %} #}
 
-   <div>{{ dump(produits)}}</div> 
-
+    </li>
+{% endfor %}
+</ul>
+<button class="btn btn-success"><a href=""></a>Aller sur la boutique</button>   
 {% endblock %}
