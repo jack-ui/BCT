@@ -124,7 +124,7 @@ class AcheteurController extends AbstractController
             $boutiques[] = $produit -> getBoutiqueId();
         }
 
-        return $this->render('acheteur/show_shops_fruits.html.twig', [
+        return $this->render('acheteur/show_shops_category.html.twig', [
             'boutiques' => $boutiques
         ]);
         
