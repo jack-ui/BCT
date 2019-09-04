@@ -9,6 +9,7 @@ use App\Entity\Boutique;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\BoutiqueType;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class AdminController extends AbstractController
 
@@ -80,9 +81,9 @@ class AdminController extends AbstractController
 			
 
 			// On enregistre la photo en BDD et sur le serveur. 
-			//if($user -> getFile() != NULL){
-			// 	$user -> uploadFile();
-			// }
+			if($user -> getFile() != NULL){
+			    $user -> uploadFile();
+			}
 			
 			$manager -> flush();
 			
@@ -100,10 +101,18 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/user/delete_{id}", name="admin_user_delete")
      */
-    public function deleteUser($id)
+    public function deleteUser($id, ObjectManager $manager)
     {   
         // supprime un user en fonction de l'id
         //puis afficher la liste des user mise à jour
+        $user = $manager -> find(User::class, $id);
+		
+		if($user){
+			$manager -> remove($user);
+			$manager -> flush();
+			
+			$this -> addFlash('success',  'Le profil '.  $user->getUsername() . 'a bien été supprimé !');
+		}			
         
         return $this -> redirectToRoute('admin_users'); 
         
@@ -136,7 +145,7 @@ class AdminController extends AbstractController
         return $this->render('admin/user_form.html.twig', [
             'userForm' => $form->createView()
         ]);
-        // return $this -> redirectToRoute('admin_user');
+       
     }
 
 //------------------------------ GESTION BOUTIQUE--------------------------------------
@@ -149,8 +158,27 @@ class AdminController extends AbstractController
         //Fonction permettant d'afficher les boutiques
         //Affichage : tableau des boutiques
 
+        $repository = $this->getDoctrine()->getRepository(Boutique::class);
+        $boutiques = $repository->findAll();
+
+        return $this->render('admin/shop_list.html.twig', [
+            'boutiques' => $boutiques
+        ]);
+    }
+
+    /**
+     * @Route("/admin/show_shop{id}", name="admin/show_shop")
+     */
+    public function showShop($id)
+    {   
+        //Fonction permettant d'afficher les boutiques
+        //Affichage : tableau des boutiques
+
+        $repository = $this->getDoctrine()->getRepository(Boutique::class);
+        $boutique = $repository->find(Boutique::class, $id);
+
         return $this->render('admin/show_shops.html.twig', [
-          
+            'boutique' => $boutique
         ]);
     }
      
@@ -170,6 +198,11 @@ class AdminController extends AbstractController
  
             $manager = $this -> getDoctrine() -> getManager();
             $manager -> persist($boutique);
+            
+            if($boutique -> getFile() != NULL){
+			    $boutique -> uploadFile();
+			}
+
                     
             $manager -> flush();
            
@@ -180,7 +213,7 @@ class AdminController extends AbstractController
         }
         
         return $this -> render('admin/shop_form.html.twig', [
-             'produitForm' => $form -> createView()
+            'boutiqueForm' => $form -> createView()
         ]);
       
         
@@ -188,33 +221,53 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/shop/update", name="admin/shop_update")
+     * @Route("/admin/shop/update{id}", name="admin/shop_update")
      */
-    public function updateShop()
+    public function updateShop($id, ObjectManager $manager, Request $request)
     {   
         //affiche le formulaire avec les infos d'une boutique
         //modifie une boutique en fonction de l'id
+        $manager = $this -> getDoctrine() -> getManager();   
+        $boutique = $manager -> find(Boutique::class, $id); 
+        
+        $form = $this -> createForm(BoutiqueType::class, $boutique);
+        $form -> handleRequest($request);
+        
+        if($form -> isSubmitted() && $form -> isValid()){
+        
+            $manager -> persist($boutique);
 
-        return $this->render('admin/shop_form.html.twig', [
-          
+            if($boutique -> getFile() != NULL){
+			    $boutique -> uploadFile();
+			}
+            $manager -> flush(); 
+            
+            $this -> addFlash('success', 'La boutique '. $boutique->getNomBoutique() . ' a bien été modifiée !');
+            return $this -> redirectToRoute('admin/show_shops');
+        }
+        return $this -> render('admin/shop_form.html.twig', [
+            'boutiqueForm' => $form -> createView()
         ]);
-        // return $this -> redirectToRoute('admin/show_shops');
-        //redirige vers le tableau des boutiques 
     }
 
      /**
-     * @Route("/admin/shop/delete", name="admin/shop_delete")
+     * @Route("/admin/shop/delete{id}", name="admin/shop_delete")
      */
-    public function deleteShop()
+    public function deleteShop(ObjectManager $manager, $id)
     {   
-        //affiche le formulaire avec les infos d'une boutique
-        //supprime une boutique en fonction de l'id
+        
+        //Fonction permettant de supprimer une boutique en fonction de l'id
+        //Affichage : redirige sur la vue de gestion des boutiques de l'admin
+        $boutique = $manager->find(Boutique::class, $id);
+        if($boutique)
+        {
+            $manager->remove($boutique);
+            $manager->flush();
 
-        return $this->render('admin/shop_form.html.twig', [
-          
-        ]);
-        // return $this -> redirectToRoute('admin/show_shops');
-        //redirige vers le tableau des boutiques 
+            $this->addFlash('success', 'la boutique '. $boutique->getNomBoutique() . ' a bien été supprimée');
+        }    
+        return $this -> redirectToRoute('admin/show_shops');
+       
     }
 
    

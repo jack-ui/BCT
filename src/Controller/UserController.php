@@ -13,7 +13,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
-	
+
+//---------------------------INSCRIPTION------------------------------------------------	
 	
 	/**
 	* @Route("/register", name="register")
@@ -55,6 +56,8 @@ class UserController extends AbstractController
 			'userForm' => $form -> createView()
 		]);
 	}
+
+//-----------------------------GESTION DU PROFIL PAR UN USER--------------------------------------------	
 	
 	 /**
      * @Route("/profile_{id}", name="profile")

@@ -114,8 +114,11 @@ class BoutiqueController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($produit);
 
-
+            $produit -> uploadFile();
+            //gestion de la photo
+            
             $manager->flush();
+
 
             $this->addFlash('success', 'Félicitations');
             return $this->redirectToRoute('shop');

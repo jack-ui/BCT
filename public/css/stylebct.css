@@ -3,12 +3,9 @@
   font-size: 50px;
 }
 
-main {
-  background-color: aliceblue;
-  height: 500px;
-}
+
 main h2 {
-  color: #52d636;
+  color: #3a3a3a;
 }
 h2 {
   text-align: center;
@@ -16,9 +13,14 @@ h2 {
   padding-top: 50px;
   font-size: 50px;
 }
-
+/* NAV */
 .navbar {
-  background-color: white!important;
+  background-color: white !important;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
 
 .btn {
@@ -47,7 +49,7 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('../photo/legumes.jpg');
+  background: url("../photo/legumes.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -68,9 +70,9 @@ h2 {
 }
 
 .hero-button {
-  background-color: #ae2d59;
+  background-color: #FFCF40;
   color: white;
-  border: 1px solid #cb376a;
+  border: 1px solid #ffffff;
   margin-top: 5rem;
   padding: 0.9375rem 1.875rem;
   font-family: "Monserrat", sans-serif;
@@ -79,24 +81,31 @@ h2 {
   cursor: pointer;
 }
 .hero-button:hover {
-  background-color: #cb376a;
-  border: 1px solid #db7598;
+  background-color: #FFB03D;
+  border: 1px solid #ffffff;
 }
 /* -------hero----------- */
 
- .container2 {
-  background-image: linear-gradient(to right top, #afdca8, #9adb8f, #85da75, #6ed859, #52d636);
+.container2 {
+  background-image: linear-gradient(
+    to right top,
+    #afdca8,
+    #9adb8f,
+    #85da75,
+    #6ed859,
+    #52d636
+  );
   /* height: 300px; */
-} 
+}
 
 .textvert {
   color: white;
 }
-footer{
-  background:  rgb(83, 82, 82);
+footer {
+  background: rgb(83, 82, 82);
 }
 
-.footer_B{
+.footer_B {
   background: rgb(83, 82, 82);
 }
 
@@ -105,7 +114,7 @@ footer a {
 }
 
 footer p {
-color: white;
+  color: white;
 }
 
 footer li {
@@ -113,4 +122,3 @@ footer li {
   display: flex;
   padding-bottom: 100px;
 }
-

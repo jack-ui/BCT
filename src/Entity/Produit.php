@@ -87,7 +87,7 @@ class Produit
      * 
      * 
      * @ORM\ManyToOne(targetEntity="Boutique", inversedBy="produits")
-     * @ORM\JoinColumn(name="boutiqueId", referencedColumnName="id")
+     * @ORM\JoinColumn(name="boutique_id", referencedColumnName="id")
      *                 clé étrangère         clé primaire
      * 
      */
@@ -98,7 +98,7 @@ class Produit
         return $this->boutiqueId;
     }
 
-    public function setBoutiqueId(int $boutiqueId): self
+    public function setBoutiqueId($boutiqueId): self
     {
         $this->boutiqueId = $boutiqueId;
 

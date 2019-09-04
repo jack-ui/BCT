@@ -1,28 +1,34 @@
-
 {% extends 'base.html.twig' %}
 
 {% block content %}
 
 <header>
     <div class="container">
-        
+
     </div>
     <section class="hero">
         <div class="hero-content">
 
-            <h1 class="hero-title">Lorem, ipsum dolor sit amet consectetur adipisicing at dolore nostrum eius</h1>
-            <button type="button" class="hero-button"><a href="{{ path('search') }}">Acheter</a></button>
-            <button type="button" class="hero-button"><a href="{{ path('sell') }}">Vendre</a></button>
+            <h1 class="hero-title">Manger BIO</h1>
+            <h1 class="hero-title">Manger MIEUX</h1>
+            <button type="button" class="hero-button"><a href="{{ path('search') }}">Je veux acheter</a></button>
+            <button type="button" class="hero-button"><a href="{{ path('sell') }}">Je veux vendre</a></button>
 
         </div>
     </section>
 
-    <main>
-        <h2>Produit bio près de chez toi...</h2>
+    <!-- section presentation produit -->
+    <main class="container">
+        
+        <blockquote class="blockquote text-center">
+            <h2>Produit bio près de chez toi...</h2>
+            <div class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></div>
+        </blockquote>
+
         <div class="row">
             <div class="col-md-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="{{ asset('../../public/photo/legumescard.jpg') }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('/photo/carouss/img1.jpg') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <p class="card-text">Some.</p>
                     </div>
@@ -30,31 +36,55 @@
             </div>
             <div class="col-md-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="../../public/photo/legumescard.jpg" class="card-img-top" alt="...">
+                    <img src="{{ asset('/photo/carouss/img2.jpg') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <p class="card-text">Some.</p>
                     </div>
                 </div>
             </div>
-
             <div class="col-md-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="../../public/photo/legumescard.jpg" class="card-img-top" alt="...">
+                    <img src="{{ asset('/photo/carouss/img3.jpg') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <p class="card-text">Some.</p>
                     </div>
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ asset('/photo/carouss/img1.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ asset('/photo/carouss/img2.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ asset('/photo/carouss/img3.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
 
     <div class="container2">
         <h1 class="textvert">Lorem, ipsum dolor sit amet consectetur adipisicing at dolore nostrum eius</h1>
-      <button type="button" class="hero-button">Acheter</button>
+        <button type="button" class="hero-button">Acheter</button>
         <button type="button" class="hero-button">Vendre</button>
     </div>
 
 
-{% endblock %}
+    {% endblock %}

@@ -2,22 +2,24 @@
 
 {% block content %}
 
-<h1>Voici la boutique {{ boutique.nomBoutique }} :</h1>
+<h1>Quelques unes de nos boutiques :</h1>
+{% for boutique in boutiques %}  
 {# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
 <ul>
-    <li>Id : {{ boutique.id }}</li>
-    <li>Siret : {{ boutique.siret }}</li>
+    
     <li>Nom : {{ boutique.nomBoutique }}</li>
     <li>Description : {{ boutique.description }}</li>
     <li>Livraison : {{ boutique.livraison }}</li>
     <li>Mode de paiement : {{ boutique.paiement }}</li>
-    <li>Adresse : {{ boutique.adresse }}</li>
+    {# <li>Adresse : {{ boutique.adresse }}</li>
     <li>Code postal : {{ boutique.codePostal }}</li>
-    <li>Ville : {{ boutique.ville }}</li>
+    <li>Ville : {{ boutique.ville }}</li> #}
     <li>Département :{{ boutique.departement }}</li>
     <li>Région : {{ boutique.region }}</li>
-    <li>Téléphone : {{ boutique.telephone }}</li>
-    {# <td>Id_User : {{ boutique.userId }}</td> #}
+   
 </ul>
+
+<a class="btn btn-success" href="{{ path('shop') }}">Afficher les produits </a>
+{% endfor %}
 
 {% endblock %}

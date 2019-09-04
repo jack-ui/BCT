@@ -1,25 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<h1>Je suis sur les résultats de ma recherche !!!</h1>
-<div class="container">
-    <div class="row"> 
-        <form class="form-in-line col-lg-8 offset-md-4" method="GET" action="{{ path('search_results') }}">
-            <input class="form-control col-lg-8" type="search" placeholder="" aria-label="" name="champs">
-            <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
-        </form>
-    </div>
-    <div class="row">Merci de renseigner un code postal ou un nom de produit</div>
-    <div class="row">
-        <button class="col-lg-4 space-between"><a href="">FRUITS</a></button>
-        {# On met quoi dans les href ? la liste des boutique qui vend des fruits ? des légumes ? etc #}
-        <button class="col-lg-4 space-between"><a href="">LEGUMES</a></button>
-    </div>
-    <div class="row">
-        <button class="col-lg-4 space-between"><a href="">PRODUITS LAITIERS</a></button>
-        <button class="col-lg-4 space-between"><a href="">OEUFS</a></button>
-    </div>
+<h1>Résultat(s) de votre recherche :</h1>
+<ul>
+{% for p in produits %}
+    <li>{{ p.nom }}</li>
+    <li>{{ p.description }}</li>
+    <li>{{ p.prix }} €</li>
+    <li>{{ p.stock }} kgs</li>
+    <li>Produit disponible dans la boutique : 
+        {# {% for b in boutique %}
+            {{ b.nom}}
+        {% endfor %} #}
 
-</div>
-
+    </li>
+    {# <li> dans le $user->getDepartement </li> #}
+{% endfor %}
+</ul>
+<button class="btn btn-success"><a href=""></a>Aller sur la boutique</button>   
 {% endblock %}

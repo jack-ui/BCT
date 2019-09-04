@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Formulaire d'une boutique</h1>
+    <h1>Formulaire de modification de votre boutique</h1>
 
     {{ form_start(boutiqueForm) }}
     <div class="row">
@@ -21,7 +21,7 @@
             {{ form_row(boutiqueForm.telephone) }}
             {{ form_row(boutiqueForm.file) }}
         </div>
-        {{ form_row(boutiqueForm.submit, { 'label' : 'Ajouter' } ) }}
+        {{ form_row(boutiqueForm.submit, { 'label' : 'Modifier' } ) }}
     </div>
     {{ form_end(boutiqueForm) }}
 {% endblock %}

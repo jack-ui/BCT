@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Produit;
+use App\Entity\Boutique;
+use App\Form\BoutiqueType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AcheteurController extends AbstractController
 {
+//----------------------------GESTION DE LA RECHERCHE---------------------------------------------------------    
 
     /**
 	* @Route("/search", name="search")
@@ -20,7 +23,8 @@ class AcheteurController extends AbstractController
         //Fonction qui redirige vers une page
         //Affiche la page avec la barre de recherche et les encarts par catégories de produits
         return $this -> render('acheteur/recherche.html.twig', [
-            ]);
+            
+        ]);
        
     }
     //test : localhost:8000/search
@@ -30,7 +34,7 @@ class AcheteurController extends AbstractController
 	* @Route("/search_results", name="search_results")
 	*
     */
-    public function searchResults($term, Request $request)
+    public function searchResults(Request $request)
     {
         //Fonction pour afficher les boutiques les plus proches qui correspondent au résultat demandé
         //La recherche se fait en fonction de $term (à mettre en argument et sur la route)
@@ -46,19 +50,114 @@ class AcheteurController extends AbstractController
         
         //solution 1 pour simplifier : recherche uniquement par code postal ou par ville
         // Affichera la liste des boutiques de la ville
+        
         //------------------------------------------------------------
 
         $term = $request->query->get('champs');
         //$term contient la valeur du terme saisi
 
         $repo = $this->getDoctrine()->getRepository(Produit::class);
-        $produits = $repo->findProductBySearch($term);
-         
+        $user = $this -> getUser();
+
+        if($user == NULL){
+            $produits = $repo->findTermSearch($term);
+            // if($produits == NULL ){
+            
+            //     return 'Ce ' . $produits->getNom() . ' est indisponible actuellement';
+            // }
+    
+    
+        }
+        //Si l'utilisateur n'est pas connecté la recherche sera uniquement en fonction de $term
+        //Le résultat retourné sera la liste des produits correspondant au champs saisi ($term)
+
+        else{
+            $produits = $repo->findTermSearchLocal($term, $user -> getDepartement());
+            // if($produits == NULL ){
+            
+            //     return $this->addFlash('danger', 'Ce ' . $produits->getNom() . ' est indisponible actuellement');
+            // }
+          
+        }
+        //Si l'utilisateur est connecté la recherche sera en fonction de $term et de $departement
+        //On veut que $departement du user soit = $departement de la boutique
+        //Le résultat retourné sera la liste des produits correspondant au champs $term et disponibles dans le département du user
+
+        
+               
         return $this -> render('acheteur/search_results.html.twig', [
-           'produits' => $produits 
+           'produits' => $produits,
         ]);
     } 
     //test : localhost:8000/search_results
+
+//------------------------------------AFFICHER UNE BOUTIQUE---------------------------------------------
+
+ /**
+     * @Route("/buy/show_shops", name="buy/show_shops")
+     */
+    public function showShops()
+    {   
+        //Fonction permettant d'afficher les boutiques
+        //Affichage : tableau des boutiques
+
+        $repository = $this->getDoctrine()->getRepository(Boutique::class);
+        $boutiques = $repository->findAll();
+
+        return $this->render('acheteur/show_shops.html.twig', [
+            'boutiques' => $boutiques
+        ]);
+    }
+
+//--------------------------AFFICHER LES BOUTIQUES QUI ONT DES FRUITS-------------------------------------
+    
+    public function showShopFruits()
+    {
+        return $this->render('', [
+
+        ]);
+    }
+
+
+
+//--------------------------AFFICHER LES BOUTIQUES QUI ONT DES LEGUMES-------------------------------------
+    
+    public function showShopVegetables()
+    {
+        return $this->render('', [
+
+        ]);
+    }
+//--------------------------AFFICHER LES BOUTIQUES QUI ONT DES PRODUITS LAITIERS-------------------------------------
+    
+    public function showShopDairies()
+    {
+        return $this->render('', [
+
+        ]);
+
+    }
+
+
+//--------------------------AFFICHER LES BOUTIQUES QUI ONT DES OEUFS-------------------------------------
+    
+    public function showShopEggs()
+    {
+        return $this->render('', [
+
+        ]);
+    }
+
+//--------------------------AFFICHER UNE SEULE BOUTIQUE-------------------------------------
+    
+public function showShop()
+{
+    return $this->render('', [
+
+    ]);
+}    
+//------------------------------------AFFICHER LES PRODUITS DE LA BOUTIQUE--------------------------------
+
     
 
     /**
@@ -101,6 +200,9 @@ class AcheteurController extends AbstractController
     }
 
 
+//----------------------------AFFICHE LE PANIER----------------------
+
+
     /**
 	* @Route("/cart", name="show_cart")
 	*
@@ -131,6 +233,7 @@ class AcheteurController extends AbstractController
 
 
 
+//----------------------------CONFIRMATION DE LA COMMANDE----------------------
 
     /**
 	* @Route("/confirmation", name="confirmation")

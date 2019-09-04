@@ -8,15 +8,16 @@
 
 <h1>Détails du produit : {{ produit.nom }}</h1>
 <ul>
+    <img src="{{ asset('/photo/' ~ produit.photo ) }}"></img> 
     <li>Nom :  {{ produit.nom }}</li>
     <li>Categorie :  {{ produit.categorie }}</li>
     <li>Stock :  {{ produit.stock }}</li>     
     <li>Prix :  {{ produit.prix }}</li>
-    <li>Photo :  {{ produit.file }}</li> 
     <li>Saisonnalité :  {{ produit.saisonnalite}}</li> 
     <li>Unité de mesure :  {{ produit.uniteMesure }}</li>
-           
+
 </ul>
+{% if app.user.statut == 1 %}
 <a class="btn btn-success" href="{{ path('shop_update_product', {id : produit.id }) }}">Modifier le produit</a>
 
 <form method="post" action="{{ path('add_cart') }}"> 
@@ -32,5 +33,11 @@
         <input type="submit" class="btn btn-primary" value="Ajouter" />
     </div>
 </form>
+
+{% if app.user.statut == 1 %}
+<a class="btn btn-success" href="{{ path('shop_update_product', {id : produit.id }) }}">Modifier le produit</a>
+{% else %}
+<a class="btn btn-warning" href="{{ path('buy/show_shops') }}">Retour à la liste des boutiques</a>
+{% endif %}
 
 {% endblock %}

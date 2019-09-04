@@ -3,7 +3,7 @@
 {% block content %}
 
 <h1></h1>
-
+{# {% for u in users %} #}
 <ul>
     <li>Prénom : {{ app.user.prenom }}</li>
     <li>Nom : {{ app.user.nom }}</li>
@@ -20,5 +20,6 @@
         {% endif %}
     </li>
 </ul>
+{# {% endfor %} #}
 <a class="btn btn-success" href="{{ path('admin_user_update', {id : user.id}) }}">Modifier </a>
 {% endblock %}

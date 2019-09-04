@@ -9,7 +9,9 @@
 
         <!-- Bootstrap4 CSS + Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> 
+        
+        {% block stylesheets %}{% endblock %}
         <link rel="stylesheet" href="{{ asset('/css/stylebct.css') }}">
 
 
@@ -29,24 +31,24 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="">Accueil <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">A propos<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ path('about_us') }}">A propos<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Boutique<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ path('buy/show_shops') }}">Boutiques<span class="sr-only">(current)</span></a>
                             </li>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contact<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ path('contact') }}">Contact<span class="sr-only">(current)</span></a>
                             </li>
                             </li>
                         </ul>
-                        <form class="form-inline my-2 my-lg-0">
+                        {# <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
+                        </form> #}
                         {% if not app.user %}
                         {# Autre manière de checker s'il y a un user
                         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -55,6 +57,8 @@
                             <button type="button" class="btn btn-success btn-sm"><a href="{{ path('login') }}">Connexion</a></button>
                         {% else %}
                             <button type="button" class="btn btn-success btn-sm"><a href="{{ path('profile', { id : app.user.id }) }}">Profil</a></button>
+                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('cart') }}">Panier</a></button>
+
 
                             <button type="button" class="btn btn-success btn-sm"><a href="{{ path('logout') }}">Déconnexion</a></button>
                         {% endif %}
@@ -83,56 +87,41 @@
                             <div class="row text-center d-flex justify-content-center pt-5 mb-2">
                                 <div class="col-md-2 mb-3">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="#!">CGU</a>
+                                        <a href="{{ path('cgu') }}">CGU</a>
                                     </h6>
                                 </div>
                                
                                 <div class="col-md-2 mb-3">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="#!">Copyright</a>
+                                        <a href="{{ path('copyrights') }}">Copyright</a>
                                     </h6>
                                 </div>
            
                                 <div class="col-md-2 mb-2">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="#!">Qui sommes nous?</a>
+                                        <a href="{{ path('about_us') }}">Qui sommes nous?</a>
                                     </h6>
                                 </div>
                                 <div class="col-md-2 mb-2">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="#!">SAV/Nous contacter</a>
+                                        <a href="{{ path('contact') }}">SAV/Nous contacter</a>
                                     </h6>
                                 </div>
                             
                                 <div class="col-md-2 mb-2">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="#!">Recrutement</a>
+                                        <a href="{{ path('career') }}">Recrutement</a>
                                     </h6>
                                 </div>
         
                             </div>
                            
                             <hr class="rgba-white-light" style="margin: 0 15%;">
-        
-                            <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
-        
-                                <div class="col-md-8 col-12 mt-5">
-                                    <p style="line-height: 1.7rem">Sed ut perspiciatis unde omnis iste natus error sit
-                                        voluptatem
-                                        accusantium doloremque laudantium, totam rem
-                                        aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                                        dicta sunt
-                                        explicabo.
-                                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                                        consequuntur.</p>
-                                </div>
-        
-                            </div>
-        
+
                             <hr class="clearfix d-md-none rgba-white-primary" style="margin: 10% 15% 5%;">
         
-                        <div class="footer-copyright text-center py-3">© 2018 Copyright:
-                            <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+                        <div class="footer-copyright text-center py-3">© 2019 Copyright: TeamBeam 
+                            <a href="#"></a>
                         </div>
                         </div>
                     </div>
@@ -143,34 +132,3 @@
             {% block javascripts %}{% endblock %}
         </body>
     </html>
-{# </div></nav><!--/ Bar de navigation -->{% block content %}{% endblock %}<!-- FOOTER --><footer> #}
-<div class="container">
-    <div class="row">
-        <ul class="navbar col-md-10 ">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">CGU
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Copyright<span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Qui sommes nous?<span class="sr-only">(current)</span>
-                </a>
-            </li>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">SAV/Nous contacter<span class="sr-only">(current)</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Recrutement<span class="sr-only">(current)</span>
-            </a>
-        </li>
-    </li>
-</ul></div></div><div id="trait_dessus"><hr></footer>
-    {# {% endblock %} #}
-    {# {% block javascripts %}{% endblock %} #}
-</body><script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></html>
