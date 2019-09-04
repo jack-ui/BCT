@@ -2,24 +2,60 @@
 
 {% block content %}
 
-<h1>Quelques unes de nos boutiques :</h1>
+<div class='banniere_form'>
+        <h2 class="card-header info-color white-text text-center py-4">
+            Quelques unes de nos boutiques :
+        </h2>
+    </div>
+
 {% for boutique in boutiques %}  
 {# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
-<ul>
+
+<div class="col-md-4 offset-md-2 my-4" style="margin-bottom: 10px;">
+    <div class="card h-100">
+        <div class="card-body text-center">
+            <h4 class="card-title text-info">
+				{{ boutique.nomBoutique }}
+            </h4>
+            <p class="card-text"><strong>Description  : </strong>{{ boutique.description  }}</p>
+            <p class="card-text"><strong>Livraison  : </strong>{{ boutique.livraison  }}</p>
+            <p class="card-text"><strong>Mode de paiement  : </strong>{{ boutique.paiement  }}</p>
+            <p class="card-text"><strong>Département  : </strong>{{ boutique.departement  }}</p>
+            <p class="card-text"><strong>Région  : </strong>{{ boutique.region  }}</p>
+        </div>
+		<div class="card-footer">
+			<p class="text-center"><a href="{{ path('buy/show_shop', { id: boutique.id}) }}" class="alert-link text-dark">Accés à la boutique </a></p>
+        </div>
+	</div>
+</div>
+
+
+{# <ul>
     
     <li>Nom : {{ boutique.nomBoutique }}</li>
     <li>Description : {{ boutique.description }}</li>
     <li>Livraison : {{ boutique.livraison }}</li>
     <li>Mode de paiement : {{ boutique.paiement }}</li>
-    {# <li>Adresse : {{ boutique.adresse }}</li>
+    <li>Adresse : {{ boutique.adresse }}</li>
     <li>Code postal : {{ boutique.codePostal }}</li>
-    <li>Ville : {{ boutique.ville }}</li> #}
+    <li>Ville : {{ boutique.ville }}</li>
     <li>Département :{{ boutique.departement }}</li>
     <li>Région : {{ boutique.region }}</li>
    
-</ul>
+</ul> #}
 
-<a class="btn btn-success" href="{{ path('buy/shop_product', { id: boutique.id}) }}">Afficher les produits </a>
+{# <a class="btn btn-success" href="{{ path('buy/shop_product', { id: boutique.id}) }}">Afficher les boutiques </a> #}
 {% endfor %}
+
+{# ---------------------------------------------------------------- #}
+
+
+
+
+{# ------------------------------------------------------------------ #}
+
+
+
+
 
 {% endblock %}

@@ -58,7 +58,6 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/orders, roles: ROLE_USER }
         - { path: ^/login, allow_if: "not is_granted('ROLE_USER')" }
         - { path: ^/register, allow_if: "not is_granted('ROLE_USER')" }
 
@@ -67,4 +66,3 @@ security:
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN

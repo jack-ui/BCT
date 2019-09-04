@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>
-            {% block title %}Welcome!
+            {% block title %}BioChezToi !
             {% endblock %}
         </title>
 
@@ -63,7 +63,9 @@
                             <a  class="btn btn-outline-success btn-success btn-sm" href="{{ path('logout') }}">Déconnexion</a>
                         {% endif %}
                             
-                        <a  class="btn btn-outline-success btn-success btn-sm" href="{{ path('show_cart') }}">Panier {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }}){% endif %}</a>
+                        <a  class="btn btn-outline-success btn-success btn-sm" href="{{ path('show_cart') }}">
+                            <i class="fas fa-cart-plus"></i>
+                             {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }}){% endif %}</a>
                         </div>
                 </nav>
 
