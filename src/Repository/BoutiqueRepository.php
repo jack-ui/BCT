@@ -115,5 +115,20 @@ class BoutiqueRepository extends ServiceEntityRepository
     }
     
  
-    
+    /**
+	* @return Boutiques[] Returns an array of Boutique objects
+	* Fonction pour récupérer la boutique qui propose le produit en résultats
+	*/
+    public function findShopByProduct($term){
+
+		$builder = $this->createQueryBuilder('b');
+
+		return $builder
+		-> select('b')
+        -> join('b.id', 'p', 'WITH',  'p.boutiqueId = :b.id')
+        -> where('p.nom = :term')
+        -> setParameter('term', $term)
+		-> getQuery()
+		-> getResult();
+    }
 }

@@ -8,14 +8,14 @@
     <li>{{ p.description }}</li>
     <li>{{ p.prix }} €</li>
     <li>{{ p.stock }} kgs</li>
+    <li>{% if p.boutiqueId is not null %}Boutique : {{ p.boutiqueId.nomBoutique }} {% endif %}</li>
     <li>Produit disponible dans la boutique : 
-        {# {% for b in boutique %}
-            {{ b.nom}}
-        {% endfor %} #}
+        
 
     </li>
-    {# <li> dans le $user->getDepartement </li> #}
-{% endfor %}
+    {# <li> vous dans le $user->getDepartement </li> #}
+
 </ul>
-<button class="btn btn-success"><a href=""></a>Aller sur la boutique</button>   
+<a class="btn btn-success" href="{{ path('buy/show_shop', {id : p.boutiqueId.id}) }}">Aller sur la boutique</a>  
+{% endfor %}
 {% endblock %}
