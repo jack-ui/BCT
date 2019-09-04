@@ -54,18 +54,16 @@
                         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                         {% if not is_granted('ROLE_ADMIN') %}
                         #}
-                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('login') }}">Connexion</a></button>
+                            <a  class="btn btn-outline-success btn-success btn-sm" href="{{ path('login') }}">Connexion</a>
+                            <a  class="btn btn-outline-success btn-success btn-sm" href="{{ path('register') }}">Inscription</a>
                         {% else %}
-                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('profile', { id : app.user.id }) }}">Profil</a></button>
-                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('cart') }}">Panier</a></button>
+                            <a  class="btn btn-outline-success btn-success btn-sm" href="{{ path('profile', { id : app.user.id }) }}">Profil</a>
 
 
-                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('logout') }}">Déconnexion</a></button>
+                            <a  class="btn btn-outline-success btn-success btn-sm" href="{{ path('logout') }}">Déconnexion</a>
                         {% endif %}
-                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('register') }}">Inscription</a></button>
-
-
-                        <button type="button" class="btn btn-outline-success btn-success btn-sm" href="{{ path('show_cart') }}">Panier {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }}){% endif %}</button>
+                            
+                        <a  class="btn btn-outline-success btn-success btn-sm" href="{{ path('show_cart') }}">Panier {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }}){% endif %}</a>
                         </div>
                 </nav>
 
