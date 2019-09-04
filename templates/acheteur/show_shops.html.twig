@@ -19,7 +19,35 @@
    
 </ul>
 
-<a class="btn btn-success" href="{{ path('buy/shop_product', { id: boutique.id}) }}">Afficher les produits </a>
+<a class="btn btn-success" href="{{ path('buy/shop_product', { id: boutique.id}) }}">Afficher les boutiques </a>
 {% endfor %}
+
+{# ---------------------------------------------------------------- #}
+
+<div class="col-md-8 offset-md-2 my-4">
+    <div class="card h-100">
+        <div class="card-body text-center">
+            <h4 class="card-title text-info">
+				{{ boutique.nomBoutique }}
+            </h4>
+            <p class="card-text"><strong>Description  : </strong>{{ boutique.description  }}</p>
+            <p class="card-text"><strong>Livraison  : </strong>{{ boutique.livraison  }}</p>
+            <p class="card-text"><strong>Mode de paiement  : </strong>{{ boutique.livraison  }}</p>
+            <p class="card-text"><strong>Livraison  : </strong>{{ boutique.paiement  }}</p>
+            <p class="card-text"><strong>Livraison  : </strong>{{ boutique.livraison  }}</p>
+        </div>
+		<div class="card-footer">
+			<p class="text-center"><a href="{{ path('categorie', {cat : boutique.categorie } ) }}" class="alert-link text-dark">Retour vers la sélection de catégorie du boutique</a></p>
+			<p class="text-center"><a href="{{ path('accueil') }}" class="alert-link text-dark">Accés à la boutique </a></p>
+        </div>
+	</div>
+</div>
+
+
+{# ------------------------------------------------------------------ #}
+
+
+
+
 
 {% endblock %}
