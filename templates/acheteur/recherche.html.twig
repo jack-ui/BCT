@@ -1,26 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
-<h1>Page de recherche de produits/boutiques</h1>
-<div class="container">
-    <div class="row"> 
-        <form class="form-in-line col-lg-8 offset-md-4" method="GET" action="{{ path('search_results') }}">
-            <input class="form-control col-lg-8" type="search" placeholder="" aria-label="" name="champs">
-            <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
-        </form>
-    </div>
-    <div class="row">Merci de renseigner un code postal ou un nom de produit</div>
-     {# compléter la fonction recherche pr le code postal #}
-    <div class="row">
-        <button class="col-lg-4 space-between"><a href="{{ path('buy_fruits')}}">FRUITS</a></button>
-       
-        <button class="col-lg-4 space-between"><a href="{{ path('buy_vegetables')}}">LEGUMES</a></button>
-    </div>
-    <div class="row">
-        <button class="col-lg-4 space-between"><a href="{{ path('buy_dairies')}}">PRODUITS LAITIERS</a></button>
-        <button class="col-lg-4 space-between"><a href="{{ path('buy_eggs')}}">OEUFS</a></button>
-    </div>
 
-</div>
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/style_Form_Recherche.css') }}">
 {% endblock %}
+
+{% block content %}
+
+
+    <div class='banniere_form'>
+        <h2 class="card-header info-color white-text text-center py-4">
+            Merci de renseigner un code postal ou un nom de produit
+        </h2>
+    </div>
+
+
+    <div class="container">
+        <div class="row ">
+            <form class="form-in-line col-lg-8 offset-md-4 text-center" method="GET" action="{{ path('search_results') }}">
+                <input class="form-control col-lg-8 text-center" type="search" placeholder="" aria-label="" name="champs">
+                <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
+            </form>
+        </div>
+    <br>
+    <br>
+    <br>
+        {# compléter la fonction recherche pr le code postal #}
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('buy_fruits')}}">FRUITS</a>
+                <a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('buy_vegetables')}}">LEGUMES</a>
+                <a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('buy_dairies')}}">PRODUITS LAITIERS</a>
+                <a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('buy_eggs')}}">OEUFS</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>{% endblock %}
