@@ -19,9 +19,9 @@
     <body>
 
         {% block body %}
-            <!-- Bar de navigation -->
+            <!-- Barre de navigation -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand success" href="#">BioChezToi</a>
+                    <a class="navbar-brand success" href="">BioChezToi</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="{{ path('index') }}">Accueil <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ path('index') }}">Accueil <span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('about_us') }}">A propos<span class="sr-only"></span></a>
@@ -65,7 +65,7 @@
                             <button type="button" class="btn btn-success btn-sm"><a href="{{ path('register') }}">Inscription</a></button>
 
 
-                        <button type="button" class="btn btn-outline-success btn-success" btn-sm><a href="{{ path('show_cart') }}">"Panier {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }}){% endif %}</a></button>
+                        <button type="button" class="btn btn-outline-success btn-success btn-sm" href="{{ path('show_cart') }}">Panier {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }}){% endif %}</button>
                         </div>
                 </nav>
 
@@ -115,7 +115,7 @@
                                 </div>
         
                             </div>
-                           
+                            
                             <hr class="rgba-white-light" style="margin: 0 15%;">
 
                             <hr class="clearfix d-md-none rgba-white-primary" style="margin: 10% 15% 5%;">

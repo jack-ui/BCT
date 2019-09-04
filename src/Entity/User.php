@@ -128,7 +128,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer")
-	 * @Assert\Type(type="integer", message="Veuillez renseigner un numéro de département")
+     * @Assert\Choice({"75", "77", "78", "91", "92", "93", "94", "95"}, message="Veuillez choisir votre département")
      */
     private $departement;
 
