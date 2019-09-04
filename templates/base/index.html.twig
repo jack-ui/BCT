@@ -9,10 +9,16 @@
     <section class="hero">
         <div class="hero-content">
 
-            <h1 class="hero-title">Manger BIO</h1>
-            <h1 class="hero-title">Manger MIEUX</h1>
-            <button type="button" class="hero-button"><a href="{{ path('search') }}">Je veux acheter</a></button>
-            <button type="button" class="hero-button"><a href="{{ path('sell') }}">Je veux vendre</a></button>
+            <h1 class="hero-title" style="text-shadow: 2px 2px 2px black; font-size: 4.5rem;">MANGER LOCAL</h1>
+            <h1 class="hero-title" style="text-shadow: 2px 2px 2px black; font-size: 4rem;">MANGER MIEUX</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <a href="{{ path('search') }}" class="btn btn-success p-3" style="font-size: 1.5rem;">Je veux acheter</a>
+                </div>
+                <div class="col-md-5">
+                    <a href="{{ path('sell') }}" class="btn btn-success p-3" style="font-size: 1.5rem;">Je veux vendre</a>
+                </div>
+            </div>
 
         </div>
     </section>
