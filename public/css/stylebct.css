@@ -5,7 +5,7 @@
 
 
 main h2 {
-  color: #52d636;
+  color: #3a3a3a;
 }
 h2 {
   text-align: center;
@@ -13,7 +13,7 @@ h2 {
   padding-top: 50px;
   font-size: 50px;
 }
-
+/* NAV */
 .navbar {
   background-color: white !important;
 }
@@ -70,9 +70,9 @@ a {
 }
 
 .hero-button {
-  background-color: #ae2d59;
+  background-color: #FFCF40;
   color: white;
-  border: 1px solid #cb376a;
+  border: 1px solid #ffffff;
   margin-top: 5rem;
   padding: 0.9375rem 1.875rem;
   font-family: "Monserrat", sans-serif;
@@ -81,8 +81,8 @@ a {
   cursor: pointer;
 }
 .hero-button:hover {
-  background-color: #cb376a;
-  border: 1px solid #db7598;
+  background-color: #FFB03D;
+  border: 1px solid #ffffff;
 }
 /* -------hero----------- */
 
