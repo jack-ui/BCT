@@ -193,45 +193,30 @@ public function showShop($id)
 
     ]);
 }
-
-//--------------AFFICHER LA BOUTIQUE QUI PROPOSE LE PRODUIT EN RESULTAT DE RECHERCHE----------------
-
- /**
- * @Route("/buy/show_shop/results", name="buy/show_shop_results")
- */
-public function showShopResults()
-{
-    
-    $repository = $this->getDoctrine()->getRepository(Boutique::class);
-    $boutique = $repository->findShopByProduct();
-
-    return $this->render('acheteur/show_shops.html.twig', [
-        'boutique' => $boutique
-    ]);
-}    
+ 
    
 //------------------------------------AFFICHER LES PRODUITS DE LA BOUTIQUE--------------------------------
 
  /**
-     * @Route("/buy/shop_product", name="buy/shop_product")
+     * @Route("/buy/shop_product{id}", name="buy/shop_product")
      */
-    public function showProductsInShop()
+    public function showProductShop($id)
     {
-//IL FAUT LIER LES PRODUITS A UNE BOUTIQUE
-
         //Fonction permettant d'afficher la liste des produits de la boutique
 
         //Traitement du formulaire
         $repository = $this->getDoctrine()->getRepository(Produit::class);
-        $produits = $repository->findAllByShop();
+            
+        $produits = $repository->findAllByShop($id);
 
-        $categories = $repository->findAllCategories();
+      
 
+        
 
         //Afficher la vue
         return $this->render('acheteur/products_table.html.twig', [
-            'produits' => $produits,
-            'categories' => $categories
+            'produits' => $produits
+           
         ]);
     }
 
