@@ -31,17 +31,17 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="">Accueil <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ path('index') }}">Accueil <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('about_us') }}">A propos<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ path('about_us') }}">A propos<span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('buy/show_shops') }}">Boutiques<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ path('buy/show_shops') }}">Boutiques<span class="sr-only"></span></a>
                             </li>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('contact') }}">Contact<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ path('contact') }}">Contact<span class="sr-only"></span></a>
                             </li>
                             </li>
                         </ul>
@@ -65,7 +65,7 @@
                             <button type="button" class="btn btn-success btn-sm"><a href="{{ path('register') }}">Inscription</a></button>
 
 
-                        <button type="button" class="btn btn-outline-success btn-success" btn-sm href="{{ path('show_cart') }}">Panier {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }}){% endif %}</button>
+                        <button type="button" class="btn btn-outline-success btn-success" btn-sm><a href="{{ path('show_cart') }}">"Panier {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }}){% endif %}</a></button>
                         </div>
                 </nav>
 

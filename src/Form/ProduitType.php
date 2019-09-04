@@ -5,15 +5,16 @@ namespace App\Form;
 use App\Entity\Produit;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class ProduitType extends AbstractType
 {
@@ -38,7 +39,7 @@ class ProduitType extends AbstractType
                 ),
             ))
             ->add('description',TextType::class)
-            ->add('categorie', TextType::class, array(
+            ->add('categorie', ChoiceType::class, array(
 				'choices' => array(
                       'Sélectionnez votre région' => '0',
 				 	  'fruit' => 'fruit',
@@ -75,7 +76,7 @@ class ProduitType extends AbstractType
 
           
 
-            ->add('saisonnalite', TextType::class, array(
+            ->add('saisonnalite', ChoiceType::class, array(
 				'choices' => array(
                       'Sélectionnez votre région' => '0',
 				 	  'Eté' => 'Eté',

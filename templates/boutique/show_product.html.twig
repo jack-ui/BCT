@@ -17,8 +17,7 @@
     <li>Unité de mesure :  {{ produit.uniteMesure }}</li>
 
 </ul>
-{% if app.user.statut == 1 %}
-<a class="btn btn-success" href="{{ path('shop_update_product', {id : produit.id }) }}">Modifier le produit</a>
+
 
 <form method="post" action="{{ path('add_cart') }}"> 
     <input type="hidden" name="id" value="{{ produit.id }}" />
@@ -34,10 +33,7 @@
     </div>
 </form>
 
-{% if app.user.statut == 1 %}
-<a class="btn btn-success" href="{{ path('shop_update_product', {id : produit.id }) }}">Modifier le produit</a>
-{% else %}
 <a class="btn btn-warning" href="{{ path('buy/show_shops') }}">Retour à la liste des boutiques</a>
-{% endif %}
+
 
 {% endblock %}
