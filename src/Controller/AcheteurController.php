@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Produit;
+use App\Entity\Boutique;
+use App\Form\BoutiqueType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -100,10 +102,10 @@ class AcheteurController extends AbstractController
         //Affichage : tableau des boutiques
 
         $repository = $this->getDoctrine()->getRepository(Boutique::class);
-        $boutique = $repository->findAll();
+        $boutiques = $repository->findAll();
 
         return $this->render('acheteur/show_shops.html.twig', [
-            'boutique' => $boutique
+            'boutiques' => $boutiques
         ]);
     }
 
