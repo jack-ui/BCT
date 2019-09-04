@@ -8,12 +8,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Boutique;
+use App\Form\BoutiqueType;
 
 
 
 
 class VendeurController extends AbstractController
 {
+//-------------------------POUR VENDRE Il faut SE CONNECTER---------------------------------
+    
     /**
      * @Route("/sell", name="sell")
      */
@@ -28,6 +32,10 @@ class VendeurController extends AbstractController
     }
     // test : localhost:8000/sell
 
+
+//---------------------------------AFFICHAGE du DASHBOARD VENDEUR----------------------- -------
+
+
     /**
      * @Route("/dashboard", name="dashboard")
      */
@@ -39,6 +47,10 @@ class VendeurController extends AbstractController
         return $this -> render('vendeur/dashboard_vendeur.html.twig');
     }
     // test : localhost:8000/dashboard
+
+
+//---------------------------GESTION DES COMMANDES-------------------------------------------
+
 
     /**
      * @Route("/show_orders", name="show_orders")
@@ -81,7 +93,7 @@ class VendeurController extends AbstractController
 		//     $manager -> persist($commande);
 		//     $manager -> flush(); 
 		   
-		//     $this -> addFlash('success', 'La commande n°' . $id . ' a bien été modifiée !');
+		//     $this -> addFlash('success', 'La commande n°' . $commande->getReference() . ' a bien été modifiée !');
         //     return $this -> redirectToRoute('show_orders');
         // }
        
@@ -90,8 +102,7 @@ class VendeurController extends AbstractController
             //'commandeForm'=> $form ->createView()
         ]);
 
-        // return $this->redirectToRoute('show_orders');
-        
+              
     }
     // test : localhost:8000/shop/update_order_10
 
@@ -110,7 +121,7 @@ class VendeurController extends AbstractController
         // $manager -> remove($commande);
 		// $manager -> flush(); 
 		   
-		//     $this -> addFlash('success', 'La commande n°' . $id . ' a bien été supprimée !');
+		// return $this -> addFlash('success', 'La commande n°' .$commande->getReference() . ' a bien été supprimée !');
         
 
         //Redirection sur la liste des commandes
@@ -119,6 +130,112 @@ class VendeurController extends AbstractController
     }
     // test : localhost:8000/shop/delete_order_10
 
-   
+   //------------------------------ GESTION BOUTIQUE--------------------------------------
+
+    
+    /**
+     * @Route("/sell/show_shop{id}", name="sell/show_shop")
+     */
+    public function showShop($id)
+    {   
+        //Fonction permettant d'afficher les boutiques
+        //Affichage : tableau des boutiques
+
+        $repository = $this->getDoctrine()->getRepository(Boutique::class);
+        $boutique = $repository->find(Boutique::class, $id);
+
+        return $this->render('vendeur/show_shops.html.twig', [
+            'boutique' => $boutique
+        ]);
+    }
+     
+    //CRUD BOUTIQUE
+    /**
+     * @Route("/sell/shop/add", name="sell/shop_add")
+     */
+    public function addShop(Request $request)
+    {   
+        //Fonction pour ajouter une boutique
+        //Affichera le formulaire d'une boutique 
+        $boutique = new Boutique; 	   
+        $form = $this -> createForm(BoutiqueType::class, $boutique); 
+        $form -> handleRequest($request);
+        
+        if($form -> isSubmitted() && $form -> isValid()){
+ 
+            $manager = $this -> getDoctrine() -> getManager();
+            $manager -> persist($boutique);
+            
+            if($boutique -> getFile() != NULL){
+			    $boutique -> uploadFile();
+			}
+
+                    
+            $manager -> flush();
+           
+        
+            $this -> addFlash('success', 'La boutique n°' . $boutique -> getId() . ' a bien été enregistré en BDD');
+            return $this -> redirectToRoute('sell/show_shops'); 
+             
+        }
+        
+        return $this -> render('vendeur/shop_form.html.twig', [
+            'boutiqueForm' => $form -> createView()
+        ]);
+      
+        
+  
+    }
+
+    /**
+     * @Route("/sell/shop/update{id}", name="sell/shop_update")
+     */
+    public function updateShop($id, ObjectManager $manager, Request $request)
+    {   
+        //affiche le formulaire avec les infos d'une boutique
+        //modifie une boutique en fonction de l'id
+        $manager = $this -> getDoctrine() -> getManager();   
+        $boutique = $manager -> find(Boutique::class, $id); 
+        
+        $form = $this -> createForm(BoutiqueType::class, $boutique);
+        $form -> handleRequest($request);
+        
+        if($form -> isSubmitted() && $form -> isValid()){
+        
+            $manager -> persist($boutique);
+
+            if($boutique -> getFile() != NULL){
+			    $boutique -> uploadFile();
+			}
+            $manager -> flush(); 
+            
+            $this -> addFlash('success', 'La boutique '. $boutique->getNomBoutique() . ' a bien été modifiée !');
+            return $this -> redirectToRoute('sell/show_shops');
+        }
+        return $this -> render('vendeur/shop_form.html.twig', [
+            'boutiqueForm' => $form -> createView()
+        ]);
+    }
+
+     /**
+     * @Route("/admin/shop/delete{id}", name="admin/shop_delete")
+     */
+    public function deleteShop(ObjectManager $manager, $id)
+    {   
+        
+        //Fonction permettant de supprimer une boutique en fonction de l'id
+        //Affichage : redirige sur la page d'accueil
+        $boutique = $manager->find(Boutique::class, $id);
+        if($boutique)
+        {
+            $manager->remove($boutique);
+            $manager->flush();
+
+            $this->addFlash('success', 'la boutique '. $boutique->getNomBoutique() . ' a bien été supprimée');
+        }    
+        return $this -> redirectToRoute('/');
+       
+    }
+
 
 }

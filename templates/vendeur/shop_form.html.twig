@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Formulaire de modification de votre boutique</h1>
+
+    {{ form_start(boutiqueForm) }}
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(boutiqueForm.siret) }}
+            {{ form_row(boutiqueForm.nomBoutique) }}
+            {{ form_row(boutiqueForm.description) }}
+            {{ form_row(boutiqueForm.livraison) }}
+            {{ form_row(boutiqueForm.paiement) }}
+            {{ form_row(boutiqueForm.adresse) }}
+        </div>
+         <div class="col-6">
+            {{ form_row(boutiqueForm.ville) }}
+            {{ form_row(boutiqueForm.codePostal) }}
+            {{ form_row(boutiqueForm.departement) }}
+            {{ form_row(boutiqueForm.region) }}
+            {{ form_row(boutiqueForm.telephone) }}
+            {{ form_row(boutiqueForm.file) }}
+        </div>
+        {{ form_row(boutiqueForm.submit, { 'label' : 'Modifier' } ) }}
+    </div>
+    {{ form_end(boutiqueForm) }}
+{% endblock %}

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Voici la boutique {{ boutique.nomBoutique }} :</h1>
+<h1>Bienvenue sur votre fiche boutique :</h1>
 {# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
 <ul>
     <li>Id : {{ boutique.id }}</li>
@@ -19,5 +19,6 @@
     <li>Téléphone : {{ boutique.telephone }}</li>
     {# <td>Id_User : {{ boutique.userId }}</td> #}
 </ul>
-
+<a class="btn btn-success" href="{{ path('sell/shop_update', {id : boutique.id}) }}">Modifier votre boutique</a>
+<a class="btn btn-warning" href="{{ path('shop') }}">Afficher vos produits </a>
 {% endblock %}

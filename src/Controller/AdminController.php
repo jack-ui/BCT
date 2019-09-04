@@ -177,7 +177,7 @@ class AdminController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Boutique::class);
         $boutique = $repository->find(Boutique::class, $id);
 
-        return $this->render('admin/shop_list.html.twig', [
+        return $this->render('admin/show_shops.html.twig', [
             'boutique' => $boutique
         ]);
     }

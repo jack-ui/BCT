@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AcheteurController extends AbstractController
 {
+//----------------------------GESTION DE LA RECHERCHE---------------------------------------------------------    
 
     /**
 	* @Route("/search", name="search")
@@ -87,8 +88,31 @@ class AcheteurController extends AbstractController
         ]);
     } 
     //test : localhost:8000/search_results
+
+//------------------------------------AFFICHER UNE BOUTIQUE---------------------------------------------
+
+ /**
+     * @Route("/buy/show_shops", name="buy/show_shops")
+     */
+    public function showShops()
+    {   
+        //Fonction permettant d'afficher les boutiques
+        //Affichage : tableau des boutiques
+
+        $repository = $this->getDoctrine()->getRepository(Boutique::class);
+        $boutique = $repository->findAll();
+
+        return $this->render('acheteur/show_shops.html.twig', [
+            'boutique' => $boutique
+        ]);
+    }
+
+
+//------------------------------------AFFICHER LES PRODUITS DE LA BOUTIQUE--------------------------------
+
     
 
+//--------------------------GESTION DU PANIER----------------------------------------------------
 
     /**
 	* @Route("/cart", name="cart")
@@ -101,6 +125,7 @@ class AcheteurController extends AbstractController
 
 
 
+//----------------------------CONFIRMATION DE LA COMMANDE----------------------
 
     /**
 	* @Route("/confirmation", name="confirmation")
