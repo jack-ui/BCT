@@ -8,25 +8,30 @@
         </h2>
     </div>
 
-{% for boutique in boutiques %}  
+ 
 {# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
-
-<div class="col-md-4 offset-md-2 my-4" style="margin-bottom: 10px;">
-    <div class="card h-100">
-        <div class="card-body text-center">
-            <h4 class="card-title text-info">
-				{{ boutique.nomBoutique }}
-            </h4>
-            <p class="card-text"><strong>Description  : </strong>{{ boutique.description  }}</p>
-            <p class="card-text"><strong>Livraison  : </strong>{{ boutique.livraison  }}</p>
-            <p class="card-text"><strong>Mode de paiement  : </strong>{{ boutique.paiement  }}</p>
-            <p class="card-text"><strong>Département  : </strong>{{ boutique.departement  }}</p>
-            <p class="card-text"><strong>Région  : </strong>{{ boutique.region  }}</p>
+<div class="row">
+{% for boutique in boutiques %} 
+    <div class="col-md-4 my-3">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h4 class="card-title text-info">
+                    {{ boutique.nomBoutique }}
+                </h4>
+                <p class="card-text"><strong>Description  : </strong>{{ boutique.description  }}</p>
+                <p class="card-text"><strong>Livraison  : </strong>{{ boutique.livraison  }}</p>
+                <p class="card-text"><strong>Mode de paiement  : </strong>{{ boutique.paiement  }}</p>
+                <p class="card-text"><strong>Département  : </strong>{{ boutique.departement  }}</p>
+                <p class="card-text"><strong>Région  : </strong>{{ boutique.region  }}</p>
+            </div>
+            <div class="card-footer row">
+                <div class="col-md-4 offset-4">
+                    <a class="btn btn-outline-success" href="{{ path('buy/show_shop', { id: boutique.id}) }}" class="alert-link text-dark">Accés à la boutique </a>
+                </div>
+            </div>
         </div>
-		<div class="card-footer">
-			<a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('buy/show_shop', { id: boutique.id}) }}" class="alert-link text-dark">Accés à la boutique </a>
-        </div>
-	</div>
+    </div>
+    {% endfor %}
 </div>
 
 
@@ -45,7 +50,7 @@
 </ul> #}
 
 {# <a class="btn btn-success" href="{{ path('buy/shop_product', { id: boutique.id}) }}">Afficher les boutiques </a> #}
-{% endfor %}
+
 
 {# ---------------------------------------------------------------- #}
 
