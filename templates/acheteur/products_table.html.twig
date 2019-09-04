@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    
+    <h1>Bienvenue sur la Boutique</h1>
+    <p>Nombre de produits : {{ produits | length }}</p>
+
+    <h2>Les produits de la boutique</h2>
+
+
+<a class="btn btn-success" href="{{ path('/buy/show_shops') }}">Retour à la liste des boutiques</a>
+
+
+  
+
+
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>Id produit</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Catégorie</th>
+                <th>Stock</th>
+                <th>Prix</th>
+                <th>Saisonnalité</th>
+                <th>Photo</th>
+                <th>Unité de mesure</th>
+                <th>Ajout Panier</th>
+              
+                
+                
+                
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+            {% for p in produits %}
+
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.nom }}</td>
+                    <td>{{ p.description }}</td>
+                    <td>{{ p.categorie }}</td>
+                    <td>
+                        {% if p.stock == 0 %}
+                            <strong class="text text-danger">{{ p.stock }}</strong>
+                        {% elseif p.stock < 10 %}
+                            <strong class="text text-warning">{{ p.stock }}</strong>
+                        {% else %}
+                            <strong class="text text-success">{{ p.stock }}</strong>
+                        {% endif %}
+                    </td>
+                    <td>{{ p.prix | number_format(2, ',', ' ') }}€</td>
+                    <td>{{ p.saisonnalite }}</td>
+                    <td><img src="{{ asset('/photo/' ~ p.photo ) }}" height="60px"/></td>
+                    <td>{{ p.uniteMesure }}</td>
+                    
+                   
+                    <td>
+                        <a href="{{ path('cart' ) }}">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </td>
+                   
+                </tr>
+
+            
+
+        </tbody>
+
+    </table>
+
+{% endblock %}

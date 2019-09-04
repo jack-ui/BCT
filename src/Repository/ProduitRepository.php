@@ -79,6 +79,20 @@ class ProduitRepository extends ServiceEntityRepository
 		-> getResult();
 	}
 
+	public function findAllByShop(){
+
+		
+		$builder = $this->createQueryBuilder('p');
+
+		return $builder
+		-> select('p') 
+		-> join('p.boutiqueId', 'b', 'WITH','b.id = :p.boutiqueId')
+		-> getQuery()
+		-> getResult();
+	}
+
+	
+
     /*
     public function findOneBySomeField($value): ?Produit
     {

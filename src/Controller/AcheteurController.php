@@ -91,9 +91,9 @@ class AcheteurController extends AbstractController
     } 
     //test : localhost:8000/search_results
 
-//------------------------------------AFFICHER UNE BOUTIQUE---------------------------------------------
+//------------------------------------AFFICHER DES BOUTIQUES ---------------------------------------------
 
- /**
+    /**
      * @Route("/buy/show_shops", name="buy/show_shops")
      */
     public function showShops()
@@ -110,30 +110,51 @@ class AcheteurController extends AbstractController
     }
 
 //--------------------------AFFICHER LES BOUTIQUES QUI ONT DES FRUITS-------------------------------------
-    
+    /**
+	* @Route("/buy_fruits", name="buy_fruits")
+	*
+    */
     public function showShopFruits()
-    {
-        return $this->render('', [
+    {   
+        $repository = $this->getDoctrine()->getRepository(Boutique::class);
+        $boutiques = $repository->findAllFruits();
 
+        return $this->render('acheteur/show_shops_fruits.html.twig', [
+            'boutiques' => $boutiques
         ]);
+        
     }
 
 
 
 //--------------------------AFFICHER LES BOUTIQUES QUI ONT DES LEGUMES-------------------------------------
     
+    /**
+	* @Route("/buy_vegetables", name="buy_vegetables")
+	*
+    */
     public function showShopVegetables()
     {
-        return $this->render('', [
+        $repository = $this->getDoctrine()->getRepository(Boutique::class);
+        $boutiques = $repository->findAllVegetables();
 
+        return $this->render('acheteur/show_shops_vegetables.html.twig', [
+            'boutiques' => $boutiques
         ]);
     }
 //--------------------------AFFICHER LES BOUTIQUES QUI ONT DES PRODUITS LAITIERS-------------------------------------
     
+    /**
+	* @Route("/buy_dairies", name="buy_dairies")
+	*
+    */
     public function showShopDairies()
     {
-        return $this->render('', [
+        $repository = $this->getDoctrine()->getRepository(Boutique::class);
+        $boutiques = $repository->findAllDairies();
 
+        return $this->render('acheteur/show_shops_dairies.html.twig', [
+            'boutiques' => $boutiques
         ]);
 
     }
@@ -141,25 +162,68 @@ class AcheteurController extends AbstractController
 
 //--------------------------AFFICHER LES BOUTIQUES QUI ONT DES OEUFS-------------------------------------
     
+    /**
+	* @Route("/buy_eggs", name="buy_eggs")
+	*
+    */
     public function showShopEggs()
     {
-        return $this->render('', [
+        $repository = $this->getDoctrine()->getRepository(Boutique::class);
+        $boutiques = $repository->findAllEggs();
 
+        return $this->render('acheteur/show_shops_eggs.html.twig', [
+            'boutiques' => $boutiques
         ]);
     }
 
 //--------------------------AFFICHER UNE SEULE BOUTIQUE-------------------------------------
-    
-public function showShop()
-{
-    return $this->render('', [
 
+ /**
+ * @Route("/buy/show_shop{id}", name="buy/show_shop")
+ */
+public function showShop($id)
+{
+    
+    $repository = $this->getDoctrine()->getRepository(Boutique::class);
+    $boutique = $repository->find(Boutique::class, $id);
+
+    return $this->render('acheteur/show_shops.html.twig', [
+        'boutique' => $boutique
     ]);
-}    
+}
+   
 //------------------------------------AFFICHER LES PRODUITS DE LA BOUTIQUE--------------------------------
 
-    
+ /**
+     * @Route("/buy/shop_product", name="buy/shop_product")
+     */
+    public function showProductsInShop()
+    {
+//IL FAUT LIER LES PRODUITS A UNE BOUTIQUE
 
+        //Fonction permettant d'afficher la liste des produits de la boutique
+
+        //Traitement du formulaire
+        $repository = $this->getDoctrine()->getRepository(Produit::class);
+        $produits = $repository->findAllByShop();
+
+        $categories = $repository->findAllCategories();
+
+
+        //Afficher la vue
+        return $this->render('acheteur/products_table.html.twig', [
+            'produits' => $produits,
+            'categories' => $categories
+        ]);
+    }
+
+
+
+
+
+
+    
+//-----------------------------------AJOUTER AU PANIER-------------------------------------------------------------
     /**
 	* @Route("/add_cart", name="add_cart")
 	*
