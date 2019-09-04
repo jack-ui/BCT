@@ -11,6 +11,7 @@
             <thead>
                 <tr> 
                     <th>Produit</th>
+                    <!-- <th>Boutique</th> -->
                     <th>Quantité</th>
                     <th>Prix (au kilo ou à l'unité)</th>
                     <th>Total</th>
@@ -20,21 +21,30 @@
                 {% for produit in panier %}
                 <tr>
                     <td>{{ produit.nom }}</td>
+
+                    {# <td>{{ produit.boutiqueId }}</td> #} <!--mis en commentaire parce que l'id retourne un objet et pas un integer et ça pose problème-->
                     
-                    <td>{{ produitCommande.quantite }}</td> <!-- A VOIR Parce qu'on n'envoie pas dans la table la quantité donc c'est pas là qu'il faut aller la chercher !!! -->
+                    <td>{{ produit.quantite }}</td>  <!-- On a créé une fausse caractéristique "quantité" dans la fonction qui récupère la quantité du panier et fait comme si c'était dans la table produit de la BDD -->
                     <td>{{ produit.prix }}</td>
-                    <td>$total = {{ produit.prix }} * {{ produitCommande.quantite }}</td> <!--??????? A VOIR-->
+                    <td>{% set total = produit.prix * produit.quantite %}{{ total | number_format(2, ',', ' ') }}€</td> <!-- On calcule le total puis on fait un echo de ce résultat-->
                 </tr>
-                {% endfor %}
+                
             </tbody>
             <tr>
                 <th>Montant de votre commande</th>
             </tr>
+            <tr>
+                
+                <td> {% set totalFinal = totalFinal + total %} {{ totalFinal }} </td>
+                
+            </tr>
+
+                {% endfor %}    
         </table>
     </div>
 
     <div class="row">
-        <form class="clo-6" action="{{ path('viderpanier') }}">
+        <form class="clo-6" action="{# {{ path('viderpanier') }}  #}">
             <button class="btn btn-warning">Vider</button>
         </form>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}

@@ -61,14 +61,72 @@ class AcheteurController extends AbstractController
     //test : localhost:8000/search_results
     
 
-
     /**
-	* @Route("/cart", name="cart")
+	* @Route("/add_cart", name="add_cart")
 	*
     */
-    public function addToCart()
+    public function addToCart(Request $request)
     {
-        return $this -> redirectToRoute('confirmation'); //si la commande est validée, on va vers la page confirmation
+        // RECUS EN POST : 
+        $quantite = $request -> request -> get('quantite');
+        $id = $request -> request -> get('id');
+
+        // creation du panier s'il n'existe pas déjà
+        $session = $request -> getSession();
+        if(!$session -> has('panier') ){
+            $session -> set('panier', array());
+        }
+        
+        // On enregistre dans le panier (en session) les infos du produit commandé :
+        $panier = $session -> get('panier');
+
+
+
+        // On check que le produit qu'on ajoute n'existe pas déja dans le panier
+        if(array_key_exists($id, $panier)){
+            $quantite_actuelle = $panier[$id]; 
+            $ajout_quantite = $quantite;
+            $nouvelle_quantite = $ajout_quantite + $quantite_actuelle;
+            //---
+            $panier[$id] = $nouvelle_quantite;
+        }
+        else{
+            $panier[$id] = (int) $quantite;
+        }
+
+        $session -> set('panier', $panier);
+
+        $this -> addFlash('success', 'Le produit '. $id .' a été ajouté au panier');
+        return $this -> redirectToRoute('product', ['id' => $id]);
+    }
+
+
+    /**
+	* @Route("/cart", name="show_cart")
+	*
+    */
+    public function showCart(Request $request)
+    {
+        $repo = $this -> getDoctrine() -> getRepository(Produit::class);
+        $session = $request -> getSession();
+
+        if($session -> has('panier')){
+            $panierSess = $session -> get('panier');
+        }
+        else{
+            return;
+        }
+
+        $panier = array(); // array qui sera composé d'objets Produits
+        foreach($panierSess as $key => $valeur){
+            $produit = $repo -> find($key);
+            $produit -> quantite = $valeur;
+            $panier[] = $produit;
+        }
+
+        return $this -> render('acheteur/panier.html.twig', [
+            'panier' => $panier
+        ]);
     } ///VOIR POUR LE PANIER, ON NE L'A PAS FAIT EN COURS
 
 

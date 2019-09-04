@@ -59,8 +59,16 @@
                             <button type="button" class="btn btn-success btn-sm"><a href="{{ path('logout') }}">Déconnexion</a></button>
                         {% endif %}
                             <button type="button" class="btn btn-success btn-sm"><a href="{{ path('register') }}">Inscription</a></button>
-                    </div>
+
+
+                        <button type="button" class="btn btn-outline-success btn-success" btn-sm href="{{ path('show_cart') }}">Panier {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }}){% endif %}</button>
+                        </div>
                 </nav>
+
+            {% for message in app.getFlashes('success') %}  
+            <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+
             <!--/ Bar de navigation -->
             {% block content %}
             {% endblock %}

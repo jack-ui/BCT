@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+
+{{ dump(app.session.get('panier')) }}
+
+
+
 <h1>Détails du produit : {{ produit.nom }}</h1>
 <ul>
     <li>Nom :  {{ produit.nom }}</li>
@@ -13,4 +18,19 @@
            
 </ul>
 <a class="btn btn-success" href="{{ path('shop_update_product', {id : produit.id }) }}">Modifier le produit</a>
+
+<form method="post" action="{{ path('add_cart') }}"> 
+    <input type="hidden" name="id" value="{{ produit.id }}" />
+    <div class="form-group">
+        <select name="quantite" class="form-control">
+            {% for i in 1..produit.stock %}
+                <option>{{ i }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Ajouter" />
+    </div>
+</form>
+
 {% endblock %}
