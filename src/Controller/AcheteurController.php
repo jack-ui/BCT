@@ -280,7 +280,9 @@ public function showShop($id)
             $panierSess = $session -> get('panier');
         }
         else{
-            return;
+            return $this -> render('acheteur/paniervide.html.twig', [
+
+            ]);
         }
 
         $panier = array(); // array qui sera composé d'objets Produits
@@ -293,7 +295,25 @@ public function showShop($id)
         return $this -> render('acheteur/panier.html.twig', [
             'panier' => $panier
         ]);
-    } ///VOIR POUR LE PANIER, ON NE L'A PAS FAIT EN COURS
+    } 
+
+
+
+    /**
+	* @Route("/delete_cart", name="delete_cart")
+	*
+    */
+
+    function deleteCart(Request $request)
+    {
+        //on vérifie dans la session que le panier existe et qu'il n'est pas vide, s'il n'est pas vide on le vide en le transformant en array vide. 
+        $session = $request->getSession();
+        if ($session->get("panier")) {
+            $panier = $session->set("panier", []);
+        };
+
+        return $this->redirectToRoute("index");
+    }
 
 
 

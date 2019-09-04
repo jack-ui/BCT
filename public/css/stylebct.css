@@ -1,3 +1,4 @@
+
 .textimg {
   color: white;
   font-size: 50px;
@@ -18,10 +19,10 @@ h2 {
   background-color: white !important;
 }
 
-a {
+/* a {
   text-decoration: none;
   color: white;
-}
+} */
 
 .btn {
   margin-left: 15px;
@@ -70,7 +71,7 @@ a {
 }
 
 .hero-button {
-  background-color: #FFCF40;
+  background-color: rgb(255, 199, 31);
   color: white;
   border: 1px solid #ffffff;
   margin-top: 5rem;
@@ -81,32 +82,24 @@ a {
   cursor: pointer;
 }
 .hero-button:hover {
-  background-color: #FFB03D;
+  background-color: rgb(255, 153, 0);
   border: 1px solid #ffffff;
 }
 /* -------hero----------- */
 
 .container2 {
-  background-image: linear-gradient(
-    to right top,
-    #afdca8,
-    #9adb8f,
-    #85da75,
-    #6ed859,
-    #52d636
-  );
-  /* height: 300px; */
+  background-color: rgb(114, 255, 58);
 }
 
 .textvert {
   color: white;
 }
 footer {
-  background: rgb(83, 82, 82);
+  background: rgb(119, 119, 119);
 }
 
 .footer_B {
-  background: rgb(83, 82, 82);
+  background: rgb(119, 119, 119);
 }
 
 footer a {
