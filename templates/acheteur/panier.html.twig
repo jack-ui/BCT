@@ -40,7 +40,7 @@
     </div>
 
     <div class="row">
-        <form class="clo-6" action="{# {{ path('viderpanier') }}  #}">
+        <form class="clo-6" action=" {{ path('delete_cart') }} ">
             <button class="btn btn-warning">Vider</button>
         </form>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}

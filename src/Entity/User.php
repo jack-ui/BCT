@@ -127,7 +127,7 @@ class User implements UserInterface
     private $adresse;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      * @Assert\Choice({"75", "77", "78", "91", "92", "93", "94", "95"}, message="Veuillez choisir votre département")
      */
     private $departement;
@@ -355,12 +355,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getDepartement(): ?int
+    public function getDepartement(): ?string
     {
         return $this->departement;
     }
 
-    public function setDepartement(int $departement): self
+    public function setDepartement(string $departement): self
     {
         $this->departement = $departement;
 

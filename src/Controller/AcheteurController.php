@@ -235,6 +235,24 @@ public function showShop()
 
 
 
+    /**
+	* @Route("/delete_cart", name="delete_cart")
+	*
+    */
+
+    function deleteCart(Request $request)
+    {
+        //on vérifie dans la session que le panier existe et qu'il n'est pas vide, s'il n'est pas vide on le vide en le transformant en array vide. 
+        $session = $request->getSession();
+        if ($session->get("panier")) {
+            $panier = $session->set("panier", []);
+        };
+
+        return $this->redirectToRoute("index");
+    }
+
+
+
 //----------------------------CONFIRMATION DE LA COMMANDE----------------------
 
     /**
