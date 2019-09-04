@@ -185,35 +185,38 @@ public function showShop($id)
 {
     
     $repository = $this->getDoctrine()->getRepository(Boutique::class);
-    $boutique = $repository->find(Boutique::class, $id);
+    $boutique = $repository->find($id);
 
-    return $this->render('acheteur/show_shops.html.twig', [
-        'boutique' => $boutique
+
+    return $this->render('acheteur/show_shop.html.twig', [
+        'boutique' => $boutique,
+
     ]);
 }
+ 
    
 //------------------------------------AFFICHER LES PRODUITS DE LA BOUTIQUE--------------------------------
 
  /**
-     * @Route("/buy/shop_product", name="buy/shop_product")
+     * @Route("/buy/shop_product{id}", name="buy/shop_product")
      */
-    public function showProductsInShop()
+    public function showProductShop($id)
     {
-//IL FAUT LIER LES PRODUITS A UNE BOUTIQUE
-
         //Fonction permettant d'afficher la liste des produits de la boutique
 
         //Traitement du formulaire
         $repository = $this->getDoctrine()->getRepository(Produit::class);
-        $produits = $repository->findAllByShop();
+            
+        $produits = $repository->findAllByShop($id);
 
-        $categories = $repository->findAllCategories();
+      
 
+        
 
         //Afficher la vue
         return $this->render('acheteur/products_table.html.twig', [
-            'produits' => $produits,
-            'categories' => $categories
+            'produits' => $produits
+           
         ]);
     }
 

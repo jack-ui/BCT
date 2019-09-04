@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    
-    <h1>Bienvenue sur la Boutique</h1>
+{# {% if p.boutiqueId is not null %}
+    <h1>Bienvenue sur la Boutique {{ p.boutiqueId.nomBoutique }}</h1>
+ {% endif %} #}
     <p>Nombre de produits : {{ produits | length }}</p>
 
-    <h2>Les produits de la boutique</h2>
+    <h2>Nos produits :</h2>
 
 
-<a class="btn btn-success" href="{{ path('/buy/show_shops') }}">Retour à la liste des boutiques</a>
+<a class="btn btn-success" href="{{ path('search_results') }}">Retour à la liste des résultats</a>
 
 
   
@@ -60,13 +61,13 @@
                     
                    
                     <td>
-                        <a href="{{ path('cart' ) }}">
+                        <a href="{{ path('add_cart' ) }}">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
                     </td>
                    
                 </tr>
-
+                {% endfor %}
             
 
         </tbody>

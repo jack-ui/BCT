@@ -93,7 +93,7 @@ class Produit
      */
     private $boutiqueId;
 
-    public function getBoutiqueId(): ?int
+    public function getBoutiqueId()
     {
         return $this->boutiqueId;
     }
