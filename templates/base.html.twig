@@ -31,17 +31,17 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="">Accueil <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">A propos<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ path('about_us') }}">A propos<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Boutique<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ path('buy/show_shops') }}">Boutiques<span class="sr-only">(current)</span></a>
                             </li>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contact<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ path('contact') }}">Contact<span class="sr-only">(current)</span></a>
                             </li>
                             </li>
                         </ul>
@@ -57,6 +57,8 @@
                             <button type="button" class="btn btn-success btn-sm"><a href="{{ path('login') }}">Connexion</a></button>
                         {% else %}
                             <button type="button" class="btn btn-success btn-sm"><a href="{{ path('profile', { id : app.user.id }) }}">Profil</a></button>
+                            <button type="button" class="btn btn-success btn-sm"><a href="{{ path('cart') }}">Panier</a></button>
+
 
                             <button type="button" class="btn btn-success btn-sm"><a href="{{ path('logout') }}">Déconnexion</a></button>
                         {% endif %}
@@ -77,30 +79,30 @@
                             <div class="row text-center d-flex justify-content-center pt-5 mb-2">
                                 <div class="col-md-2 mb-3">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="#!">CGU</a>
+                                        <a href="{{ path('cgu') }}">CGU</a>
                                     </h6>
                                 </div>
                                
                                 <div class="col-md-2 mb-3">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="#!">Copyright</a>
+                                        <a href="{{ path('copyrights') }}">Copyright</a>
                                     </h6>
                                 </div>
            
                                 <div class="col-md-2 mb-2">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="#!">Qui sommes nous?</a>
+                                        <a href="{{ path('about_us') }}">Qui sommes nous?</a>
                                     </h6>
                                 </div>
                                 <div class="col-md-2 mb-2">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="#!">SAV/Nous contacter</a>
+                                        <a href="{{ path('contact') }}">SAV/Nous contacter</a>
                                     </h6>
                                 </div>
                             
                                 <div class="col-md-2 mb-2">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="#!">Recrutement</a>
+                                        <a href="{{ path('career') }}">Recrutement</a>
                                     </h6>
                                 </div>
         
