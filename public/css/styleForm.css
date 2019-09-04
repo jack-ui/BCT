@@ -2,6 +2,10 @@
     width: 50%;
     margin-bottom: 70px;
 }
+
+#card_form_login_background{
+    height: 560px;
+}
 h2{
     font-family: 'Manjari', sans-serif;
 }

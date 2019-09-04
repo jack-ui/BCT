@@ -95,19 +95,19 @@ h2 {
   color: white;
 }
 footer {
-  background: rgb(119, 119, 119);
+  background: rgb(255, 255, 255);
 }
 
 .footer_B {
-  background: rgb(119, 119, 119);
+  background: rgb(255, 255, 255);
 }
 
 footer a {
-  color: white;
+  color: rgb(44, 44, 44);
 }
 
 footer p {
-  color: white;
+  color:  rgb(44, 44, 44);
 }
 
 footer li {
