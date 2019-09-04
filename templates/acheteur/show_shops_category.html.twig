@@ -2,7 +2,10 @@
 
 {% block content %}
 
-<h1>Nos boutiques proposant des fruits:</h1>
+
+<h1>Nos boutiques proposant votre recherche :</h1>
+{# ça serait mieux une condition pour afficher produit.categorie mais je buggue #}
+
 {% for boutique in boutiques %}  
 {# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
 <ul>
