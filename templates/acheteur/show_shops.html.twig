@@ -24,7 +24,7 @@
             <p class="card-text"><strong>Région  : </strong>{{ boutique.region  }}</p>
         </div>
 		<div class="card-footer">
-			<p class="text-center"><a href="{{ path('buy/show_shop', { id: boutique.id}) }}" class="alert-link text-dark">Accés à la boutique </a></p>
+			<a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('buy/show_shop', { id: boutique.id}) }}" class="alert-link text-dark">Accés à la boutique </a>
         </div>
 	</div>
 </div>
