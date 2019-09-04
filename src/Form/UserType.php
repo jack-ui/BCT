@@ -69,7 +69,9 @@ class UserType extends AbstractType
 									),
           			  ))
 			->add('telephone', TextType::class)
-			->add('dateDeNaissance', BirthdayType::class)
+			->add('dateDeNaissance', BirthdayType::class, array(
+                'years' => range(1930, date('Y') - 16)
+            ))
 			->add('statut', ChoiceType::class, array(
 				'choices' => array(
 					'Acheteur' => '0',
