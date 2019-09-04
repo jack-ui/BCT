@@ -31,11 +31,22 @@
                 </tr>
                 
             </tbody>
+
+                {% endfor %}  
+
             <tr>
                 <th>Montant de votre commande</th>
             </tr>
 
-                {% endfor %}    
+
+            <tr>
+
+                
+                <td>{% set totalfinal = 0 %} {% for produit in panier %}{% set totalfinal = totalfinal + (produit.quantite * produit.prix) %}{% endfor %} {{ totalfinal }}</td>
+                
+            </tr>  
+
+            
         </table>
     </div>
 
