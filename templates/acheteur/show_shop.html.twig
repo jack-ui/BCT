@@ -10,9 +10,9 @@
 </div>
 {# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
 
+<div class="container">
 <div class="row">
-{% for boutique in boutiques %}
-    <div class="col-md-4 my-3">
+    <div class="col-md-12">
         <div class="card h-100">
             <div class="card-body text-center">
                 <h4 class="card-title text-info">
@@ -25,29 +25,14 @@
                 <p class="card-text"><strong>Région  : </strong>{{ boutique.region  }}</p>
             </div>
             <div class="row">
-                <div class="col-md-4 offset-4">
-                    <a class="btn btn-outline-success" href="{{ path('buy/show_shop', { id: boutique.id}) }}" class="alert-link text-dark">Accés à la boutique </a>
+                <div class="col-md-12">
+                    <a class="btn btn-outline-success" style="margin-left: 0;" href="{{ path('buy/show_shop', { id: boutique.id}) }}">Accés à la boutique </a>
                 </div>
             </div>
         </div>
     </div>
-    {% endfor %}
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 {# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
 {# <ul>
@@ -63,8 +48,5 @@
     <li>Région : {{ boutique.region }}</li>
    
 </ul> #}
-
-<a class="btn btn-success" href="{{ path('buy/shop_product', { id: boutique.id}) }}">Afficher les produits </a>
-
 
 {% endblock %}
