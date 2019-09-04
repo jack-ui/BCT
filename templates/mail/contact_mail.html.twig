@@ -1,0 +1,14 @@
+<img src="{{ absolute_url(asset('/img/header_email.png')) }}" />
+
+
+<h3>Mail Boutique : {{ data.subject }}</h3>
+
+<ul>
+	<li>Prénom : {{ data.firstname }}</li>
+	<li>Nom : {{ data.lastname }}</li>
+	<li>Email : <a href="mailto:{{ data.email }}">{{ data.email }}</a></li>
+</ul><hr/>
+
+<p>
+{{ data.message }}
+</p>
