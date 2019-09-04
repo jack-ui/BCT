@@ -109,71 +109,25 @@ class AcheteurController extends AbstractController
         ]);
     }
 
-//--------------------------AFFICHER LES BOUTIQUES QUI ONT DES FRUITS-------------------------------------
+//--------------------------AFFICHER LES BOUTIQUES par CATEGORIES de PRODUITS ------------------------------------
     /**
-	* @Route("/buy_fruits", name="buy_fruits")
+	* @Route("/category/{cat}", name="category")
 	*
     */
-    public function showShopFruits()
+    public function category($cat)
     {   
-        $repository = $this->getDoctrine()->getRepository(Boutique::class);
-        $boutiques = $repository->findAllFruits();
+        $repository = $this->getDoctrine()->getRepository(Produit::class);
+        $produits = $repository->findAllByCat($cat);
 
-        return $this->render('acheteur/show_shops_fruits.html.twig', [
+        $boutiques = array();
+        foreach($produits as $produit){
+            $boutiques[] = $produit -> getBoutiqueId();
+        }
+
+        return $this->render('acheteur/show_shops_category.html.twig', [
             'boutiques' => $boutiques
         ]);
         
-    }
-
-
-
-//--------------------------AFFICHER LES BOUTIQUES QUI ONT DES LEGUMES-------------------------------------
-    
-    /**
-	* @Route("/buy_vegetables", name="buy_vegetables")
-	*
-    */
-    public function showShopVegetables()
-    {
-        $repository = $this->getDoctrine()->getRepository(Boutique::class);
-        $boutiques = $repository->findAllVegetables();
-
-        return $this->render('acheteur/show_shops_vegetables.html.twig', [
-            'boutiques' => $boutiques
-        ]);
-    }
-//--------------------------AFFICHER LES BOUTIQUES QUI ONT DES PRODUITS LAITIERS-------------------------------------
-    
-    /**
-	* @Route("/buy_dairies", name="buy_dairies")
-	*
-    */
-    public function showShopDairies()
-    {
-        $repository = $this->getDoctrine()->getRepository(Boutique::class);
-        $boutiques = $repository->findAllDairies();
-
-        return $this->render('acheteur/show_shops_dairies.html.twig', [
-            'boutiques' => $boutiques
-        ]);
-
-    }
-
-
-//--------------------------AFFICHER LES BOUTIQUES QUI ONT DES OEUFS-------------------------------------
-    
-    /**
-	* @Route("/buy_eggs", name="buy_eggs")
-	*
-    */
-    public function showShopEggs()
-    {
-        $repository = $this->getDoctrine()->getRepository(Boutique::class);
-        $boutiques = $repository->findAllEggs();
-
-        return $this->render('acheteur/show_shops_eggs.html.twig', [
-            'boutiques' => $boutiques
-        ]);
     }
 
 //--------------------------AFFICHER UNE SEULE BOUTIQUE-------------------------------------

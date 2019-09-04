@@ -2,46 +2,59 @@
 
 {% block content %}
 
-<h1>Quelques unes de nos boutiques :</h1>
-{% for boutique in boutiques %}  
+<div class='banniere_form'>
+        <h2 class="card-header info-color white-text text-center py-4">
+            Quelques unes de nos boutiques :
+        </h2>
+    </div>
+
+ 
 {# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
-<ul>
+<div class="row">
+{% for boutique in boutiques %} 
+    <div class="col-md-4 my-3">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h4 class="card-title text-info">
+                    {{ boutique.nomBoutique }}
+                </h4>
+                <p class="card-text"><strong>Description  : </strong>{{ boutique.description  }}</p>
+                <p class="card-text"><strong>Livraison  : </strong>{{ boutique.livraison  }}</p>
+                <p class="card-text"><strong>Mode de paiement  : </strong>{{ boutique.paiement  }}</p>
+                <p class="card-text"><strong>Département  : </strong>{{ boutique.departement  }}</p>
+                <p class="card-text"><strong>Région  : </strong>{{ boutique.region  }}</p>
+            </div>
+            <div class="card-footer row">
+                <div class="col-md-4 offset-4">
+                    <a class="btn btn-outline-success" href="{{ path('buy/show_shop', { id: boutique.id}) }}" class="alert-link text-dark">Accés à la boutique </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{# <ul>
     
     <li>Nom : {{ boutique.nomBoutique }}</li>
     <li>Description : {{ boutique.description }}</li>
     <li>Livraison : {{ boutique.livraison }}</li>
     <li>Mode de paiement : {{ boutique.paiement }}</li>
-    {# <li>Adresse : {{ boutique.adresse }}</li>
+    <li>Adresse : {{ boutique.adresse }}</li>
     <li>Code postal : {{ boutique.codePostal }}</li>
-    <li>Ville : {{ boutique.ville }}</li> #}
+    <li>Ville : {{ boutique.ville }}</li>
     <li>Département :{{ boutique.departement }}</li>
     <li>Région : {{ boutique.region }}</li>
    
-</ul>
+</ul> #}
 
-<a class="btn btn-success" href="{{ path('buy/shop_product', { id: boutique.id}) }}">Afficher les boutiques </a>
-{% endfor %}
+{# <a class="btn btn-success" href="{{ path('buy/shop_product', { id: boutique.id}) }}">Afficher les boutiques </a> #}
+
 
 {# ---------------------------------------------------------------- #}
 
-<div class="col-md-8 offset-md-2 my-4">
-    <div class="card h-100">
-        <div class="card-body text-center">
-            <h4 class="card-title text-info">
-				{{ boutique.nomBoutique }}
-            </h4>
-            <p class="card-text"><strong>Description  : </strong>{{ boutique.description  }}</p>
-            <p class="card-text"><strong>Livraison  : </strong>{{ boutique.livraison  }}</p>
-            <p class="card-text"><strong>Mode de paiement  : </strong>{{ boutique.livraison  }}</p>
-            <p class="card-text"><strong>Livraison  : </strong>{{ boutique.paiement  }}</p>
-            <p class="card-text"><strong>Livraison  : </strong>{{ boutique.livraison  }}</p>
-        </div>
-		<div class="card-footer">
-			<p class="text-center"><a href="{{ path('categorie', {cat : boutique.categorie } ) }}" class="alert-link text-dark">Retour vers la sélection de catégorie du boutique</a></p>
-			<p class="text-center"><a href="{{ path('accueil') }}" class="alert-link text-dark">Accés à la boutique </a></p>
-        </div>
-	</div>
-</div>
+
 
 
 {# ------------------------------------------------------------------ #}
