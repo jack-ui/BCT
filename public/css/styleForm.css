@@ -1,9 +1,18 @@
 .card{
     width: 50%;
+    margin-bottom: 70px;
 }
 h2{
     font-family: 'Manjari', sans-serif;
 }
 #form-control, #btn{
     margin-top: 10px;
+}
+#btn {
+    margin-left: 0px;
+}
+#card_form_login 
+{
+    height: 300px;
+    margin-bottom: 70px;
 }
