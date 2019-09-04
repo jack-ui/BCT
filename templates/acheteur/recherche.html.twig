@@ -10,14 +10,15 @@
         </form>
     </div>
     <div class="row">Merci de renseigner un code postal ou un nom de produit</div>
+     {# compléter la fonction recherche pr le code postal #}
     <div class="row">
-        <button class="col-lg-4 space-between"><a href="">FRUITS</a></button>
-        {# On met quoi dans les href ? la liste des boutique qui vend des fruits ? des légumes ? etc #}
-        <button class="col-lg-4 space-between"><a href="">LEGUMES</a></button>
+        <button class="col-lg-4 space-between"><a href="{{ path('buy_fruits')}}">FRUITS</a></button>
+       
+        <button class="col-lg-4 space-between"><a href="{{ path('buy_vegetables')}}">LEGUMES</a></button>
     </div>
     <div class="row">
-        <button class="col-lg-4 space-between"><a href="">PRODUITS LAITIERS</a></button>
-        <button class="col-lg-4 space-between"><a href="">OEUFS</a></button>
+        <button class="col-lg-4 space-between"><a href="{{ path('buy_dairies')}}">PRODUITS LAITIERS</a></button>
+        <button class="col-lg-4 space-between"><a href="{{ path('buy_eggs')}}">OEUFS</a></button>
     </div>
 
 </div>

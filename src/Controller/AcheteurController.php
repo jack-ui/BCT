@@ -109,7 +109,53 @@ class AcheteurController extends AbstractController
         ]);
     }
 
+//--------------------------AFFICHER LES BOUTIQUES QUI ONT DES FRUITS-------------------------------------
+    
+    public function showShopFruits()
+    {
+        return $this->render('', [
 
+        ]);
+    }
+
+
+
+//--------------------------AFFICHER LES BOUTIQUES QUI ONT DES LEGUMES-------------------------------------
+    
+    public function showShopVegetables()
+    {
+        return $this->render('', [
+
+        ]);
+    }
+//--------------------------AFFICHER LES BOUTIQUES QUI ONT DES PRODUITS LAITIERS-------------------------------------
+    
+    public function showShopDairies()
+    {
+        return $this->render('', [
+
+        ]);
+
+    }
+
+
+//--------------------------AFFICHER LES BOUTIQUES QUI ONT DES OEUFS-------------------------------------
+    
+    public function showShopEggs()
+    {
+        return $this->render('', [
+
+        ]);
+    }
+
+//--------------------------AFFICHER UNE SEULE BOUTIQUE-------------------------------------
+    
+public function showShop()
+{
+    return $this->render('', [
+
+    ]);
+}    
 //------------------------------------AFFICHER LES PRODUITS DE LA BOUTIQUE--------------------------------
 
     
