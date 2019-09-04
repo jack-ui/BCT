@@ -216,7 +216,9 @@ public function showShop()
             $panierSess = $session -> get('panier');
         }
         else{
-            return;
+            return $this -> render('acheteur/paniervide.html.twig', [
+
+            ]);
         }
 
         $panier = array(); // array qui sera composé d'objets Produits
@@ -229,7 +231,7 @@ public function showShop()
         return $this -> render('acheteur/panier.html.twig', [
             'panier' => $panier
         ]);
-    } ///VOIR POUR LE PANIER, ON NE L'A PAS FAIT EN COURS
+    } 
 
 
 
