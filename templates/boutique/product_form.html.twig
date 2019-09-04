@@ -1,24 +1,57 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('/css/styleForm.css') }}">
+{% endblock %}
 {% block content %}
-    <h1>Formulaire d'un produit</h1>
 
-    {{ form_start(produitForm) }}
-    <div class="row">
-        <div class="col-6">
-            {# {{ form_row(produitForm.id) }} #}
-            {{ form_row(produitForm.nom) }}
-            {{ form_row(produitForm.description) }}
-            {{ form_row(produitForm.categorie) }}
-            {{ form_row(produitForm.stock) }}       
+<div class='banniere_form'>
+    <h2 class="card-header info-color white-text text-center py-4">
+        Formulaire produits boutique
+    </h2>
+</div>
+
+{{ form_start(produitForm) }}
+<div class="row" style="background-color:  rgb(255, 206, 57)">
+    <div class="col-md-12 col-xs-12 d-flex justify-content-center">
+        <div class="card">
+            <div class="card-body px-lg-9 pt-3">
+                <div class="col-12">
+                    <div class="md-form">
+                        {# {{ form_row(produitForm.id) }} #}
+                    </div>
+                    <div class="md-form">
+                        {{ form_row(produitForm.nom) }}
+                    </div>
+                    <div class="md-form">
+                        {{ form_row(produitForm.description) }}
+                    </div>
+                    <div class="md-form">
+                        {{ form_row(produitForm.categorie) }}
+                    </div>
+                    <div class="md-form">
+                        {{ form_row(produitForm.stock) }}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="md-form">
+                        {{ form_row(produitForm.prix) }}
+                    </div>
+                    <div class="md-form">
+                        {{ form_row(produitForm.file) }}
+                    </div>
+                    <div class="md-form">
+                        {{ form_row(produitForm.saisonnalite) }}
+                    </div>
+                    <div class="md-form">
+                        {{ form_row(produitForm.uniteMesure) }}
+                    </div>
+                    <div class="md-form">
+                        {{ form_row(produitForm.submit, { 'label' : 'Ajouter' } ) }}
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-6">
-            {{ form_row(produitForm.prix) }}
-            {{ form_row(produitForm.file) }}
-            {{ form_row(produitForm.saisonnalite) }}
-            {{ form_row(produitForm.uniteMesure) }}   
-        </div>
-        {{ form_row(produitForm.submit, { 'label' : 'Ajouter' } ) }}
     </div>
-    {{ form_end(produitForm) }}
+</div>
+{{ form_end(produitForm) }}
 {% endblock %}

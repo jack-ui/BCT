@@ -1,28 +1,43 @@
 {% extends 'base.html.twig' %}
 
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/styleForm.css') }}">
+{% endblock %}
 
 {% block content %}
-	<h1>Connexion</h1>
-	
-	
-	<form method="post" action="{{ path('connexion_check') }}">
-	
-		<div class="form-group">
-			<input type="text" class="form-control" name="_username" value="{{ lastUsername }}" placeholder="Pseudo" />
-		</div>
-		
-		<div class="form-group">
-			<input type="password" class="form-control" name="_password" placeholder="Mot de passe" />
-		</div>
-		
-		<div class="form-group">
-			<input type="submit" class="btn btn-primary" value="Connexion"/>
-		</div>
-	</form>	
+    <div class='banniere_form'>
+        <h2 class="card-header info-color white-text text-center py-4">
+            Connexion
+        </h2>
+    </div>
+    <div class="row" style="background-color: rgb(255, 153, 0)">
+        <div class='col-md-12 col-xs-12 d-flex justify-content-center'>
+            <div class="card">
+                <form method="post" action="{{ path('connexion_check') }}" class="card-body px-lg-9 pt-3">
+                    <div class="col-12">
+                        <div class="md-form">
+                            <input type="text" class="form-control" id="form-control" name="_username" value="{{ lastUsername }}" placeholder="Pseudo"/>
+                        </div>
 
-	<div class="row">
-		Si tu n'as pas de compte inscris toi ici : <button type="submit" class="btn btn-primary"><a href="{{ path('register') }}">Inscription</a></button>
-	</div>
-	
+                        <div class="md-form">
+                            <input type="password" class="form-control" id="form-control" name="_password" placeholder="Mot de passe"/>
+                        </div>
+
+                        <div class="md-form">
+                            <input type="submit" class="btn btn-outline-success btn-success btn-sm" id="btn" value="Connexion"/>
+                        </div>
+
+                        <div class="row"><span>Si tu n'as pas de compte inscris toi ici <span>
+                            <a href="{{ path('register') }}">Inscription</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+
 {% endblock %}
