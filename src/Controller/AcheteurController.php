@@ -185,12 +185,30 @@ public function showShop($id)
 {
     
     $repository = $this->getDoctrine()->getRepository(Boutique::class);
-    $boutique = $repository->find(Boutique::class, $id);
+    $boutique = $repository->find($id);
+
+
+    return $this->render('acheteur/show_shop.html.twig', [
+        'boutique' => $boutique,
+
+    ]);
+}
+
+//--------------AFFICHER LA BOUTIQUE QUI PROPOSE LE PRODUIT EN RESULTAT DE RECHERCHE----------------
+
+ /**
+ * @Route("/buy/show_shop/results", name="buy/show_shop_results")
+ */
+public function showShopResults()
+{
+    
+    $repository = $this->getDoctrine()->getRepository(Boutique::class);
+    $boutique = $repository->findShopByProduct();
 
     return $this->render('acheteur/show_shops.html.twig', [
         'boutique' => $boutique
     ]);
-}
+}    
    
 //------------------------------------AFFICHER LES PRODUITS DE LA BOUTIQUE--------------------------------
 
