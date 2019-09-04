@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Quelques unes de nos boutiques :</h1>
+<h1>Nos boutiques proposant des légumes :</h1>
 {% for boutique in boutiques %}  
 {# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
 <ul>
@@ -19,7 +19,7 @@
    
 </ul>
 
-<a class="btn btn-success" href="{{ path('buy/shop_product', { id: boutique.id}) }}">Afficher les produits </a>
+<a class="btn btn-success" href="{{ path('buy/shop_product', {id : boutique.id}) }}">Afficher les produits </a>
 {% endfor %}
 
 {% endblock %}

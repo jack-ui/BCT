@@ -47,4 +47,73 @@ class BoutiqueRepository extends ServiceEntityRepository
         ;
     }
     */
+    /**
+	* @return Boutiques[] Returns an array of Boutique objects
+	* Fonction pour récupérer toutes les boutiques qui ont des fruits
+	*/
+    public function findAllFruits($fruits){
+
+		$builder = $this->createQueryBuilder('b');
+
+		return $builder
+		-> select('b')
+        -> join('b.id', 'p', 'WITH',  'p.categorie = :fruits')
+        -> setParameter('fruits', $fruits)
+		-> getQuery()
+		-> getResult();
+    }
+
+
+    /**
+	* @return Boutiques[] Returns an array of Boutique objects
+	* Fonction pour récupérer toutes les boutiques qui ont des légumes
+	*/
+    public function findAllVegetables($veggies){
+
+		$builder = $this->createQueryBuilder('b');
+
+		return $builder
+		-> select('b')
+        -> join('b.id', 'p', 'WITH',  'p.categorie = :veggies')
+        -> setParameter('veggies', $veggies)
+		-> getQuery()
+		-> getResult();
+    }
+
+    
+    /**
+	* @return Boutiques[] Returns an array of Boutique objects
+	* Fonction pour récupérer toutes les boutiques qui ont des produits laitiers
+	*/
+    public function findAllDairies($dairies){
+
+		$builder = $this->createQueryBuilder('b');
+
+		return $builder
+		-> select('b')
+        -> join('b.id', 'p', 'WITH',  'p.categorie = :dairies')
+        -> setParameter('dairies', $dairies)
+		-> getQuery()
+		-> getResult();
+    }
+
+    
+    /**
+	* @return Boutiques[] Returns an array of Boutique objects
+	* Fonction pour récupérer toutes les boutiques qui ont des oeufs
+	*/
+    public function findAllEggs($eggs){
+
+		$builder = $this->createQueryBuilder('b');
+
+		return $builder
+		-> select('b')
+        -> join('b.id', 'p', 'WITH',  'p.categorie = :eggs')
+        -> setParameter('eggs', $eggs)
+		-> getQuery()
+		-> getResult();
+    }
+    
+ 
+    
 }
