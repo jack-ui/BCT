@@ -38,10 +38,10 @@
         {# compléter la fonction recherche pr le code postal #}
         <div class="row">
             <div class="col-md-12 text-center">
-                <a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('buy_fruits')}}">FRUITS</a>
-                <a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('buy_vegetables')}}">LEGUMES</a>
-                <a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('buy_dairies')}}">PRODUITS LAITIERS</a>
-                <a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('buy_eggs')}}">OEUFS</a>
+                <a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('category', {'cat' : 'fruit' } )}}">FRUITS</a>
+                <a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('category', {'cat' : 'legume' } )}}">LEGUMES</a>
+                <a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('category', {'cat' : 'produit laitier' } )}}">PRODUITS LAITIERS</a>
+                <a class="btn btn-outline-success my-2 my-sm-2" href="{{ path('category', {'cat' : 'oeuf' } )}}">OEUFS</a>
             </div>
         </div>
     </div>

@@ -79,6 +79,26 @@ class ProduitRepository extends ServiceEntityRepository
 		-> getResult();
 	}
 
+
+	 /**
+	* Returns an array of Boutique objects
+	* Fonction pour récupérer toutes les boutiques qui ont des oeufs
+	*/
+    public function findAllByCat($cat){
+
+		$builder = $this->createQueryBuilder('p');
+
+		return $builder
+		-> select('p')
+		-> distinct('p.boutiqueId')
+		-> where('p.categorie = :cat')
+		-> setParameter(':cat', $cat)
+		-> getQuery()
+		-> getResult();
+    }
+
+
+
 	public function findAllByShop($id){
 
 		
