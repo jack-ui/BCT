@@ -1,32 +1,86 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-	<h1>Bonjour {{ app.user.username }} bienvenue sur votre profil   {% if app.user.statut == 1 %}
-            <p>Vendeur !</p> 
+
+    <div class='banniere_form'>
+        <h2 class="card-header info-color white-text text-center py-4">
+            Bonjour
+            {{ app.user.username }}
+            bienvenue sur votre profil
+            {% if app.user.statut == 1 %}
+                <p>Vendeur !</p>
             {% elseif app.user.statut == 0 %}
-            <p>Acheteur !</p>
+                <p>Acheteur !</p>
             {% else %}
-            <p>Statut invalide !</p>
+                <p>Statut invalide !</p>
             {% endif %}
-      
-    </h1>
-	
-	<ul>
-		<li>Prénom : {{ app.user.prenom }}</li>
-		<li>Nom : {{ app.user.nom }}</li>
-        <li>Email : {{ app.user.email }}</li>
-        <li>Adresse :{{ app.user.adresse }}</li>
-        <li>Ville : {{ app.user.ville }}</li>
-        <li>Code postal : {{ app.user.codePostal }}</li>
-        <li>Téléphone : {{ app.user.telephone }}</li>
-        <li>Date de naissance : {{ app.user.dateDeNaissance | date('d/m/Y') }}</li>
-        <li>Genre : {% if app.user.sexe == 'm' %}
-            <p>homme</p>
-            {% else %}
-            <p>femme</p>
-            {% endif %}
-        </li>
-    </ul>
-    <a class="btn btn-success" href="{{ path('profile_update', {'id' : user.id}) }}">Modifier mon profil</a>
-	
+        </h2>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-info">
+                            {{ app.user.username }}
+                        </h4>
+                        <p class="card-text">
+                            <strong>Prénom  :
+                            </strong>
+                            {{ app.user.prenom  }}</p>
+                        <p class="card-text">
+                            <strong>Nom  :
+                            </strong>
+                            {{ app.user.nom  }}</p>
+                        <p class="card-text">
+                            <strong>Email  :
+                            </strong>
+                            {{ app.user.email  }}</p>
+                        <p class="card-text">
+                            <strong>Adresse  :
+                            </strong>
+                            {{ app.user.adresse  }}</p>
+                        <p class="card-text">
+                            <strong>Ville  :
+                            </strong>
+                            {{ app.user.ville  }}</p>
+                        <p class="card-text">
+                            <strong>Code postal  :
+                            </strong>
+                            {{ app.user.codePostal  }}</p>
+                        <p class="card-text">
+                            <strong>Téléphone  :
+                            </strong>
+                            {{ app.user.telephone  }}</p>
+                        <p class="card-text">
+                            <strong>Date de naissance  :
+                            </strong>
+                            {{ app.user.dateDeNaissance | date('d/m/Y') }}</p>
+                        <p class="card-text">
+                            <strong>Genre  :
+                            </strong>
+                            {% if app.user.sexe == 'm' %}
+                                <p>homme</p>
+                            {% else %}
+                                <p>femme</p>
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2 text-center">
+                            <a  href="{{ path('profile_update', {'id' : user.id}) }}">
+                            <button class="btn btn-outline-success"> Modifier mon profil </button>
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
