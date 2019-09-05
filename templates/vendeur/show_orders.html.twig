@@ -7,27 +7,38 @@
 <table>
     <tr>
         <th>Id</th>
-        <th>Statut</th>
+        <th>Etat</th>
         <th>Date</th>
-        <!-- Cours à revoir avec ProduitCommande <th>Produit</th> -->
-        <th>Poids total</th>
-        <th>Référence</th>
-        <th>Voir Détails</th> <!--On y mettra les infos du panier-->
-        <th>Modifier</th>
-        <th>Supprimer</th>
+        <th>Montant</th>
+        <th>BoutiqueId</th>
+        <th>UserId</th>
+        <th colspan="4">Actions</th> 
+        >
     </tr>
     <tr>
-        {# {% for c in commandes %} #}
-        <td></td>
-        <td></td>
-        <td></td>
-    <!-- <td></td> -->
-        <td></td>
-        <td></td>
-        <td>👁️</td>
-        <td>🖊️</td>
-        <td>🗑️</td>
-        {# {% endfor %} #}
+        {% for c in commandes %} 
+        <td>{{ c.id }}</td>
+        <td>{{ c.etat }}</td>
+        <td>{{ c.id }}</td>
+        <td>{{ c.date | date('d/m/Y') }}</td>
+        <td>{{ c.montant }}</td>
+        <td>{{ c.boutiqueId }}</td>
+        <td>{{ c.userId }}</td>
+
+        <td>
+            <a href="{{path('')}}">
+                <i class="fas fa-eye"></i>
+            </a>
+            <a href="{{path('shop_update_order', {id : c.id})}}">
+                <i class="fas fa-edit"></i>
+            </a>
+            <a href="{{path('shop_order_delete', {id : c.id})}}"></a>
+                <i class="fas fa-trash-alt"></i>
+            </a>
+
+        
+        </td>
+        {% endfor %}
     </tr>
 </table>
 

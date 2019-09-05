@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+<h1>Fiche de la commande n°{{c.id }}</h1>
+
+    <ul> 
+        <li>Référence : {{ c.id }}</li>
+        <li>Etat : {{ c.etat }}</li>
+        <li>Date : {{ c.date | date('d/m/Y') }}</li>
+        <li>Montant : {{ c.montant }}</li>
+        <li>Réf Boutique :{{ c.boutiqueId }}</li>
+        <li>Réf Client : {{ c.userId }}</li>
+    </ul>    
+      
+            {# <a class="btn btn-success" href="{{path('show_orders')}}">
+                Retour sur la liste des commandes
+            </a> #}
+           
+
+
+
+{% endblock %}

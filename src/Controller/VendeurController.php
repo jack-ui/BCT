@@ -44,7 +44,9 @@ class VendeurController extends AbstractController
         // Fonction qui redirige sur une page
         // Affiche le dashboard vendeur
         
+        
         return $this -> render('vendeur/dashboard_vendeur.html.twig');
+        
     }
     // test : localhost:8000/dashboard
 
@@ -53,23 +55,21 @@ class VendeurController extends AbstractController
 
 
     /**
-     * @Route("/show_orders", name="show_orders")
+     * @Route("/show_order", name="show_order")
      */
-    public function showOrders()
+    public function showOrder()
     {   
         //Fonction qui retourne un affichage des commandes gérées par le vendeur
 
         //1 : Récupérer toutes les commandes dans la BDD
-	    //$repo = $this -> getDoctrine() -> getRepository(Commande::class);
-        //$commandes = $repo -> findAll();
+        $commande = $this->getBoutiqueId(); 
 
-        //PREVOIR UN AFFICHAGE PAR STATUT ? comme les catégories de produits vues dans le cours
-        //$statuts = $repository->findAllCommandeStatut();
-       
-        //2 : Afficher la liste des commandes sous forme de tableau
-        return $this->render('vendeur/show_orders.html.twig', [
-            //'commandes' => $commandes, 
-            //'statuts' => '$statuts'
+		$commande = $this->getDoctrine()->getRepository(Commande::class);
+		    
+        //2 : Afficher une commande 
+        return $this->render('vendeur/show_order.html.twig', [
+            'commande' => $commande, 
+         
         ]);
         
     }// test : localhost:8000/show_orders
@@ -82,8 +82,8 @@ class VendeurController extends AbstractController
         //Fonction permettant de modifier une commande en fonction de l'id
 
         // 1 : Traitement du formulaire 
-        //$manager = $this->getDoctrine()->getManager();
-        // $commande = $manager->find(Commande::class,$id) 
+        // $manager = $this->getDoctrine()->getManager();
+        // $commande = $manager->find(Commande::class,$id); 
 
         // $form = $this -> createForm(CommandeType::class, $commande);
 	    // $form -> handleRequest($request);
@@ -97,10 +97,10 @@ class VendeurController extends AbstractController
         //     return $this -> redirectToRoute('show_orders');
         // }
        
-        //2 : Afficher la vue
-        return $this->render('vendeur/order_form.html.twig', [
-            //'commandeForm'=> $form ->createView()
-        ]);
+        // //2 : Afficher la vue
+        // return $this->render('vendeur/order_form.html.twig', [
+        //     'commandeForm'=> $form ->createView()
+        // ]);
 
               
     }
@@ -115,13 +115,13 @@ class VendeurController extends AbstractController
         //Fonction permettant de supprimer une commande en fonction de l id
 
         // 1 : Traitement du formulaire
-        // $manager = $this->getDoctrine()->getManager();
-        // $commande = $manager->find(Commande::class,$id) 
+        $manager = $this->getDoctrine()->getManager();
+        $commande = $manager->find(Commande::class,$id); 
 
-        // $manager -> remove($commande);
-		// $manager -> flush(); 
+        $manager -> remove($commande);
+		$manager -> flush(); 
 		   
-		// return $this -> addFlash('success', 'La commande n°' .$commande->getReference() . ' a bien été supprimée !');
+		return $this -> addFlash('success', 'La commande n°' .$commande->getId() . ' a bien été supprimée !');
         
 
         //Redirection sur la liste des commandes

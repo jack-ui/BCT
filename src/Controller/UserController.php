@@ -60,21 +60,20 @@ class UserController extends AbstractController
 //-----------------------------GESTION DU PROFIL PAR UN USER--------------------------------------------	
 	
 	 /**
-     * @Route("/profile_{id}", name="profile")
+     * @Route("/profile", name="profile")
      */
-    public function showProfile($id, ObjectManager $manager)
+    public function showProfile()
     {   
         //Fonction qui affiche le profil de l'utilisateur actuellement connecté en fonction de l'id 
         //Récupérer l'id du vendeur actuellement connecté
 
 
         // 1 : Traitement du formulaire
-        $manager = $this->getDoctrine()->getManager();
-        $user = $manager->find(User::class,$id); 
-        
+		
+
         //2 : Afficher la vue
         return $this -> render('user/show_profile.html.twig', [
-			'user'=> $user
+			
 		 ]);
         
     }
@@ -89,7 +88,7 @@ class UserController extends AbstractController
     {   
         //Fonction qui modifie les infos d'un vendeur 
         //1 : Récupérer le vendeur connecté pour modifier son profil 
-		$user = $manager->find(Produit::class,$id);
+		$user = $manager->find(User::class,$id);
 		
         // 2 : Traitement du formulaire 
         $form = $this -> createForm(UserType::class, $user);
