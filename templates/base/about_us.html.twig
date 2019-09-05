@@ -1,19 +1,30 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/style_vue.css') }}">
+{% endblock %}
+
 {% block content %}
 
-<main>
-    <h1>Qui sommes-nous ?</h1>
+<div class="container-fluid ">
+    <div class="image_baniere"></div>
+</div>
 
-    <p>Derrière ce beau projet qu'est Bio Chez Toi se trouvent cinq développeurs et développeuses passionnés, la Team BEAMM (Bart, Emilie, Ange, Malik et Magali). Ces cinq férus de technologies se sont rencontrés durant leur formation avec Webforce3 et ont décidé de créer un marketplace permettant aux gens d'acheter en local des produits sains, en résumé : utiliser la technologie pour mieux respecter la/notre nature.</p> 
+<div class="container ">
+<div class="row">
+    <div class="col-md-8 offset-2 text-center"><h1 class="titre success">Qui sommes-nous ?</h1></div><br><br>
 
-    <p>Avec le concept de <a href="{{ path('locavore') }}">locavore</a> nous avons trouvé une idée qui nous parle à tous et pensons pouvoir remettre de l'humain au centre de la consommation tout en suivant des principes écologiques qui nous sont chers. Consommer intelligent est sûrement l'un des objectifs les plus difficiles à mettre en place dans notre société de consommation, nous espérons que notre site pourra être une ressource pour toute personne voulant changer ses habitudes d'achats, rencontrer les producteurs de sa communauté et manger plus sain.</p>
+    <div class="col-md-8 offset-2"><p style="text-align: center;">Derrière ce beau projet qu'est Bio Chez Toi se trouvent cinq développeurs et développeuses passionnés, la Team BEAMM (Bart, Emilie, Ange, Malik et Magali). Ces cinq férus de technologies se sont rencontrés durant leur formation avec Webforce3 et ont décidé de créer un marketplace permettant aux gens d'acheter en local des produits sains, en résumé : utiliser la technologie pour mieux respecter la/notre nature. <br>
 
-    <p>Nous esperons aussi être une aide pour ces petits producteurs, un endroit où trouver leurs clients, où acquérir une visibilité et où, peut-être, trouver de futurs partenaires.</p> 
+    Avec le concept de <a href="{{ path('locavore') }}">locavore</a> nous avons trouvé une idée qui nous parle à tous et pensons pouvoir remettre de l'humain au centre de la consommation tout en suivant des principes écologiques qui nous sont chers. Consommer intelligent est sûrement l'un des objectifs les plus difficiles à mettre en place dans notre société de consommation, nous espérons que notre site pourra être une ressource pour toute personne voulant changer ses habitudes d'achats, rencontrer les producteurs de sa communauté et manger plus sain.<br>
 
-    <p>Jamais à cours d'idées, nous prévoyons beaucoup d'améliorations dans les mois à venir. Des statistiques pour aider les producteurs à avoir une vision claire de leur part de marché, un système de fidélisation à base de réductions, des espaces de discussion... Bio Chez Toi a pour vocation de devenir l'espace incontournable de tout consommateur averti dans un futur proche !</p>
+    Nous esperons aussi être une aide pour ces petits producteurs, un endroit où trouver leurs clients, où acquérir une visibilité et où, peut-être, trouver de futurs partenaires. <br>
 
-    <p>La Team BEAMM vous souhaite une très belle aventure locavore chez Bio Chez Toi ! N'hésitez pas à <a href="{{ path('contact') }}">nous contacter</a>, ça nous fait toujours plaisir !</p>
+    Jamais à cours d'idées, nous prévoyons beaucoup d'améliorations dans les mois à venir. Des statistiques pour aider les producteurs à avoir une vision claire de leur part de marché, un système de fidélisation à base de réductions, des espaces de discussion... Bio Chez Toi a pour vocation de devenir l'espace incontournable de tout consommateur averti dans un futur proche !<br>
+
+    La Team BEAMM vous souhaite une très belle aventure locavore chez Bio Chez Toi ! N'hésitez pas à <a href="{{ path('contact') }}">nous contacter</a>, ça nous fait toujours plaisir !</p>
+    </div>
 </main>
-
+</div>
+</div>
 {% endblock %}

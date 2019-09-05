@@ -20,7 +20,7 @@
 
         {% block body %}
             <!-- Barre de navigation -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
                     <a class="navbar-brand success" href="">BioChezToi</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -64,8 +64,7 @@
                         {% endif %}
                             
                         <a  class="btn btn-outline-success btn-success btn-sm" href="{{ path('show_cart') }}">
-                            <i class="fas fa-cart-plus"></i>
-                             {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }}){% endif %}</a>
+                            <i class="fas fa-cart-plus"></i> {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }}){% endif %}</a>
                         </div>
                 </nav>
 
@@ -77,12 +76,13 @@
 
             {% block content %}
             {% endblock %}
+            <hr class="rgba-white-light col-md-4 offset-4">
 
 
             
                 <!-- FOOTER -->
                 <footer>
-           
+
                     <footer class="page-footer font-small indigo">
         
                         <div class="container-fluid">
@@ -91,16 +91,16 @@
                             <div class="row text-center d-flex justify-content-center pt-5 mb-2">
                                 <div class="col-md-2 mb-3">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="{{ path('cgu') }}">CGU</a>
+                                        <a href="{{ path('cgu') }}">CGU et CGV</a>
                                     </h6>
                                 </div>
-                               
+
                                 <div class="col-md-2 mb-3">
                                     <h6 class="text-uppercase font-weight-bold">
                                         <a href="{{ path('copyrights') }}">Copyright</a>
                                     </h6>
                                 </div>
-           
+
                                 <div class="col-md-2 mb-2">
                                     <h6 class="text-uppercase font-weight-bold">
                                         <a href="{{ path('about_us') }}">Qui sommes nous?</a>
@@ -123,15 +123,14 @@
                             <hr class="rgba-white-light" style="margin: 0 15%;">
 
                             <hr class="clearfix d-md-none rgba-white-primary" style="margin: 10% 15% 5%;">
-        
-                        <div class="footer-copyright text-center py-3">© 2019 Copyright: TeamBeam 
-                            <a href="#"></a>
+
+                        <div class="footer-copyright text-center py-3">© 2019 Copyright: TeamBeamm 
                         </div>
                         </div>
                     </div>
                     </div>
                     </footer>
-           
+
             {% endblock %}
             {% block javascripts %}{% endblock %}
         </body>

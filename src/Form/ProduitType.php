@@ -41,20 +41,20 @@ class ProduitType extends AbstractType
             ->add('description',TextType::class)
             ->add('categorie', ChoiceType::class, array(
 				'choices' => array(
-                      'Sélectionnez votre région' => '0',
-				 	  'fruit' => 'fruit',
-                      'legume' => 'legume',
-                      'viande' => 'viande',
-                      'produit_laitier' => 'produit_laitier'
+                    'Sélectionnez votre catégorie de produit' => '0',
+				    'fruit' => 'fruit',
+                    'légume' => 'legume',
+                    'viande' => 'viande',
+                    'produit laitier' => 'produit_laitier'
 									),
           			  ))
-            ->add('uniteMesure', TextType::class, array(
-                'constraints' => array(
-                    new Assert\NotBlank(array(
-                        'message' => 'Veuillez renseigner le nom',
-                    )),
-                ),
-            ))
+            ->add('uniteMesure', ChoiceType::class, array(
+				'choices' => array(
+                    'Sélectionnez votre unité de mesure' => '0',
+				    'poids' => 'poids',
+                    'unite' => 'unité',
+									),
+          			  ))
 
 
             ->add('stock', IntegerType::class)
@@ -74,15 +74,14 @@ class ProduitType extends AbstractType
                 ),
             ))
 
-          
 
             ->add('saisonnalite', ChoiceType::class, array(
 				'choices' => array(
-                      'Sélectionnez votre région' => '0',
-				 	  'Eté' => 'Eté',
-                      'Printemps' => 'Printemps',
-                      'Automne' => 'Automne',
-                      'Hiver' => 'Hiver'
+                    'Sélectionnez la saison de votre produit' => '0',
+                    'Eté' => 'Eté',
+                    'Printemps' => 'Printemps',
+                    'Automne' => 'Automne',
+                    'Hiver' => 'Hiver'
 									),
           			  ))
 
