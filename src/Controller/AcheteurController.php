@@ -273,6 +273,24 @@ public function showShop($id)
     }
 
 
+//----------------------------VALIDATION DE LA COMMANDE----------------------
+
+    /**
+	* @Route("/place_order", name="place_order")
+	*
+    */
+
+    function PlaceOrder()
+    {
+        //on valide la commande en envoyant les données du panier dans la BDD : tables Commande et Produit Commande
+
+
+        
+
+        //Ensuite, on redirige vers la confirmation de commande 
+        return $this->redirectToRoute("confirmation");
+    }
+
 
 //----------------------------CONFIRMATION DE LA COMMANDE----------------------
 
