@@ -3,7 +3,7 @@
 {% block content %}
     
     <h1>Bienvenue sur la Boutique</h1>
-    <p>Nombre de produits : {{ produits | length }}</p>
+    <p>Nombre de produits : {{ app.user.boutiqueId.produits | length }}</p>
 
     <h2>Les produits de la boutique</h2>
 
@@ -47,7 +47,7 @@
 
         <tbody>
 
-            {% for p in produits %}
+            {% for p in app.user.boutiqueId.produits %}
 
                 <tr>
                     <td>{{ p.id }}</td>
