@@ -16,7 +16,7 @@
             {% endif %}
         </li>
     </ul>
-    <a class="btn btn-success" href="{{ path('profile_update', {id : app.user.id}) }}">Modifier mon profil</a>
+   
 	
         </h2>
     </div>
@@ -72,11 +72,12 @@
                         </p>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-2 text-center">
-                            <a  href="{{ path('dashboard') }}">
-                            <button class="btn btn-outline-success"> Retour sur le Dashboard</button>
-                            </a>
+                    <div class="row text-center">
+                        <div class="col-md-6 ">
+                            <a  href="{{ path('dashboard') }}"><button class="btn btn-outline-success"> Retour sur le Dashboard</button></a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ path('profile_update', {id : app.user.id}) }}"><button class="btn btn-outline-success">Modifier mon profil</button></a>
                         </div>
                     </div>
 

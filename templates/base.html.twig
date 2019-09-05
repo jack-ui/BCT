@@ -27,22 +27,22 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ path('index') }}">Accueil
-                            <span class="sr-only"></span>
+                            
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('about_us') }}">A propos<span class="sr-only"></span>
+                        <a class="nav-link" href="{{ path('about_us') }}">A propos
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('buy/show_shops') }}">Boutiques<span class="sr-only"></span>
+                        <a class="nav-link" href="{{ path('buy/show_shops') }}">Boutiques
                         </a>
                     </li>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('contact') }}">Contact<span class="sr-only"></span>
+                    <a class="nav-link" href="{{ path('contact') }}">Contact
                     </a>
                 </li>
             </li>
@@ -58,16 +58,16 @@
                             {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                             {% if not is_granted('ROLE_ADMIN') %}
                             #}
-    <a class="btn btn-outline-success btn-success btn-sm" href="{{ path('login') }}">Connexion</a>
-    <a class="btn btn-outline-success btn-success btn-sm" href="{{ path('register') }}">Inscription</a>
+    <a class="btn btn-outline-success btn-success btn-sm" style="padding: 10px 25px; font-size: 18px; font-weight: 600;" href="{{ path('login') }}">Connexion</a>
+    <a class="btn btn-outline-success btn-success btn-sm" style="padding: 10px 25px; font-size: 18px; font-weight: 600;" href="{{ path('register') }}">Inscription</a>
 {% else %}
-    <a class="btn btn-outline-success btn-success btn-sm" href="{{ path('profile', { id : app.user.id }) }}">Profil</a>
+    <a class="btn btn-outline-success btn-success btn-sm" style="padding: 10px 25px; font-size: 18px; font-weight: 600;" href="{{ path('profile', { id : app.user.id }) }}">Profil</a>
 
 
-    <a class="btn btn-outline-success btn-success btn-sm" href="{{ path('logout') }}">Déconnexion</a>
+    <a class="btn btn-outline-success btn-success btn-sm" style="padding: 10px 25px; font-size: 18px; font-weight: 600;" href="{{ path('logout') }}">Déconnexion</a>
 {% endif %}
 
-<a class="btn btn-outline-success btn-success btn-sm" href="{{ path('show_cart') }}">
+<a class="btn btn-outline-success btn-success btn-sm" style="padding: 10px 25px;" href="{{ path('show_cart') }}">
     <i class="fas fa-cart-plus"></i>
     {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }})
     {% endif %}
@@ -115,4 +115,17 @@
         <div class="footer-copyright text-center py-3">© 2019 Copyright: TeamBeamm
         </div>
     </div>
-</div></div></footer>{% endblock %}{% block javascripts %}{% endblock %}</body></html>
+</div></div></footer>{% endblock %}
+{% block javascripts %}
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+{% endblock %}</body></html>
