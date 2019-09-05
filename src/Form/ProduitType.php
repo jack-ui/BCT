@@ -54,9 +54,8 @@ class ProduitType extends AbstractType
 				    'poids' => 'poids',
                     'unite' => 'unité',
 									),
-          			  ))
-
-
+                        ))
+                        
             ->add('stock', IntegerType::class)
 
 

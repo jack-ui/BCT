@@ -107,18 +107,17 @@ class BoutiqueController extends AbstractController
 
         $produit = new Produit;
         $form = $this->createForm(ProduitType::class, $produit);
-        // $user = $this->getUser();
+        $boutique = $this -> getBoutique();
         
 
         // Traitement des infos du formulaire
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-           
-        //    if($user->getStatut() !== 1){}
-        //     $produit -> setBoutiqueId($user);
-        //     $user -> setBoutiqueId($produit);
-           
-        //     $manager->persist($user);
+
+            $produit -> setBoutiqueId($boutique);
+            $boutique -> setProduitId($produit);
+
+            $manager->persist($boutique);
 
             $manager->persist($produit);
 
