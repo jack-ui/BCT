@@ -1,41 +1,60 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/style_table.css') }}">
+{% endblock %}
+
 {% block content %}
 
-<h1>Tableau de gestion des User</h1>
+<div class='banniere_form'>
+    <h2 class="card-header info-color white-text text-center py-4">
+            Tableau de gestion des User
+    </h2>
+</div>
+
 
 <div class="row p-3">
+
         <a href="{{ path('admin_user_add') }}" class="btn btn-success">
             <i class="fas fa-plus-circle"></i>
             Ajouter un user</a>
-    </div>
+</div>
+
+    
+
+{# ---------------------------------------- #}
 
 
-    <table class="table table-stripped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Statut</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Pseudo</th>
-                <th>Adresse</th>
-                <th>Code Postal</th>
-                <th>Ville</th>
-                <th>Département</th>
-                <th>Région</th>
-                <th>Téléphone</th>
-                <th>Date de naissance</th>
-                <th>Genre</th>
-                <th colspan="3">Actions</th>
-                
-            </tr>
-        </thead>
 
-
-        <tbody>
-
-            {% for u in users %}
+<div class="table table-striped">
+  <!--for demo wrap-->
+ 
+  <div class="tbl-header ">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+            <th>Id</th>
+             <th>Statut</th>
+             <th>Nom</th>
+             <th>Prénom</th>
+             <th>Pseudo</th>
+             <th>Adresse</th>
+             <th>Code Postal</th>
+             <th>Ville</th>
+             <th>Département</th>
+             <th>Région</th>
+             <th>Téléphone</th>
+             <th>Date de naissance</th>
+             <th>Genre</th>
+             <th colspan="3">Actions</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+          {% for u in users %}
 
                 <tr>
                     <td>{{ u.id }}</td>
@@ -52,8 +71,6 @@
                     <td>{{ u.dateDeNaissance | date('d/m/Y') }}</td>
                     <td>{{ u.sexe }}</td>
                     
-                    
-                    
                     <td>
                         <a target="_blank" href="{{ path('admin_user', {id : u.id } ) }}">
                             <i class="fas fa-eye"></i>
@@ -65,16 +82,19 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('admin/shop_delete', {id : u.id } ) }}" onclick="return confirm('Etes-vous certain de vouloir supprimer cet utilisateur ?')">
+                        <a href="{{ path('admin_user_delete', {id : u.id } ) }}" onclick="return confirm('Etes-vous certain de vouloir supprimer cet utilisateur ?')">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
                 </tr>
 
             {% endfor %}
-
-        </tbody>
-
+        </tr>
+      </tbody>
     </table>
+  </div>
+</section>
+
+
 
 {% endblock %}
