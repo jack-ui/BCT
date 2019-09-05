@@ -75,7 +75,8 @@
                             </div>
                         </div>
                         {{ form_row(userForm.statut) }}
-                        {{ form_row(userForm.submit, { 'label' : 'Inscription' } ) }}
+                        {{ form_row(userForm.submit, { 'label' : 'Envoyer' } ) }}
+                        <em>En appuyant sur "Envoyer" vous acceptez nos <a href="{{ path('cgu')}}">CGU et CGV</a>.
                     </div>
                 </div>
             </div>

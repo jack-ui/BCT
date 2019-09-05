@@ -54,7 +54,8 @@
                             {{ form_row(boutiqueForm.file) }}
                         </div>
                         <div class="md-form">
-                            {{ form_row(boutiqueForm.submit, { 'label' : 'Modifier' } ) }}
+                            {{ form_row(boutiqueForm.submit, { 'label' : 'Envoyer' } ) }}
+                            <em>En appuyant sur "Envoyer" vous acceptez nos <a href="{{ path('cgu')}}">CGU et CGV</a>.
                         </div>
                     </div>
                 </div>
