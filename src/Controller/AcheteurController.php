@@ -46,7 +46,7 @@ class AcheteurController extends AbstractController
         //SELECT nom FROM produit WHERE nom = tomate 
         //IN (SELECT boutique_id FROM boutique WHERE id = id_boutique)
         // IN (SELECT localisation FROM boutique WHERE localisation LIKE 95%) 
-        //???????????????????????
+      
 
         //solution 1 pour simplifier : recherche uniquement par code postal ou par ville
         // Affichera la liste des boutiques de la ville

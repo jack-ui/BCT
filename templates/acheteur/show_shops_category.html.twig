@@ -4,19 +4,16 @@
 
 
 <h1>Nos boutiques proposant votre recherche :</h1>
-{# ça serait mieux une condition pour afficher produit.categorie mais je buggue #}
 
 {% for boutique in boutiques %}  
-{# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
+{#<div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
 <ul>
     
-    <li>Nom : {{ boutique.nomBoutique }}</li>
+    <li>Nom : <strong>"{{ boutique.nomBoutique }}"</strong></li>
     <li>Description : {{ boutique.description }}</li>
     <li>Livraison : {{ boutique.livraison }}</li>
     <li>Mode de paiement : {{ boutique.paiement }}</li>
-    {# <li>Adresse : {{ boutique.adresse }}</li>
-    <li>Code postal : {{ boutique.codePostal }}</li>
-    <li>Ville : {{ boutique.ville }}</li> #}
+    <li>Code Postal : {{ boutique.codePostal }}</li>
     <li>Département :{{ boutique.departement }}</li>
     <li>Région : {{ boutique.region }}</li>
    
