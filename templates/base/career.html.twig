@@ -2,6 +2,10 @@
 
 {% block content %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/style_vue.css') }}">
+{% endblock %}
+<div class="container">
 <main>
     <h1>Bio Chez Toi recrute !</h1>
 
@@ -14,4 +18,5 @@
     <p>Contact : recrutement@biocheztoi.com</p>
 
 </main>
+</div>
 {% endblock %}
