@@ -65,12 +65,8 @@
                     <td>{{ p.saisonnalite }}</td>
                     <td><img src="{{ asset('/photo/' ~ p.photo ) }}" height="60px"/></td>
                     <td>{{ p.uniteMesure }}</td>
-<<<<<<< HEAD
              
                     
-=======
-
->>>>>>> b0e48e216b62e293abf467060974bea995ac57bd
                     {% if app.user.statut == 1 %}
                         <td>
                             <a target="_blank" href="{{ path('product', {id : p.id } ) }}">
