@@ -76,12 +76,12 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('admin_user_update', {id : u.id } ) }}">
+                        <a target="_blank" href="{{ path('admin_user_update', {id : u.id } ) }}">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('admin_user_delete', {id : u.id } ) }}" onclick="return confirm('Etes-vous certain de vouloir supprimer cet utilisateur ?')">
+                        <a target="_blank" href="{{ path('admin_user_delete', {id : u.id } ) }}" onclick="return confirm('Etes-vous certain de vouloir supprimer cet utilisateur ?')">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
