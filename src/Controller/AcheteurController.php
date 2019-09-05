@@ -72,15 +72,15 @@ class AcheteurController extends AbstractController
         //Le résultat retourné sera la liste des produits correspondant au champs saisi ($term)
 
         else{
-            $produits = $repo->findTermSearchLocal($term, $user -> getDepartement());
+            $produits = $repo->findTermSearchLocal($term, $user -> getCodePostal());
             // if($produits == NULL ){
             
             //     return $this->addFlash('danger', 'Ce ' . $produits->getNom() . ' est indisponible actuellement');
             // }
           
         }
-        //Si l'utilisateur est connecté la recherche sera en fonction de $term et de $departement
-        //On veut que $departement du user soit = $departement de la boutique
+        //Si l'utilisateur est connecté la recherche sera en fonction de $term et du code postal du user
+        //On veut que $code postal du user soit = () $code postal de la boutique
         //Le résultat retourné sera la liste des produits correspondant au champs $term et disponibles dans le département du user
 
         
@@ -171,15 +171,16 @@ public function showShop($id)
     }
 
 
-//-------------------AFFICHER UN PRODUIT SELECTIONNE---------
+//-------------------AFFICHER UN PRODUIT SELECTIONNE---------------------------
 
-// Voir dans boutiquecontroller
+// Voir dans boutiquecontroller @Route("/product_{id}", name="product")
+
 
 
 
 
     
-//-----------------------------------AJOUTER AU PANIER-------------------------------------------------------------
+//----------------AJOUTER AU  PANIER--------------------------------------------
     /**
 	* @Route("/add_cart", name="add_cart")
 	*
