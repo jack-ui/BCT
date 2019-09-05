@@ -55,9 +55,7 @@
             <button class="btn btn-warning">Vider</button>
         </form>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <form class="clo-6" action="#">
-            <button class="btn btn-info">Payer</button>
-        </form>
+            <a href="{{ path('place_order') }}" class="btn btn-info">Payer</a>
         {% else %}
         <form class="clo-6" action="#">
             <a class="btn btn-info"  href="{{ path('login') }}" >Connexion</a>
