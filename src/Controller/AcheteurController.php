@@ -156,16 +156,12 @@ public function showShop($id)
      */
     public function showProductShop($id)
     {
-        //Fonction permettant d'afficher la liste des produits de la boutique
+        //Fonction permettant d'afficher la liste des produits de la boutique sélectionnée
 
-        //Traitement du formulaire
+        //On récupère les produits par boutique
         $repository = $this->getDoctrine()->getRepository(Produit::class);
             
         $produits = $repository->findAllByShop($id);
-
-      
-
-        
 
         //Afficher la vue
         return $this->render('acheteur/products_table.html.twig', [
@@ -175,6 +171,9 @@ public function showShop($id)
     }
 
 
+//-------------------AFFICHER UN PRODUIT SELECTIONNE---------
+
+// Voir dans boutiquecontroller
 
 
 
