@@ -1,25 +1,39 @@
-    {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-    {% block content %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/styleForm.css') }}">
+{% endblock %}
 
-    <h1>Nous contacter</h1>
+{% block content %}
 
-    <div id="contactForm" class="mt-4">
-        {{ form_start(form) }}
-            <div class="row">
-                <div class="col">{{ form_row(form.firstname) }}</div>
-                <div class="col">{{ form_row(form.lastname) }}</div>
-            </div>
-            <div class="row">
-                <div class="col">{{ form_row(form.phone) }}</div>
-                <div class="col">{{ form_row(form.email) }}</div>
-            </div>
-            {{ form_rest(form) }}
-                <div class="form-group">
-                <button class="btn btn-primary">Envoyer</button>
+    <div class='banniere_form'>
+        <h2 class="card-header info-color white-text text-center py-4">
+            Nous contacter
+        </h2>
+    </div>
+    {{ form_start(form) }}
+
+    <div class="row" id="contactForm" style="background-color: rgb(255, 153, 0)">
+        <div class="col-md-12 col-xs-12 d-flex justify-content-center">
+            <div class="card" id="btn">
+                <div class="card-body px-lg-9 pt-3">
+                    <div class="col-12">
+                        <div class="md-form">{{ form_row(form.firstname) }}</div>
+                        <div class="md-form">{{ form_row(form.lastname) }}</div>
+                    </div>
+                    <div class="col-12">
+                        <div class="md-form">{{ form_row(form.phone) }}</div>
+                        <div class="md-form">{{ form_row(form.email) }}</div>
+
+                        {{ form_rest(form) }}
+                        <div class="form-group">
+                            <button class="btn btn-primary">Envoyer</button>
+                        </div>
+                    </div>
                 </div>
-        {{ form_end(form) }}
+            </div>
+        </div>
 
     </div>
-
-    {% endblock %}
+    {{ form_end(form) }}
+{% endblock %}
