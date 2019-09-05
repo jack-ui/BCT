@@ -4,17 +4,12 @@
 <h1>Résultat(s) de votre recherche :</h1>
 <ul>
 {% for p in produits %}
-    <li>{{ p.nom }}</li>
-    <li>{{ p.description }}</li>
-    <li>{{ p.prix }} €</li>
-    <li>{{ p.stock }} kgs</li>
-    <li>{% if p.boutiqueId is not null %}Boutique : {{ p.boutiqueId.nomBoutique }} {% endif %}</li>
-    <li>Produit disponible dans la boutique : 
-        
-
-    </li>
-    {# <li> vous dans le $user->getDepartement </li> #}
-
+    <li>Produit(s) <strong>"{{ p.nom }}"</strong> {% if p.boutiqueId is not null %} disponible(s) dans la boutique : <strong>{{ p.boutiqueId.nomBoutique }}</strong> {% endif %}</li>
+    <li>Description : {{ p.description }}</li>
+    <li>Prix : {{ p.prix }} €</li>
+    <li>Stock :{{ p.stock }} kgs</li>
+    {# <li>Code postal : {{ p.boutiqueId.codePostal}} </li> #}
+ 
 </ul>
 <a class="btn btn-success" href="{{ path('buy/show_shop', {id : p.boutiqueId.id}) }}">Aller sur la boutique</a>  
 {% endfor %}

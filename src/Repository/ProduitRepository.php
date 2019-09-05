@@ -36,7 +36,7 @@ class ProduitRepository extends ServiceEntityRepository
     public function findAllBySearch($term){
 		
 		$term = '%' . $term . '%';
-		// ex : blanche ---> %blanche%
+		
 		
 		$builder = $this -> createQueryBuilder('p');
 		return $builder 
@@ -54,27 +54,29 @@ class ProduitRepository extends ServiceEntityRepository
 
 		return $builder
 		-> select('p')
-        -> where('p.nom LIKE :term')
-		-> orWHere('p.categorie LIKE :term')
-		-> orWHere('p.description LIKE :term')
+		// -> join('p.boutiqueId', 'b', 'WITH','b.id = :boutiqueId' )
+		-> where('p.nom LIKE :term')
+		// -> orWHere('p.categorie LIKE :term')
+		// -> orWHere('p.description LIKE :term')
 		-> setParameter(':term', $term)
+		// -> setParameter(':boutiqueId', $id)
 		-> getQuery()
 		-> getResult();
 	}
 
-	public function findTermSearchLocal($term, $dpt){
+	public function findTermSearchLocal($term, $cp){
 
 		$term = '%' . $term . '%';
 		$builder = $this->createQueryBuilder('p');
 
 		return $builder
 		-> select('p')
-        -> join('p.boutiqueId', 'b', 'WITH',  'b.departement = :dpt')
+        -> join('p.boutiqueId', 'b', 'WITH',  'b.codePostal = :cp')
         -> where('p.nom LIKE :term')
-		-> orWHere('p.categorie LIKE :term')
-		-> orWHere('p.description LIKE :term')
+		// -> orWHere('p.categorie LIKE :term')
+		// -> orWHere('p.description LIKE :term')
 		-> setParameter(':term', $term)
-		-> setParameter(':dpt', $dpt)
+		-> setParameter(':cp', $cp)
 		-> getQuery()
 		-> getResult();
 	}
