@@ -79,7 +79,7 @@ class Commande
         return $this->userId;
     }
 
-    public function setUserId(int $userId): self
+    public function setUserId($userId): self
     {
         $this->userId = $userId;
 
@@ -92,7 +92,7 @@ class Commande
         return $this->boutiqueId;
     }
 
-    public function setBoutiqueId(int $boutiqueId): self
+    public function setBoutiqueId($boutiqueId): self
     {
         $this->boutiqueId = $boutiqueId;
 
