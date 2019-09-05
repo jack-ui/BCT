@@ -21,7 +21,7 @@
         {% block body %}
             <!-- Barre de navigation -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-                    <a class="navbar-brand success" href="">BioChezToi</a>
+                    <a class="navbar-brand success" href="{{ path('index') }}">BioChezToi</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -97,13 +97,13 @@
 
                                 <div class="col-md-2 mb-3">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="{{ path('copyrights') }}">Copyright</a>
+                                        <a href="{{ path('locavore') }}">Locavore ?</a>
                                     </h6>
                                 </div>
 
                                 <div class="col-md-2 mb-2">
                                     <h6 class="text-uppercase font-weight-bold">
-                                        <a href="{{ path('about_us') }}">Qui sommes nous?</a>
+                                        <a href="{{ path('about_us') }}">Qui sommes nous ?</a>
                                     </h6>
                                 </div>
                                 <div class="col-md-2 mb-2">

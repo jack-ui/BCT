@@ -66,7 +66,7 @@ class BoutiqueController extends AbstractController
     public function showProducts()
     {
 
-        //Fonction permettant d'afficher la liste des produits de la boutique
+        //Fonction permettant d'afficher la liste des produits de la boutique du vendeur actuellement connecté
 
         //Traitement du formulaire
         //$repository = $this->getDoctrine()->getRepository(Boutique::class);
