@@ -44,7 +44,9 @@ class VendeurController extends AbstractController
         // Fonction qui redirige sur une page
         // Affiche le dashboard vendeur
         
+        
         return $this -> render('vendeur/dashboard_vendeur.html.twig');
+        
     }
     // test : localhost:8000/dashboard
 
