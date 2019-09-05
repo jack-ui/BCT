@@ -3,20 +3,28 @@
 {% block content %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('/css/style_vue.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/style_vue.css') }}">
 {% endblock %}
 <div class="container">
-<main>
-    <h1>Bio Chez Toi recrute !</h1>
+    <div class="row">
+        <div class="col-md-8 offset-2 text-center">
+            <h1 class="titre">Bio Chez Toi recrute !</h1><br>
 
-    <h2>La Team BEAMMM cherche son/sa stagiaire développeur/développeuse web.</h2>
+            <h3>La Team BEAMMM cherche son/sa stagiaire développeur/développeuse web.</h2><br><br>
 
-    <p>La mission : Nous épauler sur le travail de développement de Bio Chez Toi et en profiter pour apprendre tout un tas de choses. Le site est principalement conçu sous Symfony, avec utilisation de php, html et css, bootstrap et un petit peut de javascript.</p>
+                <div class="col-md-8 offset-2">
+                    <p style="text-align: center;">La mission : Nous épauler sur le travail de développement de Bio Chez
+                        Toi et en profiter pour
+                        apprendre tout un tas de choses. Le site est principalement conçu sous Symfony, avec utilisation
+                        de
+                        php, html et css, bootstrap et un petit peut de javascript.
 
-    <p>Le profil recherché : Quelqu'un de passionné. Peu importe les diplômes ou l'expérience. Toute candidature sera considérée (et on y répondra !).</p>
+                    Le profil recherché : Quelqu'un de passionné. Peu importe les diplômes ou l'expérience. Toute
+                        candidature sera considérée (et on y répondra !).
 
-    <p>Contact : recrutement@biocheztoi.com</p>
+                    Contact : recrutement@biocheztoi.com</p>
 
-</main>
-</div>
-{% endblock %}
+                   </div>
+                </div>
+                </div>
+                {% endblock %}
