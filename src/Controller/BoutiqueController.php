@@ -107,19 +107,31 @@ class BoutiqueController extends AbstractController
 
         $produit = new Produit;
         $form = $this->createForm(ProduitType::class, $produit);
+        // $user = $this->getUser();
+        
 
         // Traitement des infos du formulaire
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+           
+        //    if($user->getStatut() !== 1){}
+        //     $produit -> setBoutiqueId($user);
+        //     $user -> setBoutiqueId($produit);
+           
+        //     $manager->persist($user);
+
             $manager->persist($produit);
 
             $produit -> uploadFile();
             //gestion de la photo
+
+            
+
             
             $manager->flush();
 
 
-            $this->addFlash('success', 'Félicitations');
+            $this->addFlash('success', 'le produit '. $produit->getNom() . ' a bien été ajouté');
             return $this->redirectToRoute('shop');
         }
 
@@ -149,7 +161,7 @@ class BoutiqueController extends AbstractController
 
             $manager->flush();
 
-            $this->addFlash('success', 'Félicitations');
+            $this->addFlash('success', 'le produit '. $produit->getNom() . ' a bien été modifié');
             return $this->redirectToRoute('shop');
         }
 

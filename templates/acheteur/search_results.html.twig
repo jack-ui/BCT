@@ -11,6 +11,8 @@
     {# <li>Code postal : {{ p.boutiqueId.codePostal}} </li> #}
  
 </ul>
+
 <a class="btn btn-success" href="{{ path('buy/show_shop', {id : p.boutiqueId.id}) }}">Aller sur la boutique</a>  
+
 {% endfor %}
 {% endblock %}
