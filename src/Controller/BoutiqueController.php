@@ -64,6 +64,7 @@ class BoutiqueController extends AbstractController
      * @Route("/shop", name="shop")
      */
     public function showProducts()
+        //Route pour afficher les produits d'une boutique
     {
 
         //Fonction permettant d'afficher la liste des produits de la boutique
