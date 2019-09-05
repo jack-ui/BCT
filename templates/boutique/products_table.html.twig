@@ -1,30 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    
+
     <h1>Bienvenue sur la Boutique</h1>
   
     <p>Nombre de produits : {{ app.user.boutiqueId.produits | length }}</p>
 
     <h2>Les produits de la boutique</h2>
 
-{% if app.user.statut == 1 %}
-<div class="row p-3">
-        <a href="{{ path('shop_add_product') }}" class="btn btn-success">
-            <i class="fas fa-plus-circle"></i>
-            Ajouter un produit</a>
-    </div>
-{% else %}
-<a class="btn btn-success" href="{{ path('/buy/show_shops') }}">Retour à la liste des boutiques</a>
-
-{% endif %}
-  
+    {% if app.user.statut == 1 %}
+        <div class="row p-3">
+            <a href="{{ path('shop_add_product') }}" class="btn btn-success">
+                <i class="fas fa-plus-circle"></i>
+                Ajouter un produit</a>
+        </div>
+    {% else %}
+        <a class="btn btn-success" href="{{ path('/buy/show_shops') }}">Retour à la liste des boutiques</a>
+    {% endif %}
 
 
     <table class="table table-stripped">
         <thead>
             <tr>
-                <th>Id produit</th>
                 <th>Nom</th>
                 <th>Description</th>
                 <th>Catégorie</th>
@@ -36,13 +33,12 @@
                 
 
                 {% if app.user.statut == 1 %}
-                <th colspan="3">Actions</th>
+                    <th colspan="3">Actions</th>
                 {% else %}
-                <th>Ajout Panier</th>
+                    <th>Ajout Panier</th>
                 {% endif %}
-                
-                
-                
+
+
             </tr>
         </thead>
 
@@ -69,30 +65,41 @@
                     <td>{{ p.saisonnalite }}</td>
                     <td><img src="{{ asset('/photo/' ~ p.photo ) }}" height="60px"/></td>
                     <td>{{ p.uniteMesure }}</td>
+<<<<<<< HEAD
              
                     
+=======
+
+>>>>>>> b0e48e216b62e293abf467060974bea995ac57bd
                     {% if app.user.statut == 1 %}
-                    <td>
-                        <a target="_blank" href="{{ path('product', {id : p.id } ) }}">
-                            <i class="fas fa-eye"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{{ path('shop_update_product', {id : p.id } ) }}">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{{ path('shop_delete_product', {id : p.id } ) }}" onclick="return confirm('Etes-vous certain de vouloir supprimer le produit')">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </td>
+                        <td>
+                            <a target="_blank" href="{{ path('product', {id : p.id } ) }}">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('shop_update_product', {id : p.id } ) }}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('shop_delete_product', {id : p.id } ) }}" onclick="return confirm('Etes-vous certain de vouloir supprimer le produit')">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
                     {% else %}
-                    <td>
-                        <a href="{{ path('cart' ) }}">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                    </td>
+                        <td>
+                            <a href="{{ path('cart' ) }}">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </td>
+
+                        <td>
+                            <a target="_blank" href="{{ path('product', {id : p.id } ) }}">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </td>
+
                     {% endif %}
                 </tr>
 

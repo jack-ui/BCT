@@ -5,7 +5,7 @@
 
 <div class='banniere_form'>
     <h2 class="card-header info-color white-text text-center py-4">
-            Ma boutique :
+            La boutique {{ boutique.nomBoutique }}
     </h2>
 </div>
 {# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <a class="btn btn-outline-success" style="margin-left: 0;" href="{{ path('buy/shop_product',{id : boutique.id}) }}">Voir les produits </a>
+                    <a class="btn btn-outline-success" style="margin-left: 0;" href="{{ path('buy/shop_product', {id : boutique.id}) }}">Voir les produits </a>
                 </div>
             </div>
         </div>
