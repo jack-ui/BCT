@@ -69,15 +69,14 @@ class BoutiqueController extends AbstractController
         //Fonction permettant d'afficher la liste des produits de la boutique
 
         //Traitement du formulaire
-        $repository = $this->getDoctrine()->getRepository(Produit::class);
-        $produits = $repository->findAll();
+        //$repository = $this->getDoctrine()->getRepository(Boutique::class);
+       
+       // $boutique = $this -> getUser() -> getBoutiqueId();
 
-        $categories = $repository->findAllCategories();
-
+      
         //Afficher la vue
         return $this->render('boutique/products_table.html.twig', [
-            'produits' => $produits,
-            'categories' => $categories
+            //'boutique' => $boutique,
         ]);
     }
 

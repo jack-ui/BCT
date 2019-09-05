@@ -145,7 +145,7 @@ class Boutique implements \Serializable
     /**
      * Une boutique peut avoir 0 produits min et N produit max => OnetoMany
      *
-     * @ORM\OneToMany(targetEntity="Produit", mappedBy="id")
+     * @ORM\OneToMany(targetEntity="Produit", mappedBy="boutiqueId")
      *                                table       Clé étrangère
      *
      *
