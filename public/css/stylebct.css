@@ -31,7 +31,7 @@ h2 {
 
 .nav-link:hover{
   background-color: #FFC127;
-  color: #fff;
+  color: #fff!important;
 }
 
 /* a {
