@@ -3,6 +3,7 @@
 {% block content %}
     
     <h1>Bienvenue sur la Boutique</h1>
+  
     <p>Nombre de produits : {{ app.user.boutiqueId.produits | length }}</p>
 
     <h2>Les produits de la boutique</h2>
@@ -32,6 +33,7 @@
                 <th>Saisonnalité</th>
                 <th>Photo</th>
                 <th>Unité de mesure</th>
+                
 
                 {% if app.user.statut == 1 %}
                 <th colspan="3">Actions</th>
@@ -67,6 +69,7 @@
                     <td>{{ p.saisonnalite }}</td>
                     <td><img src="{{ asset('/photo/' ~ p.photo ) }}" height="60px"/></td>
                     <td>{{ p.uniteMesure }}</td>
+             
                     
                     {% if app.user.statut == 1 %}
                     <td>
