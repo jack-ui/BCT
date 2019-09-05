@@ -1,3 +1,4 @@
+
 h1{
     font-size: 30px;
     color: #fff;
@@ -21,18 +22,18 @@ h1{
   }
   th{
     padding: 20px 15px;
-    text-align: left;
-    font-weight: 500;
-    font-size: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
     color: #000;
     text-transform: uppercase;
   }
   td{
     padding: 15px;
-    text-align: left;
+    text-align: center;
     vertical-align:middle;
     font-weight: 300;
-    font-size: 12px;
+    font-size: 15px;
     color: #000;
     border-bottom: solid 1px rgba(255,255,255,0.1);
   }
@@ -43,8 +44,8 @@ h1{
   @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
   body{
     background: #fff;
-    
     font-family: 'Roboto', sans-serif;
+    
   }
 
   section{
