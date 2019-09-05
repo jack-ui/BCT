@@ -102,7 +102,7 @@ class Boutique implements \Serializable
     private $adresse;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      * @Assert\Choice({"75", "77", "78", "91", "92", "93", "94", "95"}, message="Veuillez choisir votre département")
      */
     private $departement;
@@ -243,12 +243,12 @@ class Boutique implements \Serializable
     }
 
 
-    public function getDepartement(): ?int
+    public function getDepartement(): ?string
     {
         return $this->departement;
     }
 
-    public function setDepartement(int $departement): self
+    public function setDepartement(string $departement): self
     {
         $this->departement = $departement;
 

@@ -42,35 +42,35 @@ class BoutiqueType extends AbstractType
 			->add('ville', TextType::class)
             ->add('codePostal', IntegerType::class)
             ->add('adresse', TextareaType::class)
-            ->add('departement', ChoiceType::class, array(
+			->add('departement', ChoiceType::class, array(
 				'choices' => array(
 								'Sélectionnez votre département' => '0',
 									'75 - Paris' => '75',
 									'77 - Seine-et-Marne' => '77',
 									'78 - Yvelines' => '78',
-	                                '91 - Essonne' => '91',
-                                    '92 - Hauts-de-Seine' => '92',
-                                    '93 - Seine-Saint-Denis' => '93',
-                                    '94 - Val-de-Marne' => '94',
-                                    '95 - Val-d\'Oise' => '95',
-                                    ),
-                ))
+				 	  				'91 - Essonne' => '91',
+									'92 - Hauts-de-Seine' => '92',
+									'93 - Seine-Saint-Denis' => '93',
+									'94 - Val-de-Marne' => '94',
+									'95 - Val-d\'Oise' => '95',
+									),
+          			  ))
             ->add('region', ChoiceType::class, array(
 				'choices' => array(
-                      'Sélectionnez votre région' => '0',
-				 	  'Auvergne-Rhône-Alpes' => 'ARA',
-                      'Bourgogne-Franche-Comté' => 'BFC',
-                      'Bretagne' => 'BRE',
-                      'Centre-Val de Loire' => 'CVL',
-                      'Corse' => 'COR',
-                      'Grand Est' => 'GES',
-                      'Hauts-de-France' => 'HDF',
-                      'Île-de-France' => 'IDF',
-                      'Normandie' => 'NOR',
-                      'Nouvelle-Aquitaine' => 'NAQ',
-                      'Occitanie' => 'OCC',
-                      'Nouvelle-Aquitaine' => 'PDL',
-                      'Provence-Alpes-Côte d\'Azur' => 'PAC',
+                        'Sélectionnez votre région' => '0',
+                        'Auvergne-Rhône-Alpes' => 'ARA',
+                        'Bourgogne-Franche-Comté' => 'BFC',
+                        'Bretagne' => 'BRE',
+                        'Centre-Val de Loire' => 'CVL',
+                        'Corse' => 'COR',
+                        'Grand Est' => 'GES',
+                        'Hauts-de-France' => 'HDF',
+                        'Île-de-France' => 'IDF',
+                        'Normandie' => 'NOR',
+                        'Nouvelle-Aquitaine' => 'NAQ',
+                        'Occitanie' => 'OCC',
+                        'Nouvelle-Aquitaine' => 'PDL',
+                        'Provence-Alpes-Côte d\'Azur' => 'PAC',
 									),
           			  ))
             ->add('telephone', TextType::class)
