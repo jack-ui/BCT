@@ -78,13 +78,7 @@ class AdminController extends AbstractController
 
 			$manager = $this -> getDoctrine() -> getManager();
 			$manager -> persist($user);
-			
-
-			// On enregistre la photo en BDD et sur le serveur. 
-			if($user -> getFile() != NULL){
-			    $user -> uploadFile();
-			}
-			
+						
 			$manager -> flush();
 			
 	   

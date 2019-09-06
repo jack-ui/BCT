@@ -45,11 +45,11 @@ class AcheteurController extends AbstractController
         //Recherche par produit ici tomate
         //SELECT nom FROM produit WHERE nom = tomate 
         //IN (SELECT boutique_id FROM boutique WHERE id = id_boutique)
-        // IN (SELECT localisation FROM boutique WHERE localisation LIKE 95%) 
+        // IN (SELECT localisation FROM boutique WHERE localisation LIKE local%) 
       
 
-        //solution 1 pour simplifier : recherche uniquement par code postal ou par ville
-        // Affichera la liste des boutiques de la ville
+        //solution 1 pour simplifier : recherche par code postal
+        // Affichera la liste des boutiques ayant le code postal saisi
 
         //------------------------------------------------------------
 
@@ -59,36 +59,46 @@ class AcheteurController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Produit::class);
         $user = $this->getUser();
 
-        if ($user == NULL) {
-            $produits = $repo->findTermSearch($term);
-            // if($produits == NULL ){
-
-            //     return 'Ce ' . $produits->getNom() . ' est indisponible actuellement';
-            // }
-
-
-        }
         //Si l'utilisateur n'est pas connecté la recherche sera uniquement en fonction de $term
         //Le résultat retourné sera la liste des produits correspondant au champs saisi ($term)
+        if ($user == NULL) {
+            $produits = $repo->findTermSearch($term);
+            if($produits == NULL ){
 
-        else{
-            $produits = $repo->findTermSearchLocal($term, $user -> getCodePostal());
-            // if($produits == NULL ){
+               $this->addFlash('danger','Ce produit est indisponible actuellement');
+            }
 
-            //     return $this->addFlash('danger', 'Ce ' . $produits->getNom() . ' est indisponible actuellement');
-            // }
 
         }
-        //Si l'utilisateur est connecté la recherche sera en fonction de $term et du code postal du user
-        //On veut que $code postal du user soit = () $code postal de la boutique
-        //Le résultat retourné sera la liste des produits correspondant au champs $term et disponibles dans le département du user
+        else
+        {    //Si l'utilisateur est connecté la recherche sera en fonction de $term et du code postal du user
+            //On veut que $code postal du user soit = $code postal de la boutique
+            //Le résultat retourné sera la liste des produits correspondant au champs $term et ayant le cp du user
+            $produits = $repo->findTermSearchLocal($term, $user -> getCodePostal());
+            if($produits == NULL){
 
+                $this->addFlash('danger', $user->getNom(). ' Ce produit est indisponible dans votre ville');
+            }
 
-
+        }
         return $this->render('acheteur/search_results.html.twig', [
-            'produits' => $produits,
+            'produits' => $produits
         ]);
+
+        // $term2 = $request->query->get('champs');
+        // $repo2 = $this->getDoctrine()->getRepository(Boutique::class);
+        // $user = $this->getUser();
+
+        // if($user == NULL OR $user !== NULL)
+        // {    
+        //     //Recherche par code postal $term = champs saisi par le user en anonyme ou connecté
+        //     $produits = $repo->findByTerm($term2);
+        //     return $this->render('acheteur/search_results.html.twig', [
+        //         'boutiques' => $boutiques
+        //     ]);
+        // }
     }
+        
     //test : localhost:8000/search_results
 
     //------------------------------------AFFICHER DES BOUTIQUES ---------------------------------------------

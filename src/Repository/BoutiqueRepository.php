@@ -49,7 +49,18 @@ class BoutiqueRepository extends ServiceEntityRepository
     */
   
 
+    public function findByTerm($term2){
 
+		$term2 = $term2 . '%';
+		$builder = $this->createQueryBuilder('b');
+
+		return $builder
+		-> select('b')
+		-> where('b.codePostal LIKE :term2')
+		-> setParameter(':term2', $term2)
+		-> getQuery()
+		-> getResult();
+	}
   
 
     
