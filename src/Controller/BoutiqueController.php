@@ -46,10 +46,10 @@ class BoutiqueController extends AbstractController
 
             $boutique -> uploadFile();
             //gestion de la photo
-            
+
             $manager->flush();
 
-            $this->addFlash('success', 'La création de votre boutique a bien été prise en compte');
+            $this->addFlash('success', 'Félicitations');
             return $this->redirectToRoute('dashboard');
         }
 
@@ -70,10 +70,10 @@ class BoutiqueController extends AbstractController
 
         //Traitement du formulaire
         //$repository = $this->getDoctrine()->getRepository(Boutique::class);
-       
+
        // $boutique = $this -> getUser() -> getBoutiqueId();
 
-      
+
         //Afficher la vue
         return $this->render('boutique/products_table.html.twig', [
             //'boutique' => $boutique,
@@ -107,26 +107,19 @@ class BoutiqueController extends AbstractController
 
         $produit = new Produit;
         $form = $this->createForm(ProduitType::class, $produit);
-        $boutique = $this -> getBoutique();
-        
+        $boutique = $this -> getUser() -> getBoutiqueId();
+
 
         // Traitement des infos du formulaire
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $produit -> setBoutiqueId($boutique);
-            $boutique -> setProduitId($produit);
-
+            // $produit -> setBoutiqueId($boutique); // pas necessaire car faite dans la fonction add de boutique entity
+            $boutique -> addProduits($produit);
             $manager->persist($boutique);
-
             $manager->persist($produit);
-
             $produit -> uploadFile();
             //gestion de la photo
-
-            
-
-            
             $manager->flush();
 
 

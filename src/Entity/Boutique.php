@@ -106,7 +106,7 @@ class Boutique implements \Serializable
      * @Assert\Choice({"75", "77", "78", "91", "92", "93", "94", "95"}, message="Veuillez choisir votre département")
      */
     private $departement;
-    
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -155,14 +155,14 @@ class Boutique implements \Serializable
 
 
 
-    
+
     /**
      * Une boutique peut avoir 0 commandes min et N commandes max => OnetoMany
-     * 
+     *
      * @ORM\OneToMany(targetEntity="Commande", mappedBy="id")
      *                                table       Clé étrangère
-     * 
-     * 
+     *
+     *
      * Contient toutes les commandes du membre (Array composé d'objets commande)
      */
     private $commandes;
@@ -180,6 +180,14 @@ class Boutique implements \Serializable
         return $this;
     }
 
+    public function addProduits(Produit $produit): self
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produit[] = $produit;
+            $produit->setBoutiqueId($this);
+        }
+        return $this;
+    }
 
     public function getProduits()
     {
@@ -193,7 +201,7 @@ class Boutique implements \Serializable
     }
 
 
-    public function getUserId(): ?int
+    public function getUserId()
     {
         return $this->userId;
     }
@@ -432,7 +440,7 @@ class Boutique implements \Serializable
 
 
     public function serialize(){}
-    public function unserialize($arg){}  
+    public function unserialize($arg){}
 
 
 
