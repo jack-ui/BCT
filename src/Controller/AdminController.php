@@ -52,7 +52,7 @@ class AdminController extends AbstractController
     {   
         //Fonction pour afficher un profil vendeur ou acheteur en fonction de l'id
         $repository = $this->getDoctrine()->getRepository(User::class);
-        $user = $repository->find(User::class, $id);
+        $user = $repository->find($id);
 
         return $this->render('admin/show_users.html.twig', [
             'user' => $user

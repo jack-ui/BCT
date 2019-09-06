@@ -49,7 +49,7 @@ class BoutiqueController extends AbstractController
             
             $manager->flush();
 
-            $this->addFlash('success', 'Félicitations');
+            $this->addFlash('success', 'La création de votre boutique a bien été prise en compte');
             return $this->redirectToRoute('dashboard');
         }
 
