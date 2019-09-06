@@ -8,46 +8,24 @@
             La boutique {{ boutique.nomBoutique }}
     </h2>
 </div>
-{# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
 
-<div class="container">
-<div class="row">
-    <div class="col-md-12">
-        <div class="card h-100">
-            <div class="card-body text-center">
-                <h4 class="card-title text-info">
-                    {{ boutique.nomBoutique }}
-                </h4>
-                <p class="card-text"><strong>Description  : </strong>{{ boutique.description  }}</p>
-                <p class="card-text"><strong>Livraison  : </strong>{{ boutique.livraison  }}</p>
-                <p class="card-text"><strong>Mode de paiement  : </strong>{{ boutique.paiement  }}</p>
-                <p class="card-text"><strong>Code postal  : </strong>{{ boutique.codePostal  }}</p>
-                <p class="card-text"><strong>Département  : </strong>{{ boutique.departement  }}</p>
-                <p class="card-text"><strong>Région  : </strong>{{ boutique.region  }}</p>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <a class="btn btn-outline-success" style="margin-left: 0;" href="{{ path('buy/shop_product', {id : boutique.id}) }}">Voir les produits </a>
-                </div>
-            </div>
+
+
+    <div class="card">
+        <div class="card-body text-center">
+            <h4 class="card-title text-info"> {{ boutique.nomBoutique }}</h4>
+            <div><img class="w-50" src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div> <br>
+            <p class="card-text"><strong>Description  : </strong>{{ boutique.description  }}</p>
+            <p class="card-text"><strong>Livraison  : </strong>{{ boutique.livraison  }}</p>
+            <p class="card-text"><strong>Mode de paiement  : </strong>{{ boutique.paiement  }}</p>
+            <p class="card-text"><strong>Code postal  : </strong>{{ boutique.codePostal  }}</p>
+            <p class="card-text"><strong>Département  : </strong>{{ boutique.departement  }}</p>
+            <p class="card-text"><strong>Région  : </strong>{{ boutique.region  }}</p>
+                
+                
+            <a class="btn btn-outline-success col-md-3 offset-6" style="margin-left: 0;" href="{{ path('buy/shop_product', {id : boutique.id}) }}">Voir les produits </a>
         </div>
     </div>
-</div>
-</div>
 
-{# <div><img src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div>  #}
-{# <ul>
-    
-    <li>Nom : {{ boutique.nomBoutique }}</li>
-    <li>Description : {{ boutique.description }}</li>
-    <li>Livraison : {{ boutique.livraison }}</li>
-    <li>Mode de paiement : {{ boutique.paiement }}</li>
-    <li>Adresse : {{ boutique.adresse }}</li>
-    <li>Code postal : {{ boutique.codePostal }}</li>
-    <li>Ville : {{ boutique.ville }}</li>
-    <li>Département :{{ boutique.departement }}</li>
-    <li>Région : {{ boutique.region }}</li>
-   
-</ul> #}
 
 {% endblock %}
