@@ -63,10 +63,10 @@ class AcheteurController extends AbstractController
         //Le résultat retourné sera la liste des produits correspondant au champs saisi ($term)
         if ($user == NULL) {
             $produits = $repo->findTermSearch($term);
-            // if($produits == NULL ){
+            if($produits == NULL ){
 
-            //    $this->addFlash('danger','Ce produit est indisponible actuellement');
-            // }
+               $this->addFlash('danger','Ce produit est indisponible actuellement');
+            }
 
 
         }
@@ -77,7 +77,7 @@ class AcheteurController extends AbstractController
             $produits = $repo->findTermSearchLocal($term, $user -> getCodePostal());
             if($produits == NULL){
 
-                $this->addFlash('danger','Ce produit est indisponible actuellement');
+                $this->addFlash('danger', $user->getNom(). ' Ce produit est indisponible dans votre ville');
             }
 
         }

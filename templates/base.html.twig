@@ -78,7 +78,7 @@
     <i class="fas fa-cart-plus"></i>
     {% if app.session.get('panier') | length > 0  %}({{ app.session.get('panier') | length }})
     {% endif %}
-</a></div></nav>{% for message in app.getFlashes('success') %}<div class="alert alert-success">{{ message }}</div>{% endfor %}{% block content %}{% endblock %}<hrclass="rgba-white-light col-md-4 offset-4"><!-- FOOTER --><footer><footer class="page-footer font-small indigo">
+</a></div></nav>{% for message in app.getFlashes('success') %}<div class="alert alert-success">{{ message }}</div>{% endfor %}{% for message in app.getFlashes('danger') %}<div class="alert alert-danger">{{ message }}</div>{% endfor %}{% block content %}{% endblock %}<hrclass="rgba-white-light col-md-4 offset-4"><!-- FOOTER --><footer><footer class="page-footer font-small indigo">
 
 <div class="container-fluid">
     <div class="footer_B">
