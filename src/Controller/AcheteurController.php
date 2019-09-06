@@ -74,7 +74,7 @@ class AcheteurController extends AbstractController
         {    //Si l'utilisateur est connecté la recherche sera en fonction de $term et du code postal du user
             //On veut que $code postal du user soit = $code postal de la boutique
             //Le résultat retourné sera la liste des produits correspondant au champs $term et ayant le cp du user
-            $produits = $repo->findTermSearchLocal($term, $user -> getCodePostal());
+            $produits = $repo->findTermSearchLocal($term, $user -> getDepartement());
             if($produits == NULL){
 
                 $this->addFlash('danger', $user->getNom(). ' Ce produit est indisponible dans votre ville');
