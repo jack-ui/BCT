@@ -169,7 +169,7 @@ class AdminController extends AbstractController
         //Affichage : tableau des boutiques
 
         $repository = $this->getDoctrine()->getRepository(Boutique::class);
-        $boutique = $repository->find(Boutique::class, $id);
+        $boutique = $repository->find($id);
 
         return $this->render('admin/show_shops.html.twig', [
             'boutique' => $boutique
@@ -199,11 +199,10 @@ class AdminController extends AbstractController
 
                     
             $manager -> flush();
-           
+
         
             $this -> addFlash('success', 'La boutique n°' . $boutique -> getId() . ' a bien été enregistré en BDD');
             return $this -> redirectToRoute('admin/show_shops'); 
-             
         }
         
         return $this -> render('admin/shop_form.html.twig', [
