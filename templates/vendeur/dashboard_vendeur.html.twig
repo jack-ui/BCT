@@ -2,11 +2,25 @@
 
 {% block content %}
 
-<h1>Dasboard vendeur</h1>
 
-{# <a href="{{ path('show_orders') }}">Gestion de vos commandes</a> #}
-<a href="{{ path('shop') }}">Gestion des produits de votre boutique</a>
-<a href="{{ path('profile', {id : app.user.id}) }}">Gestion de votre profil</a>
-<a href="{{ path('cgu') }}">Conditions d'utilisation</a>
-{# <a href="{{ path('stats') }}">Statistiques boutique (en bonus)</a> #}
+<div class='banniere_form'>
+    <h2 class="card-header info-color white-text text-center py-4">
+        Dashboard Vendeur
+    </h2>
+    <h4 class="card-header info-color white-text text-center py-4">
+        Bonjour "{{ app.user.username }}" !
+    </h4>
+</div>
+
+<div class="container" style="height: 50vh;">
+    <div class="row"> 
+        {# <a href="{{ path('show_orders') }}">Gestion de vos commandes</a> #}
+        <a href="{{ path('shop') }}" class="btn btn-success p-5 col-md-3" style="font-size: 20px; font-weight: 600;" >Gestion des produits</a>
+        <a href="{{ path('profile', {id : app.user.id}) }}" class="btn btn-warning p-5 col-md-3" style="font-size: 20px; font-weight: 600;" >Gestion de votre profil</a>
+        <a href="{{ path('cgu') }}" class="btn btn-secondary p-5 col-md-3" style="font-size: 20px; font-weight: 600;" >Conditions d'utilisation</a>
+        {# <a href="{{ path('stats') }}">Statistiques boutique (en bonus)</a> #}
+
+
+    </div>
+</div>
 {% endblock %}

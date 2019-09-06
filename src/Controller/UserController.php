@@ -52,6 +52,7 @@ class UserController extends AbstractController
 			return $this -> redirectToRoute('login');
 		}
 		
+		
 		return $this -> render('user/register.html.twig', [
 			'userForm' => $form -> createView()
 		]);
@@ -64,20 +65,14 @@ class UserController extends AbstractController
      */
     public function showProfile()
     {   
-        //Fonction qui affiche le profil de l'utilisateur actuellement connecté en fonction de l'id 
-        //Récupérer l'id du vendeur actuellement connecté
+        //Fonction qui affiche le profil d'un utilisateur
 
-
-        // 1 : Traitement du formulaire
-		
-
-        //2 : Afficher la vue
         return $this -> render('user/show_profile.html.twig', [
 			
 		 ]);
         
     }
-    // test : localhost:8000/profile_3
+    // test : localhost:8000/profile
     
 
      /**

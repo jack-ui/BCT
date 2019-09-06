@@ -67,9 +67,12 @@
                             #}
     <a class="btn btn-outline-success btn-success btn-sm" style="padding: 10px 25px; font-size: 18px; font-weight: 600;" href="{{ path('login') }}">Connexion</a>
     <a class="btn btn-outline-success btn-success btn-sm" style="padding: 10px 25px; font-size: 18px; font-weight: 600;" href="{{ path('register') }}">Inscription</a>
-{% else %}
-    <a class="btn btn-outline-success btn-success btn-sm" style="padding: 10px 25px; font-size: 18px; font-weight: 600;" href="{{ path('profile', { id : app.user.id }) }}">Profil</a>
+{% elseif app.user.role == 'ROLE_USER' %}
 
+    <a class="btn btn-outline-success btn-success btn-sm" style="padding: 10px 25px; font-size: 18px; font-weight: 600;" href="{{ path('profile', { id : app.user.id }) }}">Profil</a>
+    <a class="btn btn-outline-success btn-success btn-sm" style="padding: 10px 25px; font-size: 18px; font-weight: 600;" href="{{ path('logout') }}">Déconnexion</a>
+{% else %}
+    <a class="btn btn-outline-success btn-success btn-sm" style="padding: 10px 25px; font-size: 18px; font-weight: 600;" href="{{ path('admin') }}">Dashboard</a>
 
     <a class="btn btn-outline-success btn-success btn-sm" style="padding: 10px 25px; font-size: 18px; font-weight: 600;" href="{{ path('logout') }}">Déconnexion</a>
 {% endif %}
