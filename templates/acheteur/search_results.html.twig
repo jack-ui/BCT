@@ -1,18 +1,55 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<h1>Résultat(s) de votre recherche :</h1>
-<ul>
-{% for p in produits %}
-    <li>Produit(s) <strong>"{{ p.nom }}"</strong> {% if p.boutiqueId is not null %} disponible(s) dans la boutique : <strong>{{ p.boutiqueId.nomBoutique }}</strong> {% endif %}</li>
-    <li>Description : {{ p.description }}</li>
-    <li>Prix : {{ p.prix }} €</li>
-    <li>Stock :{{ p.stock }} kgs</li>
-    {# <li>Code postal : {{ p.boutiqueId.codePostal}} </li> #}
- 
-</ul>
 
-<a class="btn btn-success" href="{{ path('buy/show_shop', {id : p.boutiqueId.id}) }}">Aller sur la boutique</a>  
 
-{% endfor %}
+<div class='banniere_form'>
+    <h2 class="card-header info-color white-text text-center py-4">
+           Résultat(s) de votre recherche :
+    </h2>
+</div>
+
+
+
+<div class="container">
+
+    <div class="row">
+        {% for p in produits %}
+            <div class="col-md-4 my-3">
+                <div class="card h-100">
+                    <div
+                        class="card-body text-center">
+                        {# <div><img class="w-50" src="{{ asset('/photo/' ~ boutique.photo) }}" alt=" photo de la boutique"></img></div> <br> #}
+                        <p>Produit(s)
+                            <strong>"{{ p.nom }}"</strong>
+                            {% if p.boutiqueId is not null %}
+                                disponible(s) dans la boutique :
+                                <strong>{{ p.boutiqueId.nomBoutique }}</strong>
+                            {% endif %}
+                        </p>
+                        <p>Description :
+                            {{ p.description }}</p>
+                        <p>Prix :
+                            {{ p.prix }}
+                            €</p>
+                        <p>Stock :{{ p.stock }}
+                            kgs</p>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <a class="btn btn-success" href="{{ path('buy/show_shop', {id : p.boutiqueId.id}) }}">Aller sur la boutique</a>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
+
+{# --------------------------------------- #}
+
+
+
