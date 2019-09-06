@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 06 sep. 2019 à 07:27
+-- Généré le :  ven. 06 sep. 2019 à 09:25
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.3.5
 
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `boutique` (
 --
 
 INSERT INTO `boutique` (`id`, `siret`, `nom_boutique`, `livraison`, `paiement`, `photo`, `userId`, `ville`, `code_postal`, `adresse`, `telephone`, `departement`, `region`, `description`) VALUES
-(1, '1349857', 'La ferme des Jacques', 'A domicile', 'CB', 'b1.jpg', 97, 'Rambouillet', 78120, '10 route de Verdun', '019234758', '78', 'ile de france', 'Une super boutique pour tous les locavores !'),
+(1, '1349857', 'La ferme des Jacques', 'à emporter', 'espèces', 'photo_1567757395_71357_b1.jpg', 97, 'Rambouillet', 78120, '10 route de Verdun', '0192347589', '78', 'IDF', 'Une super boutique pour tous les locavores !'),
 (61, '102974198247', 'Chez François', 'sur place', 'espèces', 'b3.jpg', 102, 'Rambouillet', 78120, '10 route de Verdun', '07 38 12 79 02', '78', 'Ile de France', 'Vous aimez les pommes ? On en a ! Et pleins d\'autres choses aussi !'),
 (62, '483743843984394717', 'LEROY\'S FARM', 'à emporter', 'espèces', 'b4.jpg', 103, 'Rambouillet', 78120, '12, chemin Rémy Marty', '06 41 77 53 40', '78', 'Ile de France', 'Bienvenue ! Venez nous rencontrer !'),
 (63, '873109382394', 'La ferme de Joseph', 'à domicile', 'cb', 'b5.jpg', 105, 'Rambouillet', 78710, '37, boulevard Margaux Herve', '07 56 20 94 01', '78', 'Ile de France', 'Les meilleurs légumes de toute la région ! '),
@@ -72,10 +72,9 @@ INSERT INTO `boutique` (`id`, `siret`, `nom_boutique`, `livraison`, `paiement`, 
 (76, '38574637569', 'La ferme du pont', 'à emporter', 'espèces', 'b8.jpg', 146, 'Bazemont', 78580, '1, rue de Albert', '06 39 94 53 58', '78', 'Ile de France', 'Pour des produits frais et écolos, venez ici !'),
 (77, '9475987538975', 'La ferme du Maréchal', 'point relais', 'cb', 'b9.jpg', 147, 'Maule', 78580, '65, chemin de Marechal', '06 39 92 46 05', '78', 'Ile de France', 'Depuis plus de 50 ans la ferme Maréchal nourrit les familles de ses bons produits. '),
 (78, '439857387565', 'La ferme Gregoire', 'à emporter', 'espèces', 'b10.jpg', 155, 'Maule', 78580, '198, impasse Gay', '01 38 32 55 03', '78', 'Ile de France', 'Une petite ferme familiale de qualité à qui vous pouvez faire confiance !'),
-(79, '83758375656682', 'La ferme rouge', 'domicile', 'paypal', 'b11.jog', 161, 'Maule', 78580, '68, avenue Marchand', '01 88 89 92 61', '78', 'Ile de France', 'Un petit espace de verdure au milieu du béton. '),
+(79, '83758375656682', 'La ferme rouge', 'domicile', 'paypal', 'b11.jpg', 161, 'Maule', 78580, '68, avenue Marchand', '01 88 89 92 61', '78', 'Ile de France', 'Un petit espace de verdure au milieu du béton. '),
 (80, '492614789624', 'Les Oliviers', 'à emporter', 'espèces', 'b1.jpg', 164, 'Maule', 78580, '54, avenue Lorraine Lebrun', '0611158086', '78', 'Ile de France', 'Venez acheter nos délicieux fruits et légumes !'),
-(81, '9874938759875683', 'Chez Lopes', 'à emporter', 'espèces', 'b3.jpg', 599, 'Porcheville', 78440, '154, chemin Susan Louis', '07 57 25 09 49', '78', 'Ile de France', 'Une toute nouvelle ferme familiale qui changera votre manière de consommer ! '),
-(82, '2357239857239587', 'Chez Mag', 'à emporter', 'CB', 'b4.jpg', NULL, 'paris', 75020, '10 routes de Javascript', '0684883878', '75', 'IDF', 'La meilleure boutique du monde de la terre !');
+(81, '9874938759875683', 'Chez Lopes', 'à emporter', 'espèces', 'b3.jpg', 599, 'Porcheville', 78440, '154, chemin Susan Louis', '07 57 25 09 49', '78', 'Ile de France', 'Une toute nouvelle ferme familiale qui changera votre manière de consommer ! ');
 
 -- --------------------------------------------------------
 
@@ -357,14 +356,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `region` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649DB050607` (`boutiqueId`)
-) ENGINE=InnoDB AUTO_INCREMENT=600 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=601 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `nom`, `prenom`, `sexe`, `adresse`, `email`, `username`, `password`, `ville`, `code_postal`, `telephone`, `date_de_naissance`, `salt`, `statut`, `boutiqueId`, `role`, `departement`, `region`) VALUES
-(97, 'Jacques', 'Jeannine', 'f', '72, rue Julien Labbe', 'j.jacques@live.com', 'JeannineJ', 'Tutu123456', 'Rambouillet', 78120, '0192347586', '1957-07-16', NULL, '1', 1, 'ROLE_USER', '78', 'IDF'),
+(97, 'Jacques', 'Jeannine', 'f', '72, rue Julien Labbe', 'j.jacques@gmail.com', 'JeannineJ', 'Janne1111', 'Rambouillet', 78120, '0192347586', '1957-07-16', NULL, '1', 1, 'ROLE_USER', '78', 'IDF'),
 (98, 'Guichard', 'Luce', 'f', 'boulevard de Renault', 'guichard.luce@wanadoo.fr', 'Luce', 'tk7sH4Zl`f(P<FGo', 'Rambouillet', 78120, '01 64 12 66 23', '1960-03-19', NULL, '0', NULL, 'ROLE_USER', '78', 'Ile de France'),
 (99, 'Petitjean', 'Édith', 'f', '8, boulevard de Petitjean', 'edithPetitJean@laposte.net', 'Edith PJ', '~*uyNGa}p@Nri,6)f\\4', 'Rambouillet', 78120, '0669771666', '1986-07-24', NULL, '0', NULL, 'ROLE_USER', '78', 'Ile de France'),
 (100, 'Leleu', 'Paulette', 'f', '4, chemin Frédéric Ruiz', 'plebleu@live.com', 'Paulette', '7Y*-x~1\"O', 'Rambouillet', 78120, '0135651971', '1953-06-10', NULL, '0', NULL, 'ROLE_USER', '78', 'Ile de France'),
@@ -441,7 +440,8 @@ INSERT INTO `user` (`id`, `nom`, `prenom`, `sexe`, `adresse`, `email`, `username
 (171, 'Fernandez', 'Xavier', 'm', 'chemin de Maillot', 'xavier-fernandez@wanadoo.fr', 'xavier-fernandez', 'wxoaqX5', 'Porcheville', 78440, '01 21 94 99 02', '1959-05-08', NULL, '0', NULL, 'ROLE_USER', '78', 'Ile de France'),
 (597, 'Milbergue', 'Magali', 'f', '16 rue du Moulin', 'magali@gmail.com', 'MagAdmin', '$argon2i$v=19$m=65536,t=4,p=1$QzFLMHFZLmlkdkh4OGJERw$8yhYZcSR/0+GvnQCEimxO95AffASDgbksKRJv7/x/AY', 'ROSNY', 78710, '0101010101', '1987-01-01', NULL, '0', NULL, 'ROLE_ADMIN', '78', 'IDF'),
 (598, 'Duck', 'Daisy', 'f', '12 rue du canard laqué', 'daisyduck@gmail.com', 'MagAcheteur', '$argon2i$v=19$m=65536,t=4,p=1$WWduNWpaZkRqamZrWmNQLg$qGhIoWz0r++ds4/OggCF2pi0u87jJwIGAE+McWLahe4', 'Ducktown', 77777, '0684883848', '1990-01-01', NULL, '0', NULL, 'ROLE_USER', '77', 'IDF'),
-(599, 'NOUR', 'Ginette', 'f', '10 routes de Javascript', 'ginette@email.com', 'MagVendeur', '$argon2i$v=19$m=65536,t=4,p=1$RC5ET01oWDAuR1VpR2VMeQ$l6M2m8uilpvOI1UVCj8POU4FlDzGtPAoNiqNYN1h2OI', 'paris', 75020, '0684883878', '1976-09-07', NULL, '1', 81, 'ROLE_USER', '75', 'IDF');
+(599, 'NOUR', 'Ginette', 'f', '10 routes de Javascript', 'ginette@email.com', 'MagVendeur', '$argon2i$v=19$m=65536,t=4,p=1$RC5ET01oWDAuR1VpR2VMeQ$l6M2m8uilpvOI1UVCj8POU4FlDzGtPAoNiqNYN1h2OI', 'paris', 75020, '0684883878', '1976-09-07', NULL, '1', 81, 'ROLE_USER', '75', 'IDF'),
+(600, 'Milbergue', 'Magali', 'f', '16 rue du Moulin', 'magali@gmail.com', 'MagAcheteur', 'Magali1234', 'ROSNY', 78710, '0684883878', '1945-01-01', NULL, '0', NULL, 'ROLE_USER', '78', 'IDF');
 
 --
 -- Contraintes pour les tables déchargées
