@@ -65,7 +65,7 @@ class AcheteurController extends AbstractController
             $produits = $repo->findTermSearch($term);
             // if($produits == NULL ){
 
-            //     return $this->addFlash('danger','Ce produit est indisponible actuellement');
+            //    $this->addFlash('danger','Ce produit est indisponible actuellement');
             // }
 
 
@@ -75,10 +75,10 @@ class AcheteurController extends AbstractController
             //On veut que $code postal du user soit = $code postal de la boutique
             //Le résultat retourné sera la liste des produits correspondant au champs $term et ayant le cp du user
             $produits = $repo->findTermSearchLocal($term, $user -> getCodePostal());
-            // if($produits == NULL){
+            if($produits == NULL){
 
-            //     return $this->addFlash('danger','Ce produit est indisponible actuellement');
-            // }
+                $this->addFlash('danger','Ce produit est indisponible actuellement');
+            }
 
         }
         return $this->render('acheteur/search_results.html.twig', [
