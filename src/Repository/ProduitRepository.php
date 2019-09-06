@@ -62,19 +62,19 @@ class ProduitRepository extends ServiceEntityRepository
 		-> getResult();
 	}
 
-	public function findTermSearchLocal($term, $cp){
+	public function findTermSearchLocal($term, $dpt){
 
 		$term = '%' . $term . '%';
 		$builder = $this->createQueryBuilder('p');
 
 		return $builder
 		-> select('p')
-        -> join('p.boutiqueId', 'b', 'WITH',  'b.codePostal = :cp')
+        -> join('p.boutiqueId', 'b', 'WITH',  'b.departement = :dpt')
         -> where('p.nom LIKE :term')
 		// -> orWHere('p.categorie LIKE :term')
 		// -> orWHere('p.description LIKE :term')
 		-> setParameter(':term', $term)
-		-> setParameter(':cp', $cp)
+		-> setParameter(':dpt', $dpt)
 		-> getQuery()
 		-> getResult();
 	}
